@@ -1,6 +1,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
     <xacro:property name="pi" value="3.14159265359"/>
 
+    <xacro:include filename="herb_base.urdf.xacro"/>
     <xacro:include filename="bh280.urdf.xacro"/>
     <xacro:include filename="wam.urdf.xacro"/>
 
@@ -19,21 +20,20 @@
     </xacro:macro>
 
     <xacro:macro name="herb">
+        <xacro:herb_base prefix=""/>
         <xacro:wam_ft_bh280 prefix="/left"/>
         <xacro:wam_ft_bh280 prefix="/right"/>
 
-        <link name="herb_base"/>
-
         <joint name="/left/wam_mount" type="fixed">
-            <origin xyz="0.079  0.191 0.905" rpy="0 ${-pi/2} ${pi}"/>
-            <parent link="herb_base"/>
-            <child link="/left/wam0"/>
+            <origin rpy="0 ${-pi/2} ${pi}"/>
+            <parent link="/herb_base"/>
+            <child link="/left/wam_base"/>
         </joint>
 
         <joint name="/right/wam_mount" type="fixed">
-            <origin xyz="0.079 -0.191 0.905" rpy="0 ${-pi/2} ${pi}"/>
-            <parent link="herb_base"/>
-            <child link="/right/wam0"/>
+            <origin rpy="0 ${-pi/2} ${pi}"/>
+            <parent link="/herb_base"/>
+            <child link="/right/wam_base"/>
         </joint>
     </xacro:macro>
 
