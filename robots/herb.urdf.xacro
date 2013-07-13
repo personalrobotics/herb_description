@@ -12,8 +12,8 @@
         <xacro:wam prefix="${prefix}"/>
 
         <joint name="${prefix}/mount" type="fixed">
-            <!-- The force/torque sensor is 2 cm thick. -->
-            <origin xyz="0 0 0.02" rpy="0 0 ${-pi/2}"/>
+            <!-- The force/torque sensor is 12 mm thick. -->
+            <origin xyz="0 0 0.012" rpy="0 0 ${-pi/2}"/>
             <parent link="${prefix}/wam7"/>
             <child link="${prefix}/base_link"/>
         </joint>
@@ -25,13 +25,13 @@
         <xacro:wam_ft_bh280 prefix="/right"/>
 
         <joint name="/left/wam_mount" type="fixed">
-            <origin rpy="0 ${-pi/2} ${pi}"/>
+            <origin xyz="-0.2667 0.3307 0.68505" rpy="0 ${-pi/2} ${pi}"/>
             <parent link="/herb_base"/>
             <child link="/left/wam_base"/>
         </joint>
 
         <joint name="/right/wam_mount" type="fixed">
-            <origin rpy="0 ${-pi/2} ${pi}"/>
+            <origin xyz="-0.2667 -0.05069 0.68505" rpy="0 ${-pi/2} ${pi}"/>
             <parent link="/herb_base"/>
             <child link="/right/wam_base"/>
         </joint>
