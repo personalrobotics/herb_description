@@ -17,6 +17,8 @@ clean:
 ordata/robots/herb.kinbody.xml: robots/herb.urdf
 	rosrun or_urdf load.py $< $@
 
+robots/herb.urdf: $(COMPONENTS)
+
 robots/herb_base.urdf.xacro: robots/HERB_BASE_URDF.URDF
 	$(SW2URDF_POSTPROCESS) --name=herb_base --package=$(PACKAGE) --color $(HERB_COLOR) $< $@
 
