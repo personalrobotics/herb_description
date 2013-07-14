@@ -4,7 +4,11 @@
         and built by the Personal Robotics Laboratory at Carnegie Mellon
         University.
     </description>
+    <depend package="or_urdf"/>
     <depend package="xacro"/>
     <author>Michael Dawson-Haggerty, Michael Koval</author>
     <license>BSD</license>
+    <export>
+        <openrave data="ordata"/>
+    </export>
 </package>
