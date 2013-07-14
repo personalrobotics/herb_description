@@ -1,0 +1,23 @@
+<Robot name="herb">
+    <KinBody file="herb.kinbody.xml"/> 
+
+    <Manipulator name="left_wam">
+        <Base>/left/wam_base</Base>
+        <Effector>/left/wam7</Effector>
+        <ClosingDirection>1 1 1 0</ClosingDirection>
+        <Direction>0 0 1</Direction>
+    </Manipulator>
+
+    <Manipulator name="right_wam">
+        <Base>/right/wam_base</Base>
+        <Effector>/right/wam7</Effector>
+        <ClosingDirection>1 1 1 0</ClosingDirection>
+        <Direction>0 0 1</Direction>
+    </Manipulator>
+
+    <Manipulator name="head">
+        <Base>/herb_base</Base>
+        <Effector>/head/wam2</Effector>
+        <Direction>1 0 0</Direction>
+    </Manipulator>
+</Robot>
