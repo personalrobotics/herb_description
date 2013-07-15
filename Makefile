@@ -20,13 +20,13 @@ ordata/robots/herb.kinbody.xml: robots/herb.urdf
 robots/herb.urdf: $(COMPONENTS)
 
 robots/herb_base.urdf.xacro: robots/HERB_BASE_URDF.URDF
-	$(SW2URDF_POSTPROCESS) --name=herb_base --package=$(PACKAGE) --color $(HERB_COLOR) $< $@
+	$(SW2URDF_POSTPROCESS) --name=herb_base --package=$(PACKAGE) $< $@
 
 robots/bh280.urdf.xacro: robots/BHD_URDF_280.URDF
-	$(SW2URDF_POSTPROCESS) --name=bh280 --package=$(PACKAGE) --color $(WAM_COLOR) $< $@
+	$(SW2URDF_POSTPROCESS) --name=bh280 --package=$(PACKAGE) $< $@
 
 robots/wam.urdf.xacro: robots/WAM_URDF.URDF 
-	$(SW2URDF_POSTPROCESS) --name=wam --package=$(PACKAGE) --color $(WAM_COLOR) $< $@
+	$(SW2URDF_POSTPROCESS) --name=wam --package=$(PACKAGE) $< $@
 
 %.urdf: %.urdf.xacro
 	rosrun xacro xacro.py $< > $@
