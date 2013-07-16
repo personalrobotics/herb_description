@@ -54,7 +54,7 @@
     </xacro:macro>
 
     <!-- Frame W with palm pad -->
-    <link name="base_link">
+    <link name="hand_base">
         <inertial>
             <origin xyz="5.0019e-005 -0.0044561 0.037268"/>
             <mass value="0.60858"/>

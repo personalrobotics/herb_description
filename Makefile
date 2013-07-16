@@ -27,7 +27,7 @@ robots/herb.urdf: $(COMPONENTS)
 robots/wam_raw.urdf: robots/WAM_URDF.URDF config/wam_params.urdf
 	$(PARAMS_POSTPROCESS) $^ $@
 
-robots/bh280_raw.urdf: robots/BHD_URDF_280.URDF config/bh280_params.urdf
+robots/bh280_raw.urdf: robots/BHD280_URDF.URDF config/bh280_params.urdf
 	$(PARAMS_POSTPROCESS) $^ $@
 
 robots/herb_base_raw.urdf: robots/HERB_BASE_URDF.URDF config/herb_params.urdf

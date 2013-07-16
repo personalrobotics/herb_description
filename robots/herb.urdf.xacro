@@ -11,11 +11,11 @@
         <xacro:bh280 prefix="${prefix}"/>
         <xacro:wam prefix="${prefix}"/>
 
-        <joint name="${prefix}/mount" type="fixed">
+        <joint name="${prefix}/hand_mount" type="fixed">
             <!-- The force/torque sensor is 12 mm thick. -->
-            <origin xyz="0 0 0.012" rpy="0 0 ${-pi/2}"/>
+            <origin xyz="0 0 0.072" rpy="0 0 ${pi/2}"/>
             <parent link="${prefix}/wam7"/>
-            <child link="${prefix}/base_link"/>
+            <child link="${prefix}/hand_base"/>
         </joint>
     </xacro:macro>
 
