@@ -6,41 +6,40 @@
     <link name="wam_base">
         <inertial>
             <origin xyz="-0.02017671 -0.26604706 -0.14071720"/>
-            <mass>9.97059584</mass>
+            <mass value="9.97059584"/>
             <inertia ixx="0.10916849" ixy="0.00640270" ixz="0.02557874"
                                       iyy="0.18294303" iyz="0.00161433"
                                                        izz="0.11760385"/>
-            <inertia ixx="" ixy="" ixz="" iyy="" iyz="" izz=""/>
         </inertial>
     </link>
 
     <link name="wam1">
         <inertial>
             <origin xyz="-0.00443422 0.12189039 -0.00066489"/>
-            <mass>10.76768767</mass>
+            <mass value="10.76768767"/>
             <inertia ixx="0.13488033" ixy="-0.00213041" ixz="-0.00012485"
-                                      iyy=" 0.11328369" iyz=" 0.00068555"
-                                                        izz=" 0.09046330"/>
+                                      iyy= "0.11328369" iyz= "0.00068555"
+                                                        izz= "0.09046330"/>
         </inertial>
     </link>
 
     <link name="wam2">
         <inertial>
             <origin xyz="-0.00236983 0.03105614 0.01542114"/>
-            <mass>3.87493756</mass>
-            <inertia ixx="0.02140958" ixy="0.00027172" ixz=" 0.00002461"
+            <mass value="3.87493756"/>
+            <inertia ixx="0.02140958" ixy="0.00027172" ixz="+0.00002461"
                                       iyy="0.01377875" iyz="-0.00181920"
-                                                       izz=" 0.01558906"/>
+                                                       izz= "0.01558906"/>
         </inertial>
     </link>
 
     <link name="wam3">
         <inertial>
             <origin xyz="-0.03825858 0.20750770 0.00003309"/>
-            <mass>1.80228141</mass>
-            <inertia ixx="0.05911077" ixy="-0.00249612" ixz=" 0.00000738"
-                                      iyy=" 0.00324550" iyz="-0.00001767"
-                                                        izz=" 0.05927043"/>
+            <mass value="1.80228141"/>
+            <inertia ixx="0.05911077" ixy="-0.00249612" ixz= "0.00000738"
+                                      iyy= "0.00324550" iyz="-0.00001767"
+                                                        izz= "0.05927043"/>
         </inertial>
     </link>
 
@@ -48,30 +47,30 @@
     <link name="wam4">
         <inertial>
             <origin xyz="0.00498512 -0.00022942 0.13271662"/>
-            <mass>2.40016804</mass>
+            <mass value="2.40016804"/>
             <inertia ixx="0.01491672" ixy="0.00001741" ixz="-0.00150604"
                                       iyy="0.01482922" iyz="-0.00002109"
-                                                       izz=" 0.00294463"/>
+                                                       izz= "0.00294463"/>
         </inertial>
     </link>
 
     <link name="wam5">
         <inertial>
             <origin xyz="0.00008921 0.00511217 0.00435824"/>
-            <mass>0.12376019</mass>
+            <mass value="0.12376019"/>
             <inertia ixx="0.00005029" ixy="0.00000020" ixz="-0.00000005"
                                       iyy="0.00007582" iyz="-0.00000359"
-                                                       izz=" 0.00006270"/>
+                                                       izz= "0.00006270"/>
         </inertial>
     </link>
 
     <link name="wam6">
         <inertial>
             <origin xyz="-0.00012262 -0.01703194 0.02468336"/>
-            <mass>0.41797364</mass>
+            <mass value="0.41797364"/>
             <inertia ixx="0.00055516" ixy="0.00000061" ixz="-0.00000074"
                                       iyy="0.00024367" iyz="-0.00004590"
-                                                       izz=" 0.00045358"/>
+                                                       izz= "0.00045358"/>
         </inertial>
     </link>
 
@@ -80,9 +79,9 @@
     <link name="wam7">
         <inertial>
             <origin xyz="-0.00007974 0.00016313 -0.00323552"/>
-            <mass>0.06864753</mass>
+            <mass value="0.06864753"/>
             <inertia ixx="0.00003773" ixy="-0.00000019" ixz="0.00000000"
-                                      iyy=" 0.00003806" iyz="0.00000000"
+                                      iyy= "0.00003806" iyz="0.00000000"
                                                         izz="0.00007408"/>
         </inertial>
     </link>
@@ -121,6 +120,6 @@
     </joint>
 
     <joint name="j7">
-        <limit lower="${-172*(pi/180)}" upper="${-172*(pi/180)}" effort="0.174" velocity="2.5"/>
+        <limit lower="${-172*(pi/180)}" upper="${172*(pi/180)}" effort="0.174" velocity="2.5"/>
     </joint>
 </template>

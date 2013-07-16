@@ -1,0 +1,11 @@
+<template xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="pi" value="3.14159265359"/>
+
+    <joint name="head/wam1">
+        <limit lower="${-160*(pi/180)}" upper="${160*(pi/180)}" effort="0.517" velocity="3.0"/>
+    </joint>
+
+    <joint name="head/wam2">
+        <limit lower="${-71.5*(pi/180)}" upper="${71.5*(pi/180)}" effort="0.110" velocity="3.0"/>
+    </joint>
+</template>

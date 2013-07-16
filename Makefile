@@ -1,13 +1,13 @@
-SW2URDF_POSTPROCESS=./scripts/postprocess_sw2urdf.py
+PARAMS_POSTPROCESS=./scripts/postprocess_params.py
+XACRO_POSTPROCESS=./scripts/postprocess_xacro.py
 RM=rm -f
 
 TARGETS=robots/herb.urdf ordata/robots/herb.kinbody.xml
 COMPONENTS=robots/herb_base.urdf.xacro robots/bh280.urdf.xacro robots/wam.urdf.xacro
 PACKAGE=herb_description
-HERB_COLOR=0.792 0.820 0.9333 1.0
-WAM_COLOR=0.878 0.949 1.0 1.0
 
 .PHONY: all clean
+.SECONDARY:
 
 all: $(TARGETS)
 
@@ -19,14 +19,20 @@ ordata/robots/herb.kinbody.xml: robots/herb.urdf
 
 robots/herb.urdf: $(COMPONENTS)
 
-robots/herb_base.urdf.xacro: robots/HERB_BASE_URDF.URDF
-	$(SW2URDF_POSTPROCESS) --name=herb_base --package=$(PACKAGE) $< $@
+# Wrap the URDF in an xacro macro.
+%.urdf.xacro: %_raw.urdf
+	$(XACRO_POSTPROCESS) --name=$(notdir $*) --package=$(PACKAGE) $< $@
 
-robots/bh280.urdf.xacro: robots/BHD_URDF_280.URDF
-	$(SW2URDF_POSTPROCESS) --name=bh280 --package=$(PACKAGE) $< $@
+# Insert parameters (i.e. joint limits, inertias).
+robots/wam_raw.urdf: robots/WAM_URDF.URDF config/wam_params.urdf
+	$(PARAMS_POSTPROCESS) $^ $@
 
-robots/wam.urdf.xacro: robots/WAM_URDF.URDF 
-	$(SW2URDF_POSTPROCESS) --name=wam --package=$(PACKAGE) $< $@
+robots/bh280_raw.urdf: robots/BHD_URDF_280.URDF config/bh280_params.urdf
+	$(PARAMS_POSTPROCESS) $^ $@
 
+robots/herb_base_raw.urdf: robots/HERB_BASE_URDF.URDF config/herb_params.urdf
+	$(PARAMS_POSTPROCESS) $^ $@
+
+# General rules.
 %.urdf: %.urdf.xacro
 	rosrun xacro xacro.py $< > $@
