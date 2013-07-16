@@ -8,8 +8,8 @@
     <!-- 7 DOF Barrett WAM equipped with the Barrett force/torque sensor and
          the BH-280 BarrettHand end-effector. -->
     <xacro:macro name="wam_ft_bh280" params="prefix">
-        <xacro:bh280 prefix="${prefix}"/>
         <xacro:wam prefix="${prefix}"/>
+        <xacro:bh280 prefix="${prefix}"/>
 
         <joint name="${prefix}/hand_mount" type="fixed">
             <!-- The force/torque sensor is 12 mm thick. -->
@@ -20,9 +20,9 @@
     </xacro:macro>
 
     <xacro:macro name="herb">
-        <xacro:herb_base prefix=""/>
         <xacro:wam_ft_bh280 prefix="/left"/>
         <xacro:wam_ft_bh280 prefix="/right"/>
+        <xacro:herb_base prefix=""/>
 
         <joint name="/left/wam_mount" type="fixed">
             <origin xyz="-0.2667 0.3307 0.68505" rpy="0 ${-pi/2} ${pi}"/>

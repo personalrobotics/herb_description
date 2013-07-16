@@ -1,5 +1,7 @@
 <Robot name="herb">
-    <KinBody file="herb.kinbody.xml"/> 
+    <KinBody file="herb.kinbody.xml" name="herb"/>
+
+    <!--<JointValues></JointValues>-->
 
     <Manipulator name="left_wam">
         <Base>/left/wam_base</Base>
