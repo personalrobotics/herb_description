@@ -5,7 +5,7 @@
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.vcg"/>
 
     <node name="left_base_link_transform" pkg="tf" type="static_transform_publisher"
-          args="0 0 0.06 1.57 0 0 /left/wam7 /left/base_link 50"/>
+          args="0 0 0.06 1.57 0 0 /left/wam7 /left/hand_base 50"/>
     <node name="right_base_link_transform" pkg="tf" type="static_transform_publisher"
-          args="0 0 0.06 1.57 0 0 /right/wam7 /right/base_link 50"/>
+          args="0 0 0.06 1.57 0 0 /right/wam7 /right/hand_base 50"/>
 </launch>

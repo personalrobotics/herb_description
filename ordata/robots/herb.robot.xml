@@ -1,23 +1,25 @@
 <Robot name="herb">
     <KinBody file="herb.kinbody.xml" name="herb"/>
 
-    <!--<JointValues></JointValues>-->
+    <JointValues>0 0 0 0 0 0.6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0 0 0 0 0 0 0 0 0 0 0 0 0 0</JointValues>
 
     <Manipulator name="left_wam">
         <Base>/left/wam_base</Base>
         <Effector>/left/wam7</Effector>
-        <ClosingDirection>1 1 1 0</ClosingDirection>
+        <GripperJoints>/left/finger0_1 /left/finger1_1 /left/finger2_1</GripperJoints>
+        <ClosingDirection>1 1 1</ClosingDirection>
         <Direction>0 0 1</Direction>
     </Manipulator>
 
     <Manipulator name="right_wam">
         <Base>/right/wam_base</Base>
         <Effector>/right/wam7</Effector>
-        <ClosingDirection>1 1 1 0</ClosingDirection>
+        <GripperJoints>/right/finger0_1 /right/finger1_1 /right/finger2_1</GripperJoints>
+        <ClosingDirection>1 1 1</ClosingDirection>
         <Direction>0 0 1</Direction>
     </Manipulator>
 
-    <Manipulator name="head">
+    <Manipulator name="head_wam">
         <Base>/herb_base</Base>
         <Effector>/head/wam2</Effector>
         <Direction>1 0 0</Direction>
