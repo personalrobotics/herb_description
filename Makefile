@@ -1,3 +1,4 @@
+OR_URDF=$(shell rospack find or_urdf)/scripts/load.py
 PARAMS_POSTPROCESS=./scripts/postprocess_params.py
 XACRO_POSTPROCESS=./scripts/postprocess_xacro.py
 RM=rm -f
@@ -15,7 +16,7 @@ clean:
 	$(RM) $(TARGETS) $(COMPONENTS)
 
 ordata/robots/herb.kinbody.xml: robots/herb.urdf
-	rosrun or_urdf load.py $< $@
+	$(OR_URDF) load.py $< $@
 
 robots/herb.urdf: $(COMPONENTS)
 

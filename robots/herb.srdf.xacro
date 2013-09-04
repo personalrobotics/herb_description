@@ -5,7 +5,7 @@
         </group>
 
         <group name="${prefix}_hand">
-            <link name="/${prefix}/base_link"/>
+            <link name="/${prefix}/hand_base"/>
             <link name="/${prefix}/finger0_0"/>
             <link name="/${prefix}/finger0_1"/>
             <link name="/${prefix}/finger0_2"/>
@@ -16,7 +16,7 @@
             <link name="/${prefix}/finger2_2"/>
         </group>
 
-        <end_effector name="left_hand" group="left_hand"
+        <end_effector name="${prefix}_hand" group="${prefix}_hand"
                       parent_link="/${prefix}/wam7" parent_group="${prefix}_arm"/>
 
         <!-- Disable collisions between the fingers. -->
@@ -55,13 +55,13 @@
         <disable_collisions link1="/${prefix}/finger2_1" link2="/${prefix}/finger2_2"/>
 
         <!-- Disable collisions between the fingers and the palm. -->
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger1_0"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger0_1"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger0_2"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/finger2_2"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_0"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_1"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_2"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_1"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_2"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_1"/>
+        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_2"/>
 
         <!-- Sphere representation for CHOMP -->
         <link_sphere_approximation link="/${prefix}/wam0">
