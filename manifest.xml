@@ -9,6 +9,6 @@
     <author>Michael Dawson-Haggerty, Michael Koval</author>
     <license>BSD</license>
     <export>
-        <openrave data="ordata"/>
+        <openrave data="${prefix}/ordata"/>
     </export>
 </package>
