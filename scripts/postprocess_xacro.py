@@ -34,7 +34,7 @@ if __name__ == '__main__':
     macro_xml = lxml.etree.SubElement(new_robot_xml, '{{{0}}}macro'.format(xacro_ns),
                                       name=args.name, params=' '.join(params))
     new_urdf = lxml.etree.ElementTree(new_robot_xml)
-
+ 
     children_xml = robot_xml.getchildren()
     for child_xml in children_xml:
         macro_xml.append(child_xml)
@@ -42,6 +42,10 @@ if __name__ == '__main__':
     # Add a prefix to the link names.
     for link_xml in new_urdf.findall('//link'):
         add_prefix(link_xml, 'name', prefix_var)
+
+    # Add a prefix to mimic joint names
+    for mimic_xml in new_urdf.findall('//mimic'):
+        add_prefix(mimic_xml, 'joint', prefix_var)
 
     # Add a prefix to the joint names.
     for joint_xml in new_urdf.findall('//joint'):
