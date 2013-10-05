@@ -1,9 +1,5 @@
 <Robot name="herb">
-  
     <KinBody file="herb.kinbody.xml"/>
-
-    <!--<JointValues>0 0 0 0 0 0.6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0 0 0 0 0 0 0 0 0 0 0 0 0 0</JointValues>-->
-
 
     <Manipulator name="left_wam">
         <Base>/left/wam_base</Base>
@@ -27,4 +23,113 @@
         <Direction>1 0 0</Direction>
     </Manipulator>
 
+    <!-- TODO: Add link adjacencies to the KinBody file. -->
+    <KinBody>
+        <!-- proximal/palm collisions -->
+        <Adjacent>/left/finger0_1 /left/hand_base</Adjacent>
+        <Adjacent>/left/finger1_1 /left/hand_base</Adjacent>
+        <Adjacent>/left/finger2_1 /left/hand_base</Adjacent>
+        <!-- distal/palm collisions -->
+        <Adjacent>/left/finger0_2 /left/hand_base</Adjacent>
+        <Adjacent>/left/finger1_2 /left/hand_base</Adjacent>
+        <Adjacent>/left/finger2_2 /left/hand_base</Adjacent>
+        <!-- proximal/proximal collision -->
+        <Adjacent>/left/finger0_1 /left/finger1_1</Adjacent>
+        <Adjacent>/left/finger0_1 /left/finger2_1</Adjacent>
+        <Adjacent>/left/finger1_1 /left/finger2_1</Adjacent>
+        <!-- distal/distal collision -->
+        <Adjacent>/left/finger0_2 /left/finger1_2</Adjacent>
+        <Adjacent>/left/finger0_2 /left/finger2_2</Adjacent>
+        <Adjacent>/left/finger1_2 /left/finger2_2</Adjacent>
+        <!-- proximal/distal collisions -->
+        <Adjacent>/left/finger0_2 /left/finger1_1</Adjacent>
+        <Adjacent>/left/finger0_2 /left/finger2_1</Adjacent>
+        <Adjacent>/left/finger1_2 /left/finger0_1</Adjacent>
+        <Adjacent>/left/finger1_2 /left/finger2_1</Adjacent>
+        <Adjacent>/left/finger2_2 /left/finger0_1</Adjacent>
+        <Adjacent>/left/finger2_2 /left/finger1_1</Adjacent>
+
+        <!-- proximal/palm collisions -->
+        <Adjacent>/right/finger0_1 /right/hand_base</Adjacent>
+        <Adjacent>/right/finger1_1 /right/hand_base</Adjacent>
+        <Adjacent>/right/finger2_1 /right/hand_base</Adjacent>
+        <!-- distal/palm collisions -->
+        <Adjacent>/right/finger0_2 /right/hand_base</Adjacent>
+        <Adjacent>/right/finger1_2 /right/hand_base</Adjacent>
+        <Adjacent>/right/finger2_2 /right/hand_base</Adjacent>
+        <!-- proximal/proximal collision -->
+        <Adjacent>/right/finger0_1 /right/finger1_1</Adjacent>
+        <Adjacent>/right/finger0_1 /right/finger2_1</Adjacent>
+        <Adjacent>/right/finger1_1 /right/finger2_1</Adjacent>
+        <!-- distal/distal collision -->
+        <Adjacent>/right/finger0_2 /right/finger1_2</Adjacent>
+        <Adjacent>/right/finger0_2 /right/finger2_2</Adjacent>
+        <Adjacent>/right/finger1_2 /right/finger2_2</Adjacent>
+        <!-- proximal/distal collisions -->
+        <Adjacent>/right/finger0_2 /right/finger1_1</Adjacent>
+        <Adjacent>/right/finger0_2 /right/finger2_1</Adjacent>
+        <Adjacent>/right/finger1_2 /right/finger0_1</Adjacent>
+        <Adjacent>/right/finger1_2 /right/finger2_1</Adjacent>
+        <Adjacent>/right/finger2_2 /right/finger0_1</Adjacent>
+        <Adjacent>/right/finger2_2 /right/finger1_1</Adjacent>
+    </KinBody>
+
+    <KinBody>
+        <orcdchomp>
+            <spheres>
+                <!-- right arm -->
+                <!-- shoulder spheres -->
+                <sphere link="/right/wam0"      pos=" 0.0    0.0  0.0 " radius="0.15" />
+                <!-- upper arm spheres -->
+                <sphere link="/right/wam2"      pos=" 0.0   -0.2  0.0 " radius="0.06" />
+                <sphere link="/right/wam2"      pos=" 0.0   -0.3  0.0 " radius="0.06" />
+                <sphere link="/right/wam2"      pos=" 0.0   -0.4  0.0 " radius="0.06" />
+                <sphere link="/right/wam2"      pos=" 0.0   -0.5  0.0 " radius="0.06" />
+                <!-- elbow knuckle spheres -->
+                <sphere link="/right/wam3"      pos=" 0.045  0.0  0.55" radius="0.06" />
+                <!-- forearm spheres -->
+                <sphere link="/right/wam4"      pos="-0.045 -0.2  0.0 " radius="0.06" />
+                <sphere link="/right/wam4"      pos="-0.045 -0.1  0.0 " radius="0.06" />
+                <sphere link="/right/wam4"      pos="-0.045 -0.3  0.0 " radius="0.06" />
+                <!-- hand sphere -->
+                <sphere link="/right/wam6"      pos=" 0.0   -0.1  0.0 " radius="0.06" />
+                <!-- finger spheres (inner links) -->
+                <sphere link="/right/finger0_1" pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <sphere link="/right/finger1_1" pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <sphere link="/right/finger2_1" pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <!-- finger spheres (tip links) -->
+                <sphere link="/right/finger0_2" pos=" 0.05   0.0  0.0 " radius="0.04" />
+                <sphere link="/right/finger1_2" pos=" 0.05   0.0  0.0 " radius="0.04" />
+                <sphere link="/right/finger2_2" pos=" 0.05   0.0  0.0 " radius="0.04" />
+
+                <!-- left arm -->
+                <!-- shoulder spheres -->
+                <sphere link="/left/wam0"       pos=" 0.0    0.0  0.0 " radius="0.15" />
+                <!-- upper arm spheres -->
+                <sphere link="/left/wam2"       pos=" 0.0   -0.2  0.0 " radius="0.06" />
+                <sphere link="/left/wam2"       pos=" 0.0   -0.3  0.0 " radius="0.06" />
+                <sphere link="/left/wam2"       pos=" 0.0   -0.4  0.0 " radius="0.06" />
+                <sphere link="/left/wam2"       pos=" 0.0   -0.5  0.0 " radius="0.06" />
+                <!-- elbow knuckle spheres -->
+                <sphere link="/left/wam3"       pos=" 0.045  0.0  0.55" radius="0.06" />
+                <!-- forearm spheres -->
+                <sphere link="/left/wam4"       pos="-0.045 -0.2  0.0 " radius="0.06" />
+                <sphere link="/left/wam4"       pos="-0.045 -0.1  0.0 " radius="0.06" />
+                <sphere link="/left/wam4"       pos="-0.045 -0.3  0.0 " radius="0.06" />
+                <!-- hand sphere -->
+                <sphere link="/left/wam6"       pos=" 0.0   -0.1  0.0 " radius="0.06" />
+                <!-- finger spheres (inner links) -->
+                <sphere link="/left/finger0_1"  pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <sphere link="/left/finger1_1"  pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <sphere link="/left/finger2_1"  pos=" 0.05  -0.01 0.0 " radius="0.04" />
+                <!-- finger spheres (tip links) -->
+                <sphere link="/left/finger0_2"  pos=" 0.05   0.0  0.0 " radius="0.04" />
+                <sphere link="/left/finger1_2"  pos=" 0.05   0.0  0.0 " radius="0.04" />
+                <sphere link="/left/finger2_2"  pos=" 0.05   0.0  0.0 " radius="0.04" />
+
+                <!-- head -->
+                <sphere link="/head/wam2"       pos=" 0.0    0.0  0.0 " radius="0.20" />
+            </spheres>
+        </orcdchomp>
+    </KinBody>
 </Robot>
