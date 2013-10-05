@@ -37,14 +37,22 @@
         </link>
     </xacro:macro>
 
-    <!-- Define the spread for 1 seperately so we can do the mimic joint -->
-    <xacro:macro name="bh280_spread1">
-        <joint name="j10">
+    <xacro:macro name="bh280_spread">
+        <!-- Frame 0 spread -->
+        <link name="finger0_0">
+            <inertial>
+                <origin xyz="0.030616 -7.3219e-005 -0.011201"/>
+                <mass value="0.14109"/>
+                <inertia ixx="2.0672e-005" ixy="2.6024e-007" ixz="6.3481e-006"
+                                           iyy="7.4105e-005" iyz="1.7118e-008"
+                                                             izz="6.8207e-005"/>
+            </inertial>
+        </link>
+        <joint name="j00">
             <limit lower="0" upper="${180*(pi/180)}" effort="0" velocity="2.0"/>
-            <mimic joint="j00" multiplier="1" offset="0"/>
         </joint>
 
-        <!-- Frame 1 (finger spread frame) -->
+        <!-- Frame 1 spread (mimic joint) -->
         <link name="finger1_0">
             <inertial>
                 <origin xyz="0.030616 -7.3219e-005 -0.011201"/>
@@ -54,23 +62,10 @@
                                                              izz="6.8207e-005"/>
             </inertial>
         </link>
-    </xacro:macro>
-
-    <xacro:macro name="bh280_spread" params="index">
-        <joint name="j${index}0">
-            <limit lower="0" upper="${180*(pi/180)}" effort="0" velocity="2.0"/>
+        <joint name="j10">
+            <limit lower="${-180*(pi/180)}" upper="0" effort="0" velocity="2.0"/>
+            <mimic joint="j00" multiplier="-1" offset="0"/>
         </joint>
-
-        <!-- Frame 1 (finger spread frame) -->
-        <link name="finger${index}_0">
-            <inertial>
-                <origin xyz="0.030616 -7.3219e-005 -0.011201"/>
-                <mass value="0.14109"/>
-                <inertia ixx="2.0672e-005" ixy="2.6024e-007" ixz="6.3481e-006"
-                                           iyy="7.4105e-005" iyz="1.7118e-008"
-                                                             izz="6.8207e-005"/>
-            </inertial>
-        </link>
     </xacro:macro>
 
     <!-- Frame W with palm pad -->
@@ -84,9 +79,7 @@
         </inertial>
     </link>
 
-    <!-- Fingers -->
-    <xacro:bh280_spread index="0"/>
-    <xacro:bh280_spread1 />
+    <xacro:bh280_spread/>
     <xacro:bh280_finger index="0"/>
     <xacro:bh280_finger index="1"/>
     <xacro:bh280_finger index="2"/>
