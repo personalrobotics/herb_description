@@ -25,6 +25,8 @@
 
     <!-- TODO: Add link adjacencies to the KinBody file. -->
     <KinBody>
+        <Adjacent>/left/wam1 /herb_base</Adjacent>
+        <Adjacent>/left/wam1 /herb_base</Adjacent>
         <!-- proximal/palm collisions -->
         <Adjacent>/left/finger0_1 /left/hand_base</Adjacent>
         <Adjacent>/left/finger1_1 /left/hand_base</Adjacent>
