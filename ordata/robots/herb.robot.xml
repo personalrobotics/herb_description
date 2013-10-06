@@ -23,59 +23,7 @@
         <Direction>1 0 0</Direction>
     </Manipulator>
 
-    <!-- TODO: Add link adjacencies to the KinBody file. -->
-    <KinBody>
-        <Adjacent>/left/wam1 /herb_base</Adjacent>
-        <Adjacent>/left/wam1 /herb_base</Adjacent>
-        <!-- proximal/palm collisions -->
-        <Adjacent>/left/finger0_1 /left/hand_base</Adjacent>
-        <Adjacent>/left/finger1_1 /left/hand_base</Adjacent>
-        <Adjacent>/left/finger2_1 /left/hand_base</Adjacent>
-        <!-- distal/palm collisions -->
-        <Adjacent>/left/finger0_2 /left/hand_base</Adjacent>
-        <Adjacent>/left/finger1_2 /left/hand_base</Adjacent>
-        <Adjacent>/left/finger2_2 /left/hand_base</Adjacent>
-        <!-- proximal/proximal collision -->
-        <Adjacent>/left/finger0_1 /left/finger1_1</Adjacent>
-        <Adjacent>/left/finger0_1 /left/finger2_1</Adjacent>
-        <Adjacent>/left/finger1_1 /left/finger2_1</Adjacent>
-        <!-- distal/distal collision -->
-        <Adjacent>/left/finger0_2 /left/finger1_2</Adjacent>
-        <Adjacent>/left/finger0_2 /left/finger2_2</Adjacent>
-        <Adjacent>/left/finger1_2 /left/finger2_2</Adjacent>
-        <!-- proximal/distal collisions -->
-        <Adjacent>/left/finger0_2 /left/finger1_1</Adjacent>
-        <Adjacent>/left/finger0_2 /left/finger2_1</Adjacent>
-        <Adjacent>/left/finger1_2 /left/finger0_1</Adjacent>
-        <Adjacent>/left/finger1_2 /left/finger2_1</Adjacent>
-        <Adjacent>/left/finger2_2 /left/finger0_1</Adjacent>
-        <Adjacent>/left/finger2_2 /left/finger1_1</Adjacent>
-
-        <!-- proximal/palm collisions -->
-        <Adjacent>/right/finger0_1 /right/hand_base</Adjacent>
-        <Adjacent>/right/finger1_1 /right/hand_base</Adjacent>
-        <Adjacent>/right/finger2_1 /right/hand_base</Adjacent>
-        <!-- distal/palm collisions -->
-        <Adjacent>/right/finger0_2 /right/hand_base</Adjacent>
-        <Adjacent>/right/finger1_2 /right/hand_base</Adjacent>
-        <Adjacent>/right/finger2_2 /right/hand_base</Adjacent>
-        <!-- proximal/proximal collision -->
-        <Adjacent>/right/finger0_1 /right/finger1_1</Adjacent>
-        <Adjacent>/right/finger0_1 /right/finger2_1</Adjacent>
-        <Adjacent>/right/finger1_1 /right/finger2_1</Adjacent>
-        <!-- distal/distal collision -->
-        <Adjacent>/right/finger0_2 /right/finger1_2</Adjacent>
-        <Adjacent>/right/finger0_2 /right/finger2_2</Adjacent>
-        <Adjacent>/right/finger1_2 /right/finger2_2</Adjacent>
-        <!-- proximal/distal collisions -->
-        <Adjacent>/right/finger0_2 /right/finger1_1</Adjacent>
-        <Adjacent>/right/finger0_2 /right/finger2_1</Adjacent>
-        <Adjacent>/right/finger1_2 /right/finger0_1</Adjacent>
-        <Adjacent>/right/finger1_2 /right/finger2_1</Adjacent>
-        <Adjacent>/right/finger2_2 /right/finger0_1</Adjacent>
-        <Adjacent>/right/finger2_2 /right/finger1_1</Adjacent>
-    </KinBody>
-
+    <!-- TODO: Add this to the KinBody file. -->
     <KinBody>
         <orcdchomp>
             <spheres>
