@@ -29,7 +29,7 @@
             <spheres>
                 <!-- right arm -->
                 <!-- shoulder spheres -->
-                <sphere link="/right/wam0"      pos=" 0.0    0.0  0.0 " radius="0.15" />
+                <sphere link="/right/wam_base"      pos=" 0.0    0.0  0.0 " radius="0.15" />
                 <!-- upper arm spheres -->
                 <sphere link="/right/wam2"      pos=" 0.0   -0.2  0.0 " radius="0.06" />
                 <sphere link="/right/wam2"      pos=" 0.0   -0.3  0.0 " radius="0.06" />
@@ -54,7 +54,7 @@
 
                 <!-- left arm -->
                 <!-- shoulder spheres -->
-                <sphere link="/left/wam0"       pos=" 0.0    0.0  0.0 " radius="0.15" />
+                <sphere link="/left/wam_base"       pos=" 0.0    0.0  0.0 " radius="0.15" />
                 <!-- upper arm spheres -->
                 <sphere link="/left/wam2"       pos=" 0.0   -0.2  0.0 " radius="0.06" />
                 <sphere link="/left/wam2"       pos=" 0.0   -0.3  0.0 " radius="0.06" />
