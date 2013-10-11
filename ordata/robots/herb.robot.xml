@@ -1,7 +1,7 @@
 <Robot name="herb">
     <KinBody file="herb.kinbody.xml"/>
 
-    <Manipulator name="left_wam">
+    <Manipulator name="left">
         <Base>/left/wam_base</Base>
         <Effector>/left/wam7</Effector>
         <GripperJoints>/left/j01 /left/j11 /left/j21</GripperJoints>
@@ -9,7 +9,7 @@
         <Direction>0 0 1</Direction>
     </Manipulator>
 
-    <Manipulator name="right_wam">
+    <Manipulator name="right">
         <Base>/right/wam_base</Base>
         <Effector>/right/wam7</Effector>
         <GripperJoints>/right/j01 /right/j11 /right/j21</GripperJoints>
@@ -17,13 +17,13 @@
         <Direction>0 0 1</Direction>
     </Manipulator>
 
-    <Manipulator name="head_wam">
+    <Manipulator name="head">
         <Base>/herb_base</Base>
         <Effector>/head/wam2</Effector>
         <Direction>1 0 0</Direction>
     </Manipulator>
 
-    <!-- TODO: Add this to the KinBody file. -->
+    <!-- TODO: Generate CHOMP spheres from a SRDF file. -->
     <KinBody>
         <orcdchomp>
             <spheres>
