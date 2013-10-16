@@ -4,7 +4,8 @@ PARAMS_POSTPROCESS=./scripts/postprocess_params.py
 XACRO_POSTPROCESS=./scripts/postprocess_xacro.py
 RM=rm -f
 
-TARGETS=robots/herb.urdf robots/herb.srdf ordata/robots/herb.kinbody.xml
+TARGETS=robots/herb.urdf ordata/robots/herb.kinbody.xml \
+        robots/bh280_standalone.urdf ordata/robots/bh280.kinbody.xml
 COMPONENTS=robots/herb_base.urdf.xacro robots/bh280.urdf.xacro robots/wam.urdf.xacro
 PACKAGE=herb_description
 
@@ -18,6 +19,9 @@ clean:
 
 ordata/robots/herb.kinbody.xml: robots/herb.urdf
 	$(OR_URDF_LOAD) $< $@ --config=$(OR_URDF_CONFIG)
+
+ordata/robots/bh280.kinbody.xml: robots/bh280_standalone.urdf
+	$(OR_URDF_LOAD) $< $@
 
 robots/herb.urdf: $(COMPONENTS)
 
