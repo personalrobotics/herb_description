@@ -70,6 +70,8 @@ joints:
 - name: /right/j10
   index: 31
 adjacent:
+# Left/Right Wam1
+- [ /left/wam1,      /right/wam1     ]
 # Left Arm
 - [ /left/wam1,      /herb_base      ]
 ## proximal/palm
