@@ -8,6 +8,7 @@ TARGETS=robots/herb.urdf ordata/robots/herb.kinbody.xml \
         robots/bh280_standalone.urdf ordata/robots/bh280.kinbody.xml
 COMPONENTS=robots/herb_base.urdf.xacro robots/bh280.urdf.xacro robots/wam.urdf.xacro
 PACKAGE=herb_description
+COLLISION_PRIMS=config/collision_primitives.json
 
 .PHONY: all clean
 .SECONDARY:
@@ -27,7 +28,7 @@ robots/herb.urdf: $(COMPONENTS)
 
 # Wrap the URDF in an xacro macro.
 %.urdf.xacro: %_raw.urdf
-	$(XACRO_POSTPROCESS) --name=$(notdir $*) --package=$(PACKAGE) $< $@
+	$(XACRO_POSTPROCESS) --name=$(notdir $*) --package=$(PACKAGE) --collision_meshes True $< $@
 
 # Insert parameters (i.e. joint limits, inertias).
 robots/wam_raw.urdf: robots/WAM_URDF.URDF config/wam_params.urdf
