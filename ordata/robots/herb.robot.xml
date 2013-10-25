@@ -36,7 +36,7 @@
                 <sphere link="/right/wam2"      pos=" 0.0   -0.4  0.0 " radius="0.06" />
                 <sphere link="/right/wam2"      pos=" 0.0   -0.5  0.0 " radius="0.06" />
                 <!-- elbow knuckle spheres -->
-                <sphere link="/right/wam3"      pos=" 0.045  0.0  0.55" radius="0.06" />
+                <sphere link="/right/wam3"      pos=" 0.045  0.0  0.55" radius="0.065" />
                 <!-- forearm spheres -->
                 <sphere link="/right/wam4"      pos="-0.045 -0.2  0.0 " radius="0.06" />
                 <sphere link="/right/wam4"      pos="-0.045 -0.1  0.0 " radius="0.06" />
@@ -61,7 +61,7 @@
                 <sphere link="/left/wam2"       pos=" 0.0   -0.4  0.0 " radius="0.06" />
                 <sphere link="/left/wam2"       pos=" 0.0   -0.5  0.0 " radius="0.06" />
                 <!-- elbow knuckle spheres -->
-                <sphere link="/left/wam3"       pos=" 0.045  0.0  0.55" radius="0.06" />
+                <sphere link="/left/wam3"       pos=" 0.045  0.0  0.55" radius="0.065" />
                 <!-- forearm spheres -->
                 <sphere link="/left/wam4"       pos="-0.045 -0.2  0.0 " radius="0.06" />
                 <sphere link="/left/wam4"       pos="-0.045 -0.1  0.0 " radius="0.06" />
