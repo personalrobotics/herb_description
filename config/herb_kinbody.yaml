@@ -122,3 +122,7 @@ adjacent:
 - [ /right/finger1_2, /right/finger2_1 ]
 - [ /right/finger2_2, /right/finger0_1 ]
 - [ /right/finger2_2, /right/finger1_1 ]
+## head
+- [ /head/wam1, /head/wam2 ]
+- [ /head/wam1, /herb_base ]
+- [ /head/wam2, /herb_base ]
