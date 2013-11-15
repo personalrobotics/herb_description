@@ -63,8 +63,8 @@
             </inertial>
         </link>
         <joint name="j10">
-            <limit lower="${-180*(pi/180)}" upper="0" effort="0" velocity="2.0"/>
-            <mimic joint="j00" multiplier="-1" offset="0"/>
+            <limit lower="0" upper="${180*(pi/180)}" effort="0" velocity="2.0"/>
+            <mimic joint="j00" multiplier="1" offset="0"/>
         </joint>
     </xacro:macro>
 
