@@ -8,6 +8,7 @@
     <depend package="xacro"/>
     <author>Michael Dawson-Haggerty, Michael Koval</author>
     <license>BSD</license>
+    <review status="released" notes="approved on 3/13"/>
     <export>
         <openrave data="${prefix}/ordata"/>
     </export>
