@@ -70,33 +70,32 @@ joints:
 - name: /right/j10
   index: 31
 adjacent:
-# Left/Right Wam1
-- [ /left/wam1,      /right/wam1     ]
-# Left Arm
-- [ /left/wam1,      /herb_base      ]
+- [ /left/wam1,       /left/wam3      ]
+- [ /right/wam1,      /right/wam3     ]
+- [ /left/wam1,       /right/wam1     ]
 ## proximal/palm
-- [ /left/finger0_1, /left/hand_base ]
-- [ /left/finger1_1, /left/hand_base ]
-- [ /left/finger2_1, /left/hand_base ]
+- [ /left/finger0_1,  /left/hand_base ]
+- [ /left/finger1_1,  /left/hand_base ]
+- [ /left/finger2_1,  /left/hand_base ]
 ## distal/palm
-- [ /left/finger0_2, /left/hand_base ]
-- [ /left/finger1_2, /left/hand_base ]
-- [ /left/finger2_2, /left/hand_base ]
+- [ /left/finger0_2,  /left/hand_base ]
+- [ /left/finger1_2,  /left/hand_base ]
+- [ /left/finger2_2,  /left/hand_base ]
 ## proximal/proximal
-- [ /left/finger0_1, /left/finger1_1 ]
-- [ /left/finger0_1, /left/finger2_1 ]
-- [ /left/finger1_1, /left/finger2_1 ]
+- [ /left/finger0_1,  /left/finger1_1 ]
+- [ /left/finger0_1,  /left/finger2_1 ]
+- [ /left/finger1_1,  /left/finger2_1 ]
 ## distal/distal
-- [ /left/finger0_2, /left/finger1_2 ]
-- [ /left/finger0_2, /left/finger2_2 ]
-- [ /left/finger1_2, /left/finger2_2 ]
+- [ /left/finger0_2,  /left/finger1_2 ]
+- [ /left/finger0_2,  /left/finger2_2 ]
+- [ /left/finger1_2,  /left/finger2_2 ]
 ## proximal/distal
-- [ /left/finger0_2, /left/finger1_1 ]
-- [ /left/finger0_2, /left/finger2_1 ]
-- [ /left/finger1_2, /left/finger0_1 ]
-- [ /left/finger1_2, /left/finger2_1 ]
-- [ /left/finger2_2, /left/finger0_1 ]
-- [ /left/finger2_2, /left/finger1_1 ]
+- [ /left/finger0_2,  /left/finger1_1 ]
+- [ /left/finger0_2,  /left/finger2_1 ]
+- [ /left/finger1_2,  /left/finger0_1 ]
+- [ /left/finger1_2,  /left/finger2_1 ]
+- [ /left/finger2_2,  /left/finger0_1 ]
+- [ /left/finger2_2,  /left/finger1_1 ]
 # Right Arm
 - [ /right/wam1,      /herb_base       ]
 ## proximal/palm

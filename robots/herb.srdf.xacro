@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
     <xacro:macro name="wam_bh280_manipulator" params="prefix">
-        <group name="${prefix}_wam">
+        <group name="${prefix}">
             <chain base_link="/${prefix}/wam_base" tip_link="/${prefix}/wam7"/>
         </group>
 
@@ -17,7 +17,7 @@
         </group>
 
         <end_effector name="${prefix}_hand" group="${prefix}_hand"
-                      parent_link="/${prefix}/wam7" parent_group="${prefix}_arm"/>
+                      parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
 
         <!-- Disable collisions between the fingers. -->
         <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_0"/>
