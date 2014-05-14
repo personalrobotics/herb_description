@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 project(herb_description)
 
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED xacro)
 catkin_package()
 
 set(COMMAND_PARAMS_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py)
@@ -33,12 +33,21 @@ macro(wrap_xacro output_path input_path)
     )
 endmacro()
 
+# Generate xacro files for the individual components.
 postprocess_urdf(wam_raw.urdf WAM_URDF.URDF wam_params.urdf)
 postprocess_urdf(bh280_raw.urdf BHD280_URDF.URDF bh280_params.urdf)
 postprocess_urdf(herb_base_raw.urdf HERB_BASE_URDF.URDF herb_params.urdf)
-
 wrap_xacro(wam.urdf.xacro wam_raw.urdf)
 wrap_xacro(bh280.urdf.xacro bh280_raw.urdf)
 wrap_xacro(herb_base.urdf.xacro herb_base_raw.urdf)
 
-add_custom_target(urdf_models ALL DEPENDS wam.urdf.xacro bh280.urdf.xacro)
+# Glue the components together into HERB.
+xacro_add_xacro_file(${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro herb.urdf)
+
+# Generate standalone WAM and BH280 models.
+xacro_add_xacro_file(wam.urdf.xacro wam.urdf)
+xacro_add_xacro_file(bh280.urdf.xacro bh280.urdf)
+
+add_custom_target(wam_urdf ALL DEPENDS wam.urdf.xacro wam.urdf)
+add_custom_target(bh280_urdf ALL DEPENDS bh280.urdf.xacro bh280.urdf)
+add_custom_target(herb_urdf ALL DEPENDS herb.urdf)
