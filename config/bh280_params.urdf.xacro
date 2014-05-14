@@ -26,7 +26,7 @@
         </joint>
 
         <!-- Frame 3 (fingertip frame) with fingertip pressure pad -->
-        <link name="finger${index}_1">
+        <link name="finger${index}_2">
             <inertial>
                 <origin xyz="0.02295 0.0010739 0.00041752"/>
                 <mass value="0.04166"/>
