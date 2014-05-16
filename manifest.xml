@@ -6,6 +6,7 @@
     </description>
     <depend package="or_urdf"/>
     <depend package="xacro"/>
+    <depend package="collada_urdf"/>
     <author>Michael Dawson-Haggerty, Michael Koval</author>
     <license>BSD</license>
     <review status="released" notes="approved on 3/13"/>

@@ -94,32 +94,32 @@
          [1] http://support.barrett.com/wiki/WAM/KinematicsJointRangesConversionFactors
          [2] http://support.barrett.com/wiki/WAM/CableTorqueLimits
     -->
-    <joint name="j1">
+    <joint name="j1" type="revolute">
         <!-- HERB's J1 joints are modified to have a +180 degree offset. -->
         <limit lower="${30*(pi/180)}" upper="${330*(pi/180)}" effort="1.8" velocity="0.75"/>
     </joint>
 
-    <joint name="j2">
+    <joint name="j2" type="revolute">
         <limit lower="${-113*(pi/180)}" upper="${113*(pi/180)}" effort="1.8" velocity="0.75"/>
     </joint>
 
-    <joint name="j3">
+    <joint name="j3" type="revolute">
         <limit lower="${-157*(pi/180)}" upper="${157*(pi/180)}" effort="1.8" velocity="2.0"/>
     </joint>
 
-    <joint name="j4">
+    <joint name="j4" type="revolute">
         <limit lower="${-50*(pi/180)}" upper="${180*(pi/180)}" effort="1.6" velocity="2.0"/>
     </joint>
 
-    <joint name="j5">
+    <joint name="j5" type="revolute">
         <limit lower="${-273*(pi/180)}" upper="${71*(pi/180)}" effort="0.6" velocity="2.5"/>
     </joint>
 
-    <joint name="j6">
+    <joint name="j6" type="revolute">
         <limit lower="${-90*(pi/180)}" upper="${90*(pi/180)}" effort="0.6" velocity="2.5"/>
     </joint>
 
-    <joint name="j7">
+    <joint name="j7" type="revolute">
         <limit lower="${-172*(pi/180)}" upper="${172*(pi/180)}" effort="0.174" velocity="2.5"/>
     </joint>
 </template>

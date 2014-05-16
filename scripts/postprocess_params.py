@@ -28,6 +28,10 @@ if __name__ == '__main__':
         # Find the corresponding element in the URDF file.
         urdf_ele = urdf.find(xpath)
 
+        # Update attributes.
+        for key, value in extra_ele.attrib.iteritems():
+            urdf_ele.attrib[key] = value
+
         for new_ele in extra_ele.getchildren():
             # Remove any existing tags from the URDF file.
             xpath = '{tag:s}'.format(tag=new_ele.tag)

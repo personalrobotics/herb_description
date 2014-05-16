@@ -4,7 +4,7 @@ PARAMS_POSTPROCESS=./scripts/postprocess_params.py
 XACRO_POSTPROCESS=./scripts/postprocess_xacro.py
 RM=rm -f
 
-TARGETS=robots/herb.urdf ordata/robots/herb.kinbody.xml \
+TARGETS=robots/herb.dae robots/herb.urdf ordata/robots/herb.kinbody.xml \
         robots/bh280_standalone.urdf ordata/robots/bh280.kinbody.xml
 COMPONENTS=robots/herb_base.urdf.xacro robots/bh280.urdf.xacro robots/wam.urdf.xacro
 PACKAGE=herb_description
@@ -16,7 +16,7 @@ COLLISION_PRIMS=config/collision_primitives.json
 all: $(TARGETS)
 
 clean:
-	$(RM) $(TARGETS) $(COMPONENTS)
+	$(RM) $(TARGETS) $(COMPONENTS) $(COMPONENTS:.urdf.xacro=_raw.urdf)
 
 ordata/robots/herb.kinbody.xml: robots/herb.urdf
 	$(OR_URDF_LOAD) $< $@ --config=$(OR_URDF_CONFIG)
@@ -43,3 +43,6 @@ robots/herb_base_raw.urdf: robots/HERB_BASE_URDF.URDF config/herb_params.urdf
 # General rules.
 %: %.xacro
 	rosrun xacro xacro.py $< > $@
+
+%.dae: %.urdf
+	rosrun collada_urdf urdf_to_collada $^ $@

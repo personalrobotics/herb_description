@@ -4,7 +4,7 @@
     <!-- FIXME: Fix the joint efforts. -->
     <xacro:macro name="bh280_finger" params="index">
         <!-- proximal joint -->
-        <joint name="j${index}1">
+        <joint name="j${index}1" type="revolute">
             <limit lower="0" upper="${140*(pi/180)}" effort="0" velocity="2.0"/>
         </joint>
 
@@ -20,7 +20,7 @@
         </link>
 
         <!-- distal joint -->
-        <joint name="j${index}2">
+        <joint name="j${index}2" type="revolute">
             <limit lower="0" upper="${48*(pi/180)}" effort="0" velocity="2.0"/>
             <mimic joint="j${index}1" multiplier="${45./140.}" offset="0.0"/>
         </joint>
@@ -48,7 +48,7 @@
                                                              izz="6.8207e-005"/>
             </inertial>
         </link>
-        <joint name="j00">
+        <joint name="j00" type="revolute">
             <limit lower="0" upper="${180*(pi/180)}" effort="0" velocity="2.0"/>
         </joint>
 
@@ -62,7 +62,7 @@
                                                              izz="6.8207e-005"/>
             </inertial>
         </link>
-        <joint name="j10">
+        <joint name="j10" type="revolute">
             <limit lower="0" upper="${180*(pi/180)}" effort="0" velocity="2.0"/>
             <mimic joint="j00" multiplier="1" offset="0"/>
         </joint>

@@ -19,6 +19,8 @@ if __name__ == '__main__':
                         help='name of the prefix variable')
     parser.add_argument('--package', type=str, default=None,
                         help='package that contains the meshes')
+    parser.add_argument('--swap-dae', action='store_true',
+                        help='replace STL meshes with DAE meshes')
     parser.add_argument('--collision_prims', type=str, default=None,
                         help='json file that contains collision primitives')
     parser.add_argument('--collision_meshes',
@@ -111,7 +113,7 @@ if __name__ == '__main__':
                     lxml.etree.SubElement(geometry, 'cylinder',
                             radius = str(cylinder['radius']*2),
                             length = str(cylinder['length']*2))
-    
+
     if args.collision_meshes:
         # Remove all existing collision geometry
         for collision in new_urdf.findall('//collision'):
@@ -137,6 +139,20 @@ if __name__ == '__main__':
             geometry = lxml.etree.SubElement(collision, 'geometry')
             mesh = lxml.etree.SubElement(geometry, 'mesh',
                                              attrib={'filename':collision_file})
+
+    if args.swap_dae:
+        visuals = new_urdf.findall('//visual')
+        for visual in visuals:
+            geometry = visual.findall('geometry')
+            if not geometry:
+                continue
+
+            mesh = geometry[0].findall('mesh')
+            if not mesh:
+                continue
+            
+            path_head, _, _ = mesh[0].attrib['filename'].rpartition('.STL')
+            mesh[0].attrib['filename'] = path_head + '.dae'
 
     if args.output_path is None:
         lxml.etree.dump(new_robot_xml)
