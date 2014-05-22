@@ -16,4 +16,5 @@
     <build_depend>python-lxml</build_depend>
     <build_depend>python-simplejson</build_depend>
     <build_depend>or_urdf</build_depend>
+    <build_depend>rosbash</build_depend>
 </package>
