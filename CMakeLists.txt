@@ -1,7 +1,7 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.3)
 project(herb_description)
 
-find_package(catkin REQUIRED xacro)
+find_package(catkin REQUIRED COMPONENTS xacro)
 catkin_package()
 
 set(COMMAND_PARAMS_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py)
@@ -28,13 +28,25 @@ endmacro()
 xacro_add_xacro_file(${PROJECT_SOURCE_DIR}/config/wam_params.urdf.xacro wam_params.urdf)
 postprocess_urdf(${PROJECT_SOURCE_DIR}/robots/WAM_URDF.URDF wam_params.urdf wam_raw.urdf)
 wrap_xacro(wam_raw.urdf wam.urdf.xacro)
-add_custom_target(wam_urdf ALL DEPENDS wam.urdf.xacro)
+
+add_custom_target(
+  wam_urdf ALL
+  DEPENDS wam.urdf.xacro
+  COMMENT "Generating WAM URDF"
+  VERBATIM
+)
 
 # Create a standalone BarrettHand (BH280) URDF model.
 xacro_add_xacro_file(${PROJECT_SOURCE_DIR}/config/bh280_params.urdf.xacro bh280_params.urdf)
 postprocess_urdf(${PROJECT_SOURCE_DIR}/robots/BHD280_URDF.URDF bh280_params.urdf bh280_raw.urdf)
 wrap_xacro(bh280_raw.urdf bh280.urdf.xacro)
-add_custom_target(bh280_urdf ALL DEPENDS bh280.urdf.xacro)
+
+add_custom_target(
+  bh280_urdf ALL
+  DEPENDS bh280.urdf.xacro
+  COMMENT "Generating BH280 URDF"
+  VERBATIM
+)
 
 # Create the HERB URDF model.
 xacro_add_xacro_file(${PROJECT_SOURCE_DIR}/config/herb_params.urdf.xacro herb_params.urdf)
@@ -46,9 +58,18 @@ add_custom_command(OUTPUT herb.urdf.xacro
         ${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro herb.urdf.xacro
 )
 xacro_add_xacro_file(herb.urdf.xacro herb.urdf)
-add_custom_target(herb_urdf ALL DEPENDS herb.urdf)
 
-install(FILES wam.urdf.xacro bh280.urdf.xacro herb.urdf
+add_custom_target(
+  herb_urdf ALL
+  DEPENDS herb.urdf
+  COMMENT "Generating HERB URDF"
+  VERBATIM
+)
+
+install(FILES 
+    "${CMAKE_CURRENT_BINARY_DIR}/wam.urdf.xacro" 
+    "${CMAKE_CURRENT_BINARY_DIR}/bh280.urdf.xacro"
+    "${CMAKE_CURRENT_BINARY_DIR}/herb.urdf"
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/robots
 )
 install(DIRECTORY meshes
