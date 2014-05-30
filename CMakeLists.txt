@@ -6,6 +6,7 @@ catkin_package()
 
 set(COMMAND_PARAMS_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py)
 set(COMMAND_XACRO_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py)
+    
 
 macro(postprocess_urdf input_path params_path output_path)
     add_custom_command(OUTPUT ${output_path}
@@ -25,9 +26,16 @@ macro(wrap_xacro input_path output_path)
 endmacro()
 
 macro(urdf_to_openrave input_path output_path)
+    # We have to run or_urdf in a separate cmake to ensure that the
+    # OPENRAVE_PLUGIN path is set correctly.
+    # See: https://www.mail-archive.com/cmake@cmake.org/msg15586.html
     add_custom_command(OUTPUT ${output_path}
         DEPENDS ${input_path}
-        COMMAND rosrun or_urdf load.py ${input_path} ${output_path}
+        COMMAND ${CMAKE_COMMAND}
+            -DINPUT_PATH:PATH="${input_path}"
+            -DOUTPUT_PATH:PATH="${output_path}"
+            -P ${PROJECT_SOURCE_DIR}/urdf_to_openrave.cmake
+        #rosrun or_urdf load.py ${input_path} ${output_path}
     )
 endmacro()
 
