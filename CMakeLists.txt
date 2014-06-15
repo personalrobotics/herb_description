@@ -1,19 +1,28 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(herb_description)
 
-find_package(catkin REQUIRED COMPONENTS xacro)
+# BEGIN catkin-specific
+find_package(catkin REQUIRED COMPONENTS or_urdf)
 catkin_package()
+# END catkin-specific
 
-set(COMMAND_PARAMS_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py)
-set(COMMAND_XACRO_POSTPROCESS ${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py)
-set(COMMAND_URDF_TO_OPENRAVE rosrun or_urdf urdf_to_openrave)    
+message(STATUS "!exported ${catkin_EXPORTED_TARGETS}")
+
+set(COMMAND_PARAMS_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py")
+set(COMMAND_XACRO_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py")
+
+
 set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
-set(OPENRAVE_OUTPUT_DIR "${BASE_OUTPUT_DIR}")
-set(URDF_OUTPUT_DIR "${BASE_OUTPUT_DIR}")
+set(OPENRAVE_OUTPUT_DIR "${BASE_OUTPUT_DIR}/ordata")
+set(URDF_OUTPUT_DIR "${BASE_OUTPUT_DIR}/robots")
+
+file(MAKE_DIRECTORY "${URDF_OUTPUT_DIR}")
+file(MAKE_DIRECTORY "${OPENRAVE_OUTPUT_DIR}")
+file(MAKE_DIRECTORY "${OPENRAVE_OUTPUT_DIR}/robots")
 
 macro(xacro_expand input_path output_path)
     add_custom_command(OUTPUT "${output_path}"
-        DEPENDS "${input_path}"
+        DEPENDS "${input_path}" ${ARGN}
         COMMAND rosrun xacro xacro.py -o "${output_path}" "${input_path}"
     )
 endmacro()
@@ -36,15 +45,7 @@ macro(wrap_xacro input_path output_path)
     )
 endmacro()
 
-macro(urdf_to_openrave input_path output_path)
-    add_custom_command(OUTPUT "${output_path}"
-        DEPENDS "${input_path}"
-        COMMAND ${COMMAND_URDF_TO_OPENRAVE} "${input_path}" > "${output_path}"
-    )
-endmacro()
-
 # Create a standalone WAM URDF model.
-# TODO: There seems to be a race condition here in parallel builds.
 xacro_expand("${PROJECT_SOURCE_DIR}/config/wam_params.urdf.xacro"
              "wam_params.urdf")
 postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/WAM_URDF.URDF"
@@ -52,9 +53,9 @@ postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/WAM_URDF.URDF"
 wrap_xacro("wam_raw.urdf" "${URDF_OUTPUT_DIR}/wam.urdf.xacro")
 
 add_custom_target(wam_urdf ALL
-  DEPENDS "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
-  COMMENT "Generating WAM URDF"
-  VERBATIM
+    DEPENDS "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+    COMMENT "Generating WAM URDF"
+    VERBATIM
 )
 
 # Create a standalone BarrettHand (BH280) URDF model.
@@ -65,9 +66,9 @@ postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/BHD280_URDF.URDF"
 wrap_xacro("bh280_raw.urdf" "${URDF_OUTPUT_DIR}/bh280.urdf.xacro")
 
 add_custom_target(bh280_urdf ALL
-  DEPENDS "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
-  COMMENT "Generating BH280 URDF"
-  VERBATIM
+    DEPENDS "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+    COMMENT "Generating BH280 URDF"
+    VERBATIM
 )
 
 # Create the HERB URDF model.
@@ -90,7 +91,12 @@ add_custom_command(OUTPUT "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
             "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
 )
 xacro_expand("${URDF_OUTPUT_DIR}/herb.urdf.xacro"
-             "${URDF_OUTPUT_DIR}/herb.urdf")
+             "${URDF_OUTPUT_DIR}/herb.urdf"
+             # Additional dependencies.
+             "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
+)
 
 add_custom_target(herb_urdf ALL
     DEPENDS "${URDF_OUTPUT_DIR}/herb.urdf"
@@ -100,27 +106,19 @@ add_custom_target(herb_urdf ALL
 
 # Generate OpenRAVE models.
 # TODO: Also create WAM and BarrettHand models.
-urdf_to_openrave("${URDF_OUTPUT_DIR}/herb.urdf"
-                 "${OPENRAVE_OUTPUT_DIR}/herb.kinbody.xml")
+urdf_to_kinbody("${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
+                "${URDF_OUTPUT_DIR}/herb.urdf")
+                
 add_custom_target(herb_kinbody ALL
-    DEPENDS "${OPENRAVE_OUTPUT_DIR}/herb.kinbody.xml"
+    DEPENDS "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
     COMMENT "Generating HERB KinBody"
     VERBATIM
 )
 
-install(DIRECTORY "${URDF_OUTPUT_DIR}"
-    DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}/robots"
+install(DIRECTORY "meshes"
+                  "${URDF_OUTPUT_DIR}"
+                  "${OPENRAVE_OUTPUT_DIR}"
+                  "${PROJECT_SOURCE_DIR}/ordata"
+    DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
+    PATTERN ".svn" EXCLUDE
 )
-#install(DIRECTORY "${OPENRAVE_OUTPUT_DIR}"
-#    DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}/ordata"
-#)
-
-#install(
-#    FILES ordata/robots/herb.robot.xml
-#          ${CMAKE_CURRENT_BINARY_DIR}/herb.kinbody.xml
-#    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/ordata/robots
-#)
-#install(DIRECTORY meshes
-#    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-#    PATTERN ".svn" EXCLUDE
-#)
