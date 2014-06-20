@@ -73,6 +73,8 @@ adjacent:
 - [ /left/wam1,       /left/wam3      ]
 - [ /right/wam1,      /right/wam3     ]
 - [ /left/wam1,       /right/wam1     ]
+- [ /left/wam4,       /left/wam7      ]
+- [ /right/wam4,      /right/wam7     ]
 ## proximal/palm
 - [ /left/finger0_1,  /left/hand_base ]
 - [ /left/finger1_1,  /left/hand_base ]
