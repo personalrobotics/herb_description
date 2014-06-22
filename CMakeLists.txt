@@ -6,8 +6,6 @@ find_package(catkin REQUIRED COMPONENTS or_urdf)
 catkin_package()
 # END catkin-specific
 
-message(STATUS "!exported ${catkin_EXPORTED_TARGETS}")
-
 set(COMMAND_PARAMS_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py")
 set(COMMAND_XACRO_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py")
 
