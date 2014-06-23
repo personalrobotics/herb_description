@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+    <asset><up_axis>Y_UP</up_axis></asset>
+
     <library_images/>
 
     <library_materials>

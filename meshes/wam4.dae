@@ -9,7 +9,7 @@
     <created>2011-02-01T18:23:16</created>
     <modified>2011-02-01T18:23:16</modified>
     <unit name="inch" meter="0.0254"/>
-    <up_axis>Z_UP</up_axis>
+    <up_axis>Y_UP</up_axis>
   </asset>
   <library_effects>
     <effect id="forearmM">
