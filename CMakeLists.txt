@@ -102,17 +102,6 @@ add_custom_target(herb_urdf ALL
     VERBATIM
 )
 
-# Generate OpenRAVE models.
-# TODO: Also create WAM and BarrettHand models.
-urdf_to_kinbody("${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
-                "${URDF_OUTPUT_DIR}/herb.urdf")
-                
-add_custom_target(herb_kinbody ALL
-    DEPENDS "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
-    COMMENT "Generating HERB KinBody"
-    VERBATIM
-)
-
 install(DIRECTORY "meshes"
                   "${URDF_OUTPUT_DIR}"
                   "${OPENRAVE_OUTPUT_DIR}"
