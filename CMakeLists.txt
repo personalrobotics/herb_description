@@ -102,6 +102,15 @@ add_custom_target(herb_urdf ALL
     VERBATIM
 )
 
+# Generate the SRDF file.
+xacro_expand("${PROJECT_SOURCE_DIR}/robots/herb.srdf.xacro"
+             "${BASE_OUTPUT_DIR}/robots/herb.srdf")
+add_custom_target(herb_srdf ALL
+    DEPENDS "${URDF_OUTPUT_DIR}/herb.srdf"
+    COMMENT "Generating HERB SRDF"
+    VERBATIM
+)
+
 install(DIRECTORY "meshes"
                   "${URDF_OUTPUT_DIR}"
                   "${OPENRAVE_OUTPUT_DIR}"

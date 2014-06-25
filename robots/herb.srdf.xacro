@@ -64,7 +64,7 @@
         <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_2"/>
 
         <!-- Sphere representation for CHOMP -->
-        <link_sphere_approximation link="/${prefix}/wam0">
+        <link_sphere_approximation link="/${prefix}/wam_base">
             <sphere center="0.0 0.0 0.0" radius="0.15"/>
         </link_sphere_approximation>
 
@@ -141,8 +141,13 @@
             </link_sphere_approximation>
         </group>
 
-        <end_effector name="head_wam" group="head"
-                      parent_link="/herb_base" parent_group="/head/wam2"/>
+        <!-- Dummy group to make the head look like an end-effector; e.g. to
+             run inverse kinematics. HERB doesn't actually have a gripper on
+             his head (maybe on HERB3?). -->
+        <group name="${name}_hand"/>
+
+        <end_effector name="head" group="${name}_hand"
+                      parent_link="/${name}/wam2" parent_group="${name}"/>
     </xacro:macro>
 
     <xacro:wam_bh280_manipulator prefix="left"/>
