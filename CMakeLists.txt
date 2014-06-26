@@ -9,7 +9,6 @@ catkin_package()
 set(COMMAND_PARAMS_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py")
 set(COMMAND_XACRO_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py")
 
-
 set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
 set(OPENRAVE_OUTPUT_DIR "${BASE_OUTPUT_DIR}/ordata")
 set(URDF_OUTPUT_DIR "${BASE_OUTPUT_DIR}/robots")
@@ -45,27 +44,67 @@ endmacro()
 
 # Create a standalone WAM URDF model.
 xacro_expand("${PROJECT_SOURCE_DIR}/config/wam_params.urdf.xacro"
-             "wam_params.urdf")
+             "wam_params.urdf"
+)
 postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/WAM_URDF.URDF"
-                 "wam_params.urdf" "wam_raw.urdf")
-wrap_xacro("wam_raw.urdf" "${URDF_OUTPUT_DIR}/wam.urdf.xacro")
+                 "wam_params.urdf"
+                 "wam_raw.urdf"
+)
+wrap_xacro("wam_raw.urdf"
+           "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+)
+
+file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
+xacro_expand("${URDF_OUTPUT_DIR}/wam_standalone.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/wam.urdf"
+)
 
 add_custom_target(wam_urdf ALL
-    DEPENDS "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+    DEPENDS "${URDF_OUTPUT_DIR}/wam.urdf"
+            "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
     COMMENT "Generating WAM URDF"
     VERBATIM
 )
 
 # Create a standalone BarrettHand (BH280) URDF model.
 xacro_expand("${PROJECT_SOURCE_DIR}/config/bh280_params.urdf.xacro"
-             "bh280_params.urdf")
+             "bh280_params.urdf"
+)
 postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/BHD280_URDF.URDF"
-                 "bh280_params.urdf" "bh280_raw.urdf")
-wrap_xacro("bh280_raw.urdf" "${URDF_OUTPUT_DIR}/bh280.urdf.xacro")
+                 "bh280_params.urdf"
+                 "bh280_raw.urdf"
+)
+wrap_xacro("bh280_raw.urdf"
+           "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+)
+
+file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
+xacro_expand("${URDF_OUTPUT_DIR}/bh280_standalone.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/bh280.urdf"
+)
 
 add_custom_target(bh280_urdf ALL
-    DEPENDS "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+    DEPENDS "${URDF_OUTPUT_DIR}/bh280.urdf"
+            "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
     COMMENT "Generating BH280 URDF"
+    VERBATIM
+)
+
+# Create a WAM + BH280 model.
+file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
+xacro_expand("${URDF_OUTPUT_DIR}/wam_bh280_standalone.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
+)
+add_custom_target(wam_bh280_urdf ALL
+    DEPENDS "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
+            "${URDF_OUTPUT_DIR}/wam_bh280_standalone.urdf.xacro"
+    COMMENT "Generating WAM+BH280 URDF"
     VERBATIM
 )
 
@@ -78,7 +117,9 @@ xacro_expand("${PROJECT_SOURCE_DIR}/config/herb_params.urdf.xacro"
 postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/HERB_BASE_URDF.URDF"
                  "herb_params.urdf"
                  "herb_base_raw.urdf")
-wrap_xacro("herb_base_raw.urdf" "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro")
+wrap_xacro("herb_base_raw.urdf"
+           "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
+)
 add_custom_command(OUTPUT "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
     DEPENDS "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
             "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
@@ -99,8 +140,7 @@ xacro_expand("${URDF_OUTPUT_DIR}/herb.urdf.xacro"
 add_custom_target(herb_urdf ALL
     DEPENDS "${URDF_OUTPUT_DIR}/herb.urdf"
     COMMENT "Generating HERB URDF"
-    VERBATIM
-)
+    VERBATIM)
 
 # Generate the SRDF file.
 xacro_expand("${PROJECT_SOURCE_DIR}/robots/herb.srdf.xacro"

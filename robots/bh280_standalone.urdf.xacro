@@ -1,4 +1,4 @@
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bh280">
     <xacro:include filename="bh280.urdf.xacro"/>
     <xacro:bh280 prefix=""/>
 </robot>
