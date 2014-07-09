@@ -1,21 +1,34 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(herb_description)
 
-# BEGIN catkin-specific
-find_package(catkin REQUIRED COMPONENTS or_urdf)
-catkin_package()
-# END catkin-specific
+if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
+    find_package(catkin REQUIRED COMPONENTS or_urdf)
+    catkin_package()
+
+    set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
+else ()
+    set(BASE_OUTPUT_DIR "${PROJECT_SOURCE_DIR}")
+endif ()
 
 set(COMMAND_PARAMS_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py")
 set(COMMAND_XACRO_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py")
 
-set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
 set(OPENRAVE_OUTPUT_DIR "${BASE_OUTPUT_DIR}/ordata")
 set(URDF_OUTPUT_DIR "${BASE_OUTPUT_DIR}/robots")
 
 file(MAKE_DIRECTORY "${URDF_OUTPUT_DIR}")
 file(MAKE_DIRECTORY "${OPENRAVE_OUTPUT_DIR}")
 file(MAKE_DIRECTORY "${OPENRAVE_OUTPUT_DIR}/robots")
+
+file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
+file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
+file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
 
 macro(xacro_expand input_path output_path)
     add_custom_command(OUTPUT "${output_path}"
@@ -54,15 +67,12 @@ wrap_xacro("wam_raw.urdf"
            "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
 )
 
-file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_standalone.urdf.xacro"
-    DESTINATION "${URDF_OUTPUT_DIR}"
-)
 xacro_expand("${URDF_OUTPUT_DIR}/wam_standalone.urdf.xacro"
              "${URDF_OUTPUT_DIR}/wam.urdf"
 )
 
 add_custom_target(wam_urdf ALL
-    DEPENDS "${URDF_OUTPUT_DIR}/wam.urdf"
+    DEPENDS #"${URDF_OUTPUT_DIR}/wam.urdf"
             "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
     COMMENT "Generating WAM URDF"
     VERBATIM
@@ -80,11 +90,9 @@ wrap_xacro("bh280_raw.urdf"
            "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
 )
 
-file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
-    DESTINATION "${URDF_OUTPUT_DIR}"
-)
 xacro_expand("${URDF_OUTPUT_DIR}/bh280_standalone.urdf.xacro"
              "${URDF_OUTPUT_DIR}/bh280.urdf"
+             # Additional dependencies.
              "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
 )
 
@@ -96,16 +104,14 @@ add_custom_target(bh280_urdf ALL
 )
 
 # Create a WAM + BH280 model.
-file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
-    DESTINATION "${URDF_OUTPUT_DIR}"
-)
 xacro_expand("${URDF_OUTPUT_DIR}/wam_bh280_standalone.urdf.xacro"
              "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
-             "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+             # Additional dependencies.
              "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
 )
 add_custom_target(wam_bh280_urdf ALL
-    DEPENDS "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
+    DEPENDS #"${URDF_OUTPUT_DIR}/wam_bh280.urdf"
             "${URDF_OUTPUT_DIR}/wam_bh280_standalone.urdf.xacro"
     COMMENT "Generating WAM+BH280 URDF"
     VERBATIM
@@ -122,28 +128,35 @@ postprocess_urdf("${PROJECT_SOURCE_DIR}/robots/HERB_BASE_URDF.URDF"
                  "herb_base_raw.urdf")
 wrap_xacro("herb_base_raw.urdf"
            "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
+           # Additional dependencies.
+           "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
 )
-add_custom_command(OUTPUT "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
-    DEPENDS "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
-            "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
-            "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
-            "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
-            "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
-)
+
+if (NOT "${URDF_OUTPUT_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}/robots")
+    add_custom_command(OUTPUT "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
+        DEPENDS "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
+                "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
+                "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+                "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
+                "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
+    )
+endif ()
 xacro_expand("${URDF_OUTPUT_DIR}/herb.urdf.xacro"
              "${URDF_OUTPUT_DIR}/herb.urdf"
              # Additional dependencies.
+             "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
              "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
              "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
-             "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
 )
-
 add_custom_target(herb_urdf ALL
     DEPENDS "${URDF_OUTPUT_DIR}/herb.urdf"
+            "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
+            "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
     COMMENT "Generating HERB URDF"
-    VERBATIM)
+    VERBATIM
+)
 
 # Generate the SRDF file.
 xacro_expand("${PROJECT_SOURCE_DIR}/robots/herb.srdf.xacro"
@@ -154,10 +167,12 @@ add_custom_target(herb_srdf ALL
     VERBATIM
 )
 
-install(DIRECTORY "meshes"
-                  "${URDF_OUTPUT_DIR}"
-                  "${OPENRAVE_OUTPUT_DIR}"
-                  "${PROJECT_SOURCE_DIR}/ordata"
-    DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
-    PATTERN ".svn" EXCLUDE
-)
+if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
+    install(DIRECTORY "meshes"
+                      "${URDF_OUTPUT_DIR}"
+                      "${OPENRAVE_OUTPUT_DIR}"
+                      "${PROJECT_SOURCE_DIR}/ordata"
+        DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
+        PATTERN ".svn" EXCLUDE
+    )
+endif ()
