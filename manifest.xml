@@ -1,0 +1,15 @@
+<package>
+    <description brief="URDF model of HERB">
+        URDF model of HERB. HERB, the Home Exploring Robot Butler, was designed
+        and built by the Personal Robotics Laboratory at Carnegie Mellon
+        University.
+    </description>
+    <depend package="or_urdf"/>
+    <depend package="xacro"/>
+    <author>Michael Dawson-Haggerty, Michael Koval</author>
+    <license>BSD</license>
+    <review status="released" notes="approved on 3/13"/>
+    <export>
+        <openrave data="${prefix}/ordata"/>
+    </export>
+</package>
