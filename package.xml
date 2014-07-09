@@ -15,6 +15,5 @@
     <buildtool_depend>python-argparse</buildtool_depend>
     <buildtool_depend>python-lxml</buildtool_depend>
     <buildtool_depend>python-simplejson</buildtool_depend>
-    <buildtool_depend>or_urdf</buildtool_depend>
     <buildtool_depend>rosbash</buildtool_depend>
 </package>

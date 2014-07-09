@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(herb_description)
 
 if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
-    find_package(catkin REQUIRED COMPONENTS or_urdf)
+    find_package(catkin REQUIRED)
     catkin_package()
 
     set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
