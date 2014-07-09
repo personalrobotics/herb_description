@@ -85,6 +85,7 @@ file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
 )
 xacro_expand("${URDF_OUTPUT_DIR}/bh280_standalone.urdf.xacro"
              "${URDF_OUTPUT_DIR}/bh280.urdf"
+             "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
 )
 
 add_custom_target(bh280_urdf ALL
@@ -100,6 +101,8 @@ file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
 )
 xacro_expand("${URDF_OUTPUT_DIR}/wam_bh280_standalone.urdf.xacro"
              "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
+             "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
+             "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
 )
 add_custom_target(wam_bh280_urdf ALL
     DEPENDS "${URDF_OUTPUT_DIR}/wam_bh280.urdf"
