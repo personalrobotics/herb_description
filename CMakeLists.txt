@@ -175,4 +175,21 @@ if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
         DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
         PATTERN ".svn" EXCLUDE
     )
+else ()
+    # Generate a KinBody XML file using the fuerte version of or_urdf. In
+    # hydro, this is replaced by programmatically loading the file.
+    execute_process(COMMAND rospack find or_urdf
+        OUTPUT_VARIABLE OR_URDF_PACKAGE_PATH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(URDF_TO_KINBODY "${OR_URDF_PACKAGE_PATH}/bin/urdf_to_kinbody")
+
+    add_custom_command(OUTPUT "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
+        COMMAND ${URDF_TO_KINBODY} "${URDF_OUTPUT_DIR}/herb.urdf"
+                > "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
+        MAIN_DEPENDENCY "${URDF_OUTPUT_DIR}/herb.urdf"
+    )
+    add_custom_target(herb_kinbody ALL
+        DEPENDS "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
+    )
 endif ()
