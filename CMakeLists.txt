@@ -49,7 +49,7 @@ macro(wrap_xacro input_path output_path)
     get_filename_component(xacro_name "${output_path}" NAME_WE)
     add_custom_command(OUTPUT "${output_path}"
         DEPENDS ${COMMAND_XACRO_POSTPROCESS} "${input_path}"
-        COMMAND ${COMMAND_XACRO_POSTPROCESS}
+        COMMAND ${COMMAND_XACRO_POSTPROCESS} --swap-dae
                 --name="${xacro_name}" --package="${PROJECT_NAME}"
                 --collision_meshes=True "${input_path}" "${output_path}"
     )
