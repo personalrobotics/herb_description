@@ -171,7 +171,6 @@ if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
     install(DIRECTORY "meshes"
                       "${URDF_OUTPUT_DIR}"
                       "${OPENRAVE_OUTPUT_DIR}"
-                      "${PROJECT_SOURCE_DIR}/ordata"
         DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
         PATTERN ".svn" EXCLUDE
     )
