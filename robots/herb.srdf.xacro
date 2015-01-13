@@ -129,6 +129,7 @@
 
     <xacro:macro name="pantilt" params="name">
         <group name="${name}">
+            <link name="/herb_base"/>
             <link name="/${name}/wam1"/>
             <link name="/${name}/wam2"/>
 
