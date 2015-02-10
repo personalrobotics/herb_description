@@ -1,0 +1,54 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fixed_transforms">
+    <!-- Fixed Transforms -->
+    
+    <xacro:macro name="fixed_transforms">
+        <link name="head/kinect2/rgb">
+            <inertial>
+                <origin
+                    xyz="0. 0. 0."
+                    rpy="0. 0. 0." />
+                <mass value="0." />
+                <inertia
+                    ixx="0."
+                    ixy="0."
+                    ixz="0."
+                    iyy="0."
+                    iyz="0."
+                    izz="0." />
+            </inertial>
+        </link>
+        <joint
+            name="head/kinect2/rgb"
+            type="fixed">
+            <origin
+                xyz="0.11838 0.10257 0.01936"
+                rpy="2.84962 -1.5510 0.22398" />
+            <parent link="head/wam2" />
+            <child link="head/kinect/rgb" />
+        </joint>
+        <link name="head/kinect2/depth">
+            <inertial>
+                <origin
+                    xyz="0. 0. 0."
+                    rpy="0. 0. 0." />
+                <mass value="0." />
+                <inertia
+                    ixx="0."
+                    ixy="0."
+                    ixz="0."
+                    iyy="0."
+                    iyz="0."
+                    izz="0." />
+            </inertial>
+        </link>
+        <joint
+            name="head/kinect2/depth"
+            type="fixed">
+            <origin
+                xyz="-0.052 0. 0."
+                rpy="0. 0. 0." />
+            <parent link="head/kinect/rgb" />
+            <child link="head/kinect/depth" />
+        </joint>
+    </xacro:macro>
+</robot>
