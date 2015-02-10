@@ -29,6 +29,9 @@ file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
 file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
     DESTINATION "${URDF_OUTPUT_DIR}"
 )
+file(COPY "${PROJECT_SOURCE_DIR}/robots/fixed_transforms.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
 
 macro(xacro_expand input_path output_path)
     add_custom_command(OUTPUT "${output_path}"

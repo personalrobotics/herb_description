@@ -4,6 +4,7 @@
     <xacro:include filename="herb_base.urdf.xacro"/>
     <xacro:include filename="bh280.urdf.xacro"/>
     <xacro:include filename="wam.urdf.xacro"/>
+    <xacro:include filename="fixed_transforms.urdf.xacro"/>
 
     <!-- 7 DOF Barrett WAM equipped with the Barrett force/torque sensor and
          the BH-280 BarrettHand end-effector. -->
@@ -36,7 +37,9 @@
             <parent link="/herb_base"/>
             <child link="/right/wam_base"/>
         </joint>
+        
+        <xacro:fixed_transforms/>
     </xacro:macro>
-
+    
     <xacro:herb/>
 </robot>
