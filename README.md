@@ -88,13 +88,17 @@ As a convenience, the following two URDF models are also generated:
 
 ## Notes on Visual Geometry
 
-Getting the collada .dae files to display properly in rviz and work in OpenRave
-takes some effort.  Specifically:
+Getting the COLLADA (i.e. `.dae`) files to both display properly in RViz
+andload in OpenRAVE takes some effort. Specifically:
 
-- When generating new meshes, make sure the correct schema is used.  The second line of the file should read: \<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0"\>
-- Depending on the software that is exporting the mesh, you must take care to ensure that the resulting file has the \<up_axis\>Y_UP\</up_axis\> tag.
-- The units should be in meters.
-
+- When generating new meshes, make sure the correct schema (`1.4` vs `1.5`) is
+  used. The second line of the file should read:
+```xml
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0"\>
+```
+- Depending on the software that is exporting the mesh, you must take care to
+  ensure that the resulting file has the `<up_axis>Y_UP</up_axis>` tag.
+- All units should be in meters.
 
 
 ## LICENSE
