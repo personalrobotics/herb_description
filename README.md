@@ -94,11 +94,11 @@ andload in OpenRAVE takes some effort. Specifically:
 - When generating new meshes, make sure the correct schema (`1.4` vs `1.5`) is
   used. The second line of the file should read:
 ```xml
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0"\>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
 ```
 - Depending on the software that is exporting the mesh, you must take care to
   ensure that the resulting file has the `<up_axis>Y_UP</up_axis>` tag.
-- All units should be in meters.
+- All units should be in meters
 
 
 ## LICENSE
