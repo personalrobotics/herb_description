@@ -1,7 +1,7 @@
 # herb_description
 
 herb_description contains URDF and SRDF descriptions of HERB, a bimanual mobile
-manipulation designed and built by the
+manipulation robot designed and built by the
 [Personal Robotics Lab](https://personalrobotics.ri.cmu.edu) in the
 [Robotics Institute](https://www.ri.cmu.edu) at
 [Carnegie Mellon University](http://www.cmu.edu).
@@ -84,6 +84,17 @@ As a convenience, the following two URDF models are also generated:
 - `wam_standalone.urdf` - 7-DOF WAM with force/torque sensor and wrist
 - `wam_bh280_standalone.urdf` - model consisting of `bh280_standalone.urdf`
   attached to the wrist of `wam_standalone.urdf`
+
+
+## Notes on Visual Geometry
+
+Getting the collada .dae files to display properly in rviz and work in OpenRave
+takes some effort.  Specifically:
+
+- When generating new meshes, make sure the correct schema is used.  The second line of the file should read: \<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0"\>
+- Depending on the software that is exporting the mesh, you must take care to ensure that the resulting file has the \<up_axis\>Y_UP\</up_axis\> tag.
+- The units should be in meters.
+
 
 
 ## LICENSE
