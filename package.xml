@@ -9,6 +9,8 @@
     <maintainer email="mkoval@cs.cmu.edu">Michael Koval</maintainer>
     <author email="mkoval@cs.cmu.edu">Michael Koval</author>
     <author email="mdawsonh@cs.cmu.edu">Michael Dawson-Haggerty</author>
+    <author email="vandeweg@cmu.edu">Mike Vande Weghe</author>
+    <author email="awalsman@cs.cmu.edu">Aaron Walsman</author>
     <license>BSD</license>
     <buildtool_depend>catkin</buildtool_depend>
     <buildtool_depend>xacro</buildtool_depend>
