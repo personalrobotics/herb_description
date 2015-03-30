@@ -2,8 +2,8 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.1.0 (2015-03-30)
+------------------
 * Changed head velocity limits to match OWD/Pantilt.
 * Adding notes on visual geometry.
 * Adding adjacency between herb-base and head/wam2
