@@ -2,7 +2,7 @@ PARAMS_POSTPROCESS=./scripts/postprocess_params.py
 XACRO_POSTPROCESS=./scripts/postprocess_xacro.py
 RM=rm -f
 
-TARGETS=robots/herb.urdf robots/bh280_standalone.urdf
+TARGETS=robots/herb.urdf robots/herb.srdf robots/bh280_standalone.urdf
 COMPONENTS=robots/herb_base.urdf.xacro robots/bh280.urdf.xacro robots/wam.urdf.xacro
 PACKAGE=herb_description
 COLLISION_PRIMS=config/collision_primitives.json
