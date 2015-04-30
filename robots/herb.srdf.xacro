@@ -63,6 +63,11 @@
         <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_1"/>
         <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_2"/>
 
+        <!-- WAM self collisions -->
+        <disable_collisions link1="/${prefix}/wam1" link2="/${prefix}/wam3"/>
+        <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam6"/>
+        <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
+
         <!-- Sphere representation for CHOMP -->
         <link_sphere_approximation link="/${prefix}/wam_base">
             <sphere center="0.0 0.0 0.0" radius="0.15"/>
