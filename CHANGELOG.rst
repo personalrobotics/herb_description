@@ -2,8 +2,8 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.2.0 (2015-05-01)
+------------------
 * Adding link adjacencies
 * Force the head joints to be revolute.
   These were exported from SolidWorks as CONTINUOUS.
