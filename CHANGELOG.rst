@@ -2,6 +2,13 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adding link adjacencies
+* Force the head joints to be revolute.
+  These were exported from SolidWorks as CONTINUOUS.
+* Contributors: Jennifer King, Michael Koval
+
 1.1.0 (2015-03-30)
 ------------------
 * Changed head velocity limits to match OWD/Pantilt.
