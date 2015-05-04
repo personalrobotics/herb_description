@@ -66,6 +66,8 @@
         <!-- WAM self collisions -->
         <disable_collisions link1="/${prefix}/wam1" link2="/${prefix}/wam3"/>
         <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam6"/>
+        <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam7"/>
+        <disable_collisions link1="/${prefix}/wam5" link2="/${prefix}/wam7"/>
         <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
 
         <!-- Sphere representation for CHOMP -->
