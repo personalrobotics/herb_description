@@ -29,6 +29,9 @@ file(COPY "${PROJECT_SOURCE_DIR}/robots/bh280_standalone.urdf.xacro"
 file(COPY "${PROJECT_SOURCE_DIR}/robots/wam_bh280_standalone.urdf.xacro"
     DESTINATION "${URDF_OUTPUT_DIR}"
 )
+file(COPY "${PROJECT_SOURCE_DIR}/robots/fixed_transforms.urdf.xacro"
+    DESTINATION "${URDF_OUTPUT_DIR}"
+)
 
 macro(xacro_expand input_path output_path)
     add_custom_command(OUTPUT "${output_path}"
@@ -135,6 +138,7 @@ wrap_xacro("herb_base_raw.urdf"
 if (NOT "${URDF_OUTPUT_DIR}" STREQUAL "${PROJECT_SOURCE_DIR}/robots")
     add_custom_command(OUTPUT "${URDF_OUTPUT_DIR}/herb.urdf.xacro"
         DEPENDS "${PROJECT_SOURCE_DIR}/robots/herb.urdf.xacro"
+                "${URDF_OUTPUT_DIR}/fixed_transforms.urdf.xacro"
                 "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
                 "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
                 "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
@@ -146,6 +150,7 @@ endif ()
 xacro_expand("${URDF_OUTPUT_DIR}/herb.urdf.xacro"
              "${URDF_OUTPUT_DIR}/herb.urdf"
              # Additional dependencies.
+             "${URDF_OUTPUT_DIR}/fixed_transforms.urdf.xacro"
              "${URDF_OUTPUT_DIR}/herb_base.urdf.xacro"
              "${URDF_OUTPUT_DIR}/bh280.urdf.xacro"
              "${URDF_OUTPUT_DIR}/wam.urdf.xacro"
