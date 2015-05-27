@@ -55,7 +55,7 @@
         <!-- CAMERAS -->
         <joint
             name="/head/kinect2_link"
-            type="fixed>
+            type="fixed">
             <origin
                 xyz="0.15837 0.03257 0.09936"
                 rpy="2.84962 -1.5510 0.22398" />
