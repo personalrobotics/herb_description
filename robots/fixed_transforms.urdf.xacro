@@ -59,7 +59,7 @@
             type="fixed">
             <origin
                 xyz="0.15837 0.03257 0.09936"
-                rpy="-1.570796 0 0" />
+                rpy="1.57079 -1.57019 1.57079" />
             <parent link="/head/wam2" />
             <child link="/head/kinect2_link"  />
         </joint>
