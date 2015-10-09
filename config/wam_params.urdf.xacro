@@ -86,40 +86,41 @@
         </inertial>
     </link>
 
-    <!-- The joint limits [1] and torque values [2] were copied from Barrett's
-         online documentation. The velocity limits are set to the default
+    <!-- The torque values [1] were copied from Barrett's
+         online documentation. The joint limits are set to the default
+         values used in OWD as of 10/9/2015. The velocity limits are set to the default
          values used in OWD as of 7/15/2013. The soft limits specified in the
          safety controller are padded by 0.1 radians.
-
-         [1] http://support.barrett.com/wiki/WAM/KinematicsJointRangesConversionFactors
-         [2] http://support.barrett.com/wiki/WAM/CableTorqueLimits
+         
+         [1] http://support.barrett.com/wiki/WAM/CableTorqueLimits
     -->
     <joint name="j1" type="revolute">
         <!-- HERB's J1 joints are modified to have a +180 degree offset. -->
-        <limit lower="${30*(pi/180)}" upper="${330*(pi/180)}" effort="1.8" velocity="0.75"/>
+        <limit lower="${-2.60+pi}" upper="${2.60+pi}" effort="1.8" velocity="0.75"/>
     </joint>
 
     <joint name="j2" type="revolute">
-        <limit lower="${-113*(pi/180)}" upper="${113*(pi/180)}" effort="1.8" velocity="0.75"/>
+        <limit lower="-1.96" upper="1.96" effort="1.8" velocity="0.75"/>
     </joint>
 
     <joint name="j3" type="revolute">
-        <limit lower="${-157*(pi/180)}" upper="${157*(pi/180)}" effort="1.8" velocity="2.0"/>
+        <limit lower="-2.73" upper="2.73" effort="1.8" velocity="2.0"/>
     </joint>
 
     <joint name="j4" type="revolute">
-        <limit lower="${-50*(pi/180)}" upper="${180*(pi/180)}" effort="1.6" velocity="2.0"/>
+        <limit lower="-0.86" upper="3.13" effort="1.6" velocity="2.0"/>
     </joint>
 
     <joint name="j5" type="revolute">
-        <limit lower="${-273*(pi/180)}" upper="${71*(pi/180)}" effort="0.6" velocity="2.5"/>
+        <limit lower="-4.79" upper="1.30" effort="0.6" velocity="2.5"/>
     </joint>
 
     <joint name="j6" type="revolute">
-        <limit lower="${-90*(pi/180)}" upper="${90*(pi/180)}" effort="0.6" velocity="2.5"/>
+        <limit lower="-1.56" upper="1.56" effort="0.6" velocity="2.5"/>
     </joint>
 
     <joint name="j7" type="revolute">
-        <limit lower="${-172*(pi/180)}" upper="${172*(pi/180)}" effort="0.174" velocity="2.5"/>
+        <limit lower="-2.99" upper="2.99" effort="0.174" velocity="2.5"/>
     </joint>
+    
 </template>
