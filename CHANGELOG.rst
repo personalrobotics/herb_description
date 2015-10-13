@@ -2,6 +2,16 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Changing joint limits to match those hardcoded in OWD (`#18 <https://github.com/personalrobotics/herb_description/issues/18>`_
+* Improved Kinect 2 extrinsics (`#15 <https://github.com/personalrobotics/herb_description/issues/15>`_)
+* Add skeleton tracker transform (`#14 <https://github.com/personalrobotics/herb_description/issues/14>`_)
+* Fixed orientation of kinect2_link for the new version of iai_kinect (`#13 <https://github.com/personalrobotics/herb_description/issues/13>`)
+* Added static transforms to the URDF (`#12 <https://github.com/personalrobotics/herb_description/issues/12>`_)
+* Added missing disable_collision pairs
+* Contributors: Aaron Walsman, Clint Liddick, Jennifer King, Michael Koval, Shushman
+
 1.2.0 (2015-05-01)
 ------------------
 * Adding link adjacencies
