@@ -2,8 +2,8 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.3.0 (2015-10-12)
+------------------
 * Changing joint limits to match those hardcoded in OWD (`#18 <https://github.com/personalrobotics/herb_description/issues/18>`_
 * Improved Kinect 2 extrinsics (`#15 <https://github.com/personalrobotics/herb_description/issues/15>`_)
 * Add skeleton tracker transform (`#14 <https://github.com/personalrobotics/herb_description/issues/14>`_)
