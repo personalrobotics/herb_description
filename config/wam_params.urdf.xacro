@@ -1,7 +1,7 @@
 <template xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:property name="pi" value="3.14159265359"/>
 
-    <!-- Inertial mass and COM are from OWD, other inertial parameters were copied from the Barrett WAM User Manual,
+    <!-- Inertial parameters were copied from the Barrett WAM User Manual,
          version AC_02. -->
     <link name="wam_base">
         <inertial>
@@ -15,31 +15,31 @@
 
     <link name="wam1">
         <inertial>
-            <origin xyz="-0.00443422 0.12189039 -0.00066489"/>
+            <origin xyz="0.0003506 0.1326795 0.0006286"/>
             <mass value="8.3936"/>
-            <inertia ixx="0.0003506" ixy="-0.00213041" ixz="-0.00012485"
-                                     iyy="0.1326795"   iyz= "0.00068555"
-                                                       izz= "0.0006286"/>
+            <inertia ixx="0.13488033" ixy="-0.00213041" ixz="-0.00012485"
+                                      iyy= "0.11328369" iyz= "0.00068555"
+                                                        izz= "0.09046330"/>
         </inertial>
     </link>
 
     <link name="wam2">
         <inertial>
-            <origin xyz="-0.00236983 0.03105614 0.01542114"/>
+            <origin xyz="-0.000002230 -0.0213924 0.0133754"/>
             <mass value="4.8487"/>
-            <inertia ixx="-0.000002230" ixy= "0.00027172" ixz="+0.00002461"
-                                        iyy="-0.0213924"  iyz="-0.00181920"
-                                                          izz= "0.0133754"/>
+            <inertia ixx="0.02140958" ixy="0.00027172" ixz="+0.00002461"
+                                      iyy="0.01377875" iyz="-0.00181920"
+                                                       izz= "0.01558906"/>
         </inertial>
     </link>
 
     <link name="wam3">
         <inertial>
-            <origin xyz="-0.03825858 0.20750770 0.00003309"/>
+            <origin xyz="-0.0387565 0.2179078 0.0000252"/>
             <mass value="1.7251"/>
-            <inertia ixx="-0.0387565" ixy="-0.00249612" ixz= "0.00000738"
-                                      iyy= "0.2179078"  iyz="-0.00001767"
-                                                        izz= "0.0000252"/>
+            <inertia ixx="0.05911077" ixy="-0.00249612" ixz= "0.00000738"
+                                      iyy= "0.00324550" iyz="-0.00001767"
+                                                        izz= "0.05927043"/>
         </inertial>
     </link>
 
@@ -48,29 +48,29 @@
         <inertial>
             <origin xyz="0.00498512 -0.00022942 0.13271662"/>
             <mass value="2.40016804"/>
-            <inertia ixx="0.00498512" ixy= "0.00001741" ixz="-0.00150604"
-                                      iyy="-0.00022942" iyz="-0.00002109"
-                                                        izz= "0.13271662"/>
+            <inertia ixx="0.01491672" ixy="0.00001741" ixz="-0.00150604"
+                                      iyy="0.01482922" iyz="-0.00002109"
+                                                       izz= "0.00294463"/>
         </inertial>
     </link>
 
     <link name="wam5">
         <inertial>
-            <origin xyz="0.00008921 0.00511217 0.00435824"/>
+            <origin xyz="0.00005483 0.02886286 0.00148493"/>
             <mass value="0.35655692"/>
-            <inertia ixx="0.00005483" ixy="0.00000020" ixz="-0.00000005"
-                                      iyy="0.02886286" iyz="-0.00000359"
-                                                       izz= "0.00148493"/>
+            <inertia ixx="0.00005029" ixy="0.00000020" ixz="-0.00000005"
+                                      iyy="0.00007582" iyz="-0.00000359"
+                                                       izz= "0.00006270"/>
         </inertial>
     </link>
 
     <link name="wam6">
         <inertial>
-            <origin xyz="-0.00012262 -0.01703194 0.02468336"/>
+            <origin xyz="-0.00005923 -0.01686123 0.02419052"/>
             <mass value="0.40915886"/>
-            <inertia ixx="-0.00005923" ixy= "0.00000061" ixz="-0.00000074"
-                                       iyy="-0.01686123" iyz="-0.00004590"
-                                                         izz= "0.02419052"/>
+            <inertia ixx="0.00055516" ixy="0.00000061" ixz="-0.00000074"
+                                      iyy="0.00024367" iyz="-0.00004590"
+                                                       izz= "0.00045358"/>
         </inertial>
     </link>
 
@@ -78,11 +78,11 @@
          include the mass or inertia of the force/torque sensor. -->
     <link name="wam7">
         <inertial>
-            <origin xyz="-0.00007974 0.00016313 -0.00323552"/>
+            <origin xyz="0.00014836 0.00007252 -0.1232352"/>
             <mass value="0.06864753"/>
-            <inertia ixx="0.00014836" ixy="-0.00000019" ixz= "0.00000000"
-                                      iyy= "0.00007252" iyz= "0.00000000"
-                                                        izz="-0.1232352"/>
+            <inertia ixx="0.00003773" ixy="-0.00000019" ixz="0.00000000"
+                                      iyy= "0.00003806" iyz="0.00000000"
+                                                        izz="0.00007408"/>
         </inertial>
     </link>
 
