@@ -1,45 +1,66 @@
 <template xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:property name="pi" value="3.14159265359"/>
 
-    <!-- Inertial parameters were copied from the Barrett WAM User Manual,
-         version AC_02. -->
+    <!-- The mass, center of mass, and inertia tensors for these links are
+         copied from version AC-02 of the "WAM Arm Inertial Specifications"
+         document (D1005). These values are current as of 11/04/2015.
+      -->
+
+    <!-- Barrett defines the inertia of the base frame in the "wam0" frame,
+         which does not exist in our WAM model. The "wam0" frame differs from
+         the "wam_base" frame by a translation, which is incorporated into the
+         origin of this inertial frame.
+      -->
     <link name="wam_base">
         <inertial>
-            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <origin xyz="0.21556578 0.26189039 0.34533511" rpy="0 0 0"/>
             <mass value="9.97059584"/>
-            <inertia ixx="0.10916849" ixy="0.00640270" ixz="0.02557874"
-                                      iyy="0.18294303" iyz="0.00161433"
-                                                       izz="0.11760385"/>
+            <inertia ixx= "0.10916849" ixy= "0.00640270" ixz= "0.02557874"
+                                       iyy= "0.18294303" iyz= "0.00161433"
+                                                         izz= "0.11760385"/>
         </inertial>
     </link>
 
+    <!-- All of the link frames used in this document (and, in general, all
+         Barrett documentation) use the same convention as DH parameters; i.e.
+         are colocated with their child joint. URDF colocates the link frame with
+         its parent joint. These two conventions are fundamentally incompatible,
+         so it is not possible to directly use the center of mass and inertia
+         tensor values provided by Barrett.
+
+         We correct for this offset by computing the relative transform between
+         the link frames in the two conventions in the zero configuration. We
+         use this transformation to colocate the inertial frame with the link
+         frame used in the Barrett documentation. As a result, the "xyz" of the
+         inertial frames WILL NOT match the center-of-masses in the datashseet.
+      -->
     <link name="wam1">
         <inertial>
-            <origin xyz="0.000351 0.000629 -0.132680" rpy="-1.570796 0 0"/>
-            <mass value="8.3936"/>
-            <inertia ixx="0.13488033" ixy="-0.00213041" ixz="-0.00012485"
-                                      iyy= "0.11328369" iyz= "0.00068555"
-                                                        izz= "0.09046330"/>
+            <origin xyz="-0.004434 -0.000665 -0.121890" rpy="-1.570796 0 0"/>
+            <mass value="10.76768767"/>
+            <inertia ixx= "0.13488033" ixy="-0.00213041" ixz="-0.00012485"
+                                       iyy= "0.11328369" iyz= "0.00068555"
+                                                         izz= "0.09046330"/>
         </inertial>
     </link>
 
     <link name="wam2">
         <inertial>
-            <origin xyz="-0.000223 -0.013375 -0.021392" rpy="1.570796 0 0"/>
-            <mass value="4.8487"/>
-            <inertia ixx="0.02140958" ixy="0.00027172" ixz="+0.00002461"
-                                      iyy="0.01377875" iyz="-0.00181920"
-                                                       izz= "0.01558906"/>
+            <origin xyz="-0.002370 -0.015421 0.031056" rpy="1.570796 0 0"/>
+            <mass value="3.87493756"/>
+            <inertia ixx= "0.02140958" ixy= "0.00027172" ixz= "0.00002461"
+                                       iyy= "0.01377875" iyz="-0.00181920"
+                                                         izz= "0.01558906"/>
         </inertial>
     </link>
 
     <link name="wam3">
         <inertial>
-            <origin xyz="0.006243 0.000025 0.332092" rpy="-1.570796 0 0"/>
-            <mass value="1.7251"/>
-            <inertia ixx="0.05911077" ixy="-0.00249612" ixz= "0.00000738"
-                                      iyy= "0.00324550" iyz="-0.00001767"
-                                                        izz= "0.05927043"/>
+            <origin xyz="0.006741 0.000033 0.342492" rpy="-1.570796 0 0"/>
+            <mass value="1.80228141"/>
+            <inertia ixx= "0.05911077" ixy="-0.00249612" ixz= "0.00000738"
+                                       iyy= "0.00324550" iyz="-0.00001767"
+                                                         izz= "0.05927043"/>
         </inertial>
     </link>
 
@@ -48,79 +69,78 @@
         <inertial>
             <origin xyz="-0.040015 -0.132717 -0.000229" rpy="1.570796 0 0"/>
             <mass value="2.40016804"/>
-            <inertia ixx="0.01491672" ixy="0.00001741" ixz="-0.00150604"
-                                      iyy="0.01482922" iyz="-0.00002109"
-                                                       izz= "0.00294463"/>
+            <inertia ixx= "0.01491672" ixy= "0.00001741" ixz="-0.00150604"
+                                       iyy= "0.01482922" iyz="-0.00002109"
+                                                         izz= "0.00294463"/>
         </inertial>
     </link>
 
     <link name="wam5">
         <inertial>
-            <origin xyz="0.000055 0.001485 0.271137" rpy="-1.570796 0 0"/>
-            <mass value="0.35655692"/>
-            <inertia ixx="0.00005029" ixy="0.00000020" ixz="-0.00000005"
-                                      iyy="0.00007582" iyz="-0.00000359"
-                                                       izz= "0.00006270"/>
+            <origin xyz="0.000089 0.004358 0.294888" rpy="-1.570796 0 0"/>
+            <mass value="0.12376019"/>
+            <inertia ixx= "0.00005029" ixy= "0.00000020" ixz="-0.00000005"
+                                       iyy= "0.00007582" iyz="-0.00000359"
+                                                         izz= "0.00006270"/>
         </inertial>
     </link>
 
     <link name="wam6">
         <inertial>
-            <origin xyz="-0.000059 -0.024191 -0.016861" rpy="1.570796 0 0"/>
-            <mass value="0.40915886"/>
-            <inertia ixx="0.00055516" ixy="0.00000061" ixz="-0.00000074"
-                                      iyy="0.00024367" iyz="-0.00004590"
-                                                       izz= "0.00045358"/>
+            <origin xyz="-0.000123 -0.024683 -0.017032" rpy="1.570796 0 0"/>
+            <mass value="0.41797364"/>
+            <inertia ixx= "0.00055516" ixy= "0.00000061" ixz="-0.00000074"
+                                       iyy= "0.00024367" iyz="-0.00004590"
+                                                         izz= "0.00045358"/>
         </inertial>
     </link>
 
-    <!-- WARNING: This might not be in the correct frame. Also, it does not
-         include the mass or inertia of the force/torque sensor. -->
+    <!-- TODO: The center of mass of "wam7" may be incorrect because OWD does
+         not place the wam7 frame in the same location as Barrett. This may
+         introduce an offset into the relative transform described above.
+
+         TODO: This does not include the mass of the force/torque sensor.
+      -->
     <link name="wam7">
         <inertial>
-            <origin xyz="0 0 0.104" rpy="0 0 0"/>
+            <origin xyz="-0.000080 0.000163 0.176764" rpy="0 0 0"/>
             <mass value="0.06864753"/>
-            <inertia ixx="0.00003773" ixy="-0.00000019" ixz="0.00000000"
-                                      iyy= "0.00003806" iyz="0.00000000"
-                                                        izz="0.00007408"/>
+            <inertia ixx= "0.00003773" ixy="-0.00000019" ixz= "0.00000000"
+                                       iyy= "0.00003806" iyz= "0.00000000"
+                                                         izz= "0.00007408"/>
         </inertial>
     </link>
 
-    <!-- The torque values [1] were copied from Barrett's
-         online documentation. The joint limits are set to the default
-         values used in OWD as of 10/9/2015. The velocity limits are set to the default
-         values used in OWD as of 7/15/2013. The soft limits specified in the
-         safety controller are padded by 0.1 radians.
-         
-         [1] http://support.barrett.com/wiki/WAM/CableTorqueLimits
+    <!-- The effort values and joint limits were copied from Barrett's
+         online documentation on 11/4/2015. The velocity limits are set to the
+         default values used in OWD as of 7/15/2013.
     -->
     <joint name="j1" type="revolute">
         <!-- HERB's J1 joints are modified to have a +180 degree offset. -->
-        <limit lower="${-2.60+pi}" upper="${2.60+pi}" effort="1.8" velocity="0.75"/>
+        <limit lower="${-2.6+pi}" upper="${2.6+pi}" effort="1.8" velocity="0.75"/>
     </joint>
 
     <joint name="j2" type="revolute">
-        <limit lower="-1.96" upper="1.96" effort="1.8" velocity="0.75"/>
+        <limit lower="-2.00" upper="2.00" effort="1.8" velocity="0.75"/>
     </joint>
 
     <joint name="j3" type="revolute">
-        <limit lower="-2.73" upper="2.73" effort="1.8" velocity="2.0"/>
+        <limit lower="-2.80" upper="2.80" effort="1.8" velocity="2.0"/>
     </joint>
 
     <joint name="j4" type="revolute">
-        <limit lower="-0.86" upper="3.13" effort="1.6" velocity="2.0"/>
+        <limit lower="-0.90" upper="3.10" effort="1.6" velocity="2.0"/>
     </joint>
 
     <joint name="j5" type="revolute">
-        <limit lower="-4.79" upper="1.30" effort="0.6" velocity="2.5"/>
+        <limit lower="-4.76" upper="1.24" effort="0.6" velocity="2.5"/>
     </joint>
 
     <joint name="j6" type="revolute">
-        <limit lower="-1.56" upper="1.56" effort="0.6" velocity="2.5"/>
+        <limit lower="-1.60" upper="1.60" effort="0.6" velocity="2.5"/>
     </joint>
 
     <joint name="j7" type="revolute">
-        <limit lower="-2.99" upper="2.99" effort="0.174" velocity="2.5"/>
+        <limit lower="-3.00" upper="3.00" effort="0.174" velocity="2.5"/>
     </joint>
-    
 </template>
