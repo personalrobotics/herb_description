@@ -12,10 +12,27 @@
         <xacro:wam prefix="${prefix}"/>
         <xacro:bh280 prefix="${prefix}"/>
 
+        <link name="${prefix}/force_torque">
+            <inertial>
+		<origin xyz="0.0002 0 0.0054" rpy="0 0 0" />
+		<mass value="0.133278" />
+		<inertia ixx="0.07551" ixy="-0.0001199" ixz="-0.00007002"
+                                       iyy= "0.07508"   iyz="-0.0000537"
+                                                        izz= "0.1462" />
+	   </inertial>
+        </link>
+
+        <joint name="${prefix}/force_torque_mount" type="fixed">
+            <!-- difference between URDF wam7 frame and Barrett's wam7 frame is 0.06m -->
+            <origin xyz="0 0 0.06" rpy="0 0 0"/>
+            <parent link="${prefix}/wam7"/>
+            <child link="${prefix}/force_torque"/>
+        </joint>
+
         <joint name="${prefix}/hand_mount" type="fixed">
             <!-- The force/torque sensor is 12 mm thick. -->
-            <origin xyz="0 0 0.072" rpy="0 0 ${pi/2}"/>
-            <parent link="${prefix}/wam7"/>
+            <origin xyz="0 0 0.012" rpy="0 0 ${pi/2}"/>
+            <parent link="${prefix}/force_torque"/>
             <child link="${prefix}/hand_base"/>
         </joint>
     </xacro:macro>
