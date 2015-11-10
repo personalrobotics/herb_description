@@ -1,15 +1,10 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(herb_description)
 
-if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
-    find_package(catkin REQUIRED)
-    catkin_package()
+find_package(catkin REQUIRED)
+catkin_package()
 
-    set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
-else ()
-    set(BASE_OUTPUT_DIR "${PROJECT_SOURCE_DIR}")
-endif ()
-
+set(BASE_OUTPUT_DIR "${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_SHARE_DESTINATION}")
 set(COMMAND_PARAMS_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_params.py")
 set(COMMAND_XACRO_POSTPROCESS "${PROJECT_SOURCE_DIR}/scripts/postprocess_xacro.py")
 
@@ -172,28 +167,9 @@ add_custom_target(herb_srdf ALL
     VERBATIM
 )
 
-if (DEFINED CATKIN_TOPLEVEL OR (NOT ("$ENV{ROS_DISTRO}" STREQUAL "fuerte")))
-    install(DIRECTORY "meshes"
-                      "${URDF_OUTPUT_DIR}"
-                      "${OPENRAVE_OUTPUT_DIR}"
-        DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
-        PATTERN ".svn" EXCLUDE
-    )
-else ()
-    # Generate a KinBody XML file using the fuerte version of or_urdf. In
-    # hydro, this is replaced by programmatically loading the file.
-    execute_process(COMMAND rospack find or_urdf
-        OUTPUT_VARIABLE OR_URDF_PACKAGE_PATH
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-    set(URDF_TO_KINBODY "${OR_URDF_PACKAGE_PATH}/bin/urdf_to_kinbody")
-
-    add_custom_command(OUTPUT "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
-        COMMAND ${URDF_TO_KINBODY} "${URDF_OUTPUT_DIR}/herb.urdf"
-                > "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
-        MAIN_DEPENDENCY "${URDF_OUTPUT_DIR}/herb.urdf"
-    )
-    add_custom_target(herb_kinbody ALL
-        DEPENDS "${OPENRAVE_OUTPUT_DIR}/robots/herb.kinbody.xml"
-    )
-endif ()
+install(DIRECTORY "meshes"
+                  "${URDF_OUTPUT_DIR}"
+                  "${OPENRAVE_OUTPUT_DIR}"
+    DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}"
+    PATTERN ".svn" EXCLUDE
+)
