@@ -14,14 +14,13 @@
 
         <link name="${prefix}/force_torque">
             <inertial>
-		<origin xyz="0.0002 0 0.0054" rpy="0 0 0" />
-		<mass value="0.133278" />
-		<inertia ixx="0.07551" ixy="-0.0001199" ixz="-0.00007002"
-                                       iyy= "0.07508"   iyz="-0.0000537"
-                                                        izz= "0.1462" />
-	   </inertial>
+                <origin xyz="0.0002 0 0.0054" rpy="0 0 0"/>
+                <mass value="0.133278"/>
+                <inertia ixx="0.00007551" ixy="-0.0000001199" ixz="-0.0000000700"
+                                          iyy= "0.0000750800" iyz="-0.0000000537"
+                                                              izz= "0.0001462000"/>
+            </inertial>
         </link>
-
         <joint name="${prefix}/force_torque_mount" type="fixed">
             <!-- difference between URDF wam7 frame and Barrett's wam7 frame is 0.06m -->
             <origin xyz="0 0 0.06" rpy="0 0 0"/>
