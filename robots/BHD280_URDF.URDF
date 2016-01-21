@@ -39,7 +39,7 @@
           filename="package://BHD280_URDF/meshes/hand_base.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -47,7 +47,7 @@
         <mesh
           filename="package://herb_description/meshes/hand_base.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <link
     name="finger0_0">
@@ -88,7 +88,7 @@
           filename="package://BHD280_URDF/meshes/finger0_0.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -96,7 +96,7 @@
         <mesh
           filename="package://herb_description/meshes/finger0_0.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j00"
@@ -150,7 +150,7 @@
           filename="package://BHD280_URDF/meshes/finger0_1.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -158,7 +158,7 @@
         <mesh
           filename="package://herb_description/meshes/finger0_1.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j01"
@@ -212,7 +212,7 @@
           filename="package://BHD280_URDF/meshes/finger0_2.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -220,7 +220,7 @@
         <mesh
           filename="package://herb_description/meshes/finger0_2.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j02"
@@ -274,7 +274,7 @@
           filename="package://BHD280_URDF/meshes/finger1_0.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -282,7 +282,7 @@
         <mesh
           filename="package://herb_description/meshes/finger1_0.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j10"
@@ -336,7 +336,7 @@
           filename="package://BHD280_URDF/meshes/finger1_1.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -344,7 +344,7 @@
         <mesh
           filename="package://herb_description/meshes/finger1_1.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j11"
@@ -398,7 +398,7 @@
           filename="package://BHD280_URDF/meshes/finger1_2.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -406,7 +406,7 @@
         <mesh
           filename="package://herb_description/meshes/finger1_2.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j12"
@@ -460,7 +460,7 @@
           filename="package://BHD280_URDF/meshes/finger2_1.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -468,7 +468,7 @@
         <mesh
           filename="package://herb_description/meshes/finger2_1.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j21"
@@ -522,7 +522,7 @@
           filename="package://BHD280_URDF/meshes/finger2_2.STL" />
       </geometry>
     </collision>
-    <geom_group name="fine_collision">
+    <geometry_group name="fine_collision">
       <origin
         rpy="0 0 0"
         xyz="0 0 0"/>
@@ -530,7 +530,7 @@
         <mesh
           filename="package://herb_description/meshes/finger2_2.STL"/>
       </geometry>
-    </geom_group>
+    </geometry_group>
   </link>
   <joint
     name="j22"
