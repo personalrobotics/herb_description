@@ -188,7 +188,7 @@
   </link>
   <joint
     name="head/wam1"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="-0.219043 0 1.282513"
       rpy="0 0 0" />
@@ -196,8 +196,6 @@
       link="herb_base" />
     <child
       link="head/wam1" />
-    <axis
-      xyz="0 0 1" />
   </joint>
   <link
     name="head/wam2">
@@ -241,15 +239,13 @@
   </link>
   <joint
     name="head/wam2"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 0 0"
-      rpy="1.5707963267949 0 4.20797196041016E-14" />
+      rpy="1.5707963267949 0 -2.99999999999958E-01" />
     <parent
       link="head/wam1" />
     <child
       link="head/wam2" />
-    <axis
-      xyz="0 0 1" />
   </joint>
 </robot>
