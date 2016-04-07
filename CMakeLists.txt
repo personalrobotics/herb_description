@@ -167,6 +167,15 @@ add_custom_target(herb_srdf ALL
     VERBATIM
 )
 
+xacro_expand("${PROJECT_SOURCE_DIR}/robots/bh280_standalone.srdf.xacro"
+             "${BASE_OUTPUT_DIR}/robots/bh280.srdf")
+add_custom_target(bh280_srdf ALL
+    DEPENDS "${URDF_OUTPUT_DIR}/bh280.srdf"
+    COMMENT "Generating BH280 SRDF"
+    VERBATIM
+)
+
+
 install(DIRECTORY "meshes"
                   "${URDF_OUTPUT_DIR}"
                   "${OPENRAVE_OUTPUT_DIR}"
