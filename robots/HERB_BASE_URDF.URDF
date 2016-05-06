@@ -241,7 +241,7 @@
   </link>
   <joint
     name="head/wam2"
-    type="continuous">
+    type="fixed">
     <origin
       xyz="0 0 0"
       rpy="1.5707963267949 0.3 4.20797196041016E-14" />
