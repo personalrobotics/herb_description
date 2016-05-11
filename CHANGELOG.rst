@@ -2,8 +2,8 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.4.0 (2016-05-11)
+------------------
 * Switched to inertial properties from version AC-02 of Barrett's datasheet `#22 <https://github.com/personalrobotics/herb_description/issues/22>`_
 * Add higher-resolution collision geometry group for grippers in a `<geometry_group>` tag. `#21 <https://github.com/personalrobotics/herb_description/issues/21>`_
 * Removed support for rosbuild. `#20 <https://github.com/personalrobotics/herb_description/issues/20>`_
