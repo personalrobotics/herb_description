@@ -2,6 +2,15 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Switched to inertial properties from version AC-02 of Barrett's datasheet `#22 <https://github.com/personalrobotics/herb_description/issues/22>`_
+* Add higher-resolution collision geometry group for grippers in a `<geometry_group>` tag. `#21 <https://github.com/personalrobotics/herb_description/issues/21>`_
+* Removed support for rosbuild. `#20 <https://github.com/personalrobotics/herb_description/issues/20>`_
+* Added explicit link for the force/torque sensor.
+* Change all line-endings from Windows to Unix.
+* Contributors: Clint Liddick, David Butterworth, Michael Koval
+
 1.3.0 (2015-10-12)
 ------------------
 * Changing joint limits to match those hardcoded in OWD (`#18 <https://github.com/personalrobotics/herb_description/issues/18>`_
