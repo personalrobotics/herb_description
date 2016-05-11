@@ -2,6 +2,11 @@
 Changelog for package herb_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fixed the position of the head `#24 <https://github.com/personalrobotics/herb_description/issues/24>`_ `#25 <https://github.com/personalrobotics/herb_description/issues/25>`_
+* Contributors: Clint Liddick, Michael Koval
+
 1.4.0 (2016-05-11)
 ------------------
 * Switched to inertial properties from version AC-02 of Barrett's datasheet `#22 <https://github.com/personalrobotics/herb_description/issues/22>`_
