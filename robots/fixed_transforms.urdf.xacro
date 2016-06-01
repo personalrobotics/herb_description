@@ -88,7 +88,7 @@
             type="fixed">
             <origin
                 xyz="0 0 0"
-                rpy="-0.065 0 0" />
+                rpy="-0.195 0 0" />
             <child link="/head/kinect2_link" />
             <parent link="/head/kinect2_extrinsics_correction"  />
         </joint>
