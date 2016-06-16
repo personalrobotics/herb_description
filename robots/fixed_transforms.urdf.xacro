@@ -1,7 +1,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fixed_transforms">
     <!-- Fixed Transforms -->
 
-    <xacro:macro name="no_inertial">
+    <xacro:macro name="no_inertia">
       <inertial>
         <mass value="0"/>
         <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
