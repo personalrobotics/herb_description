@@ -3,7 +3,4 @@ ordata/
 robots/herb.urdf
 robots/herb.srdf
 robots/bh280.urdf
-robots/bh280.urdf.xacro
 robots/wam.urdf
-robots/wam.urdf.xacro
-robots/herb_base.urdf.xacro
