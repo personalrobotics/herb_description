@@ -68,16 +68,16 @@ build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "")
 if(BUILD_ALL_HERB_MODELS)
 
     # HERB with no right hand
-    set(HERB_NO_RIGHT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_right_hand.urdf")
-    set(HERB_NO_RIGHT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_right_hand.srdf")
+    set(HERB_NO_RIGHT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_bh280_left_no_right.urdf")
+    set(HERB_NO_RIGHT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_bh280_left_no_right.srdf")
 
     set(no_right_herb_args "left_bh280:=true" "right_bh280:=false")
     build_xacro(${HERB_URDF_XACRO} ${HERB_NO_RIGHT_HAND_URDF} "${no_right_herb_args}")
     build_xacro(${HERB_SRDF_XACRO} ${HERB_NO_RIGHT_HAND_SRDF} "right_hand:=false")
 
     # HERB with no left hand
-    set(HERB_NO_LEFT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_hand.urdf")
-    set(HERB_NO_LEFT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_hand.srdf")
+    set(HERB_NO_LEFT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_bh280_right.urdf")
+    set(HERB_NO_LEFT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_bh280_right.srdf")
 
     set(no_left_herb_args "left_bh280:=false" "right_bh280:=true")
     build_xacro(${HERB_URDF_XACRO} ${HERB_NO_LEFT_HAND_URDF} "${no_left_herb_args}")
