@@ -84,8 +84,8 @@ if(BUILD_ALL_HERB_MODELS)
     build_xacro(${HERB_SRDF_XACRO} ${HERB_NO_LEFT_HAND_SRDF} "left_hand:=false")
 
     # HERB with no hands
-    set(HERB_NO_HANDS_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_hands.urdf")
-    set(HERB_NO_HANDS_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_hands.srdf")
+    set(HERB_NO_HANDS_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_no_right.urdf")
+    set(HERB_NO_HANDS_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_no_right.srdf")
 
     set(no_right_herb_args "left_bh280:=false" "right_bh280:=false")
     build_xacro(${HERB_URDF_XACRO} ${HERB_NO_HANDS_URDF} "${no_hands_herb_args}")
