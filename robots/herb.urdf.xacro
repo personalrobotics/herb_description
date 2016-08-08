@@ -44,6 +44,7 @@
     </xacro:if>
   </xacro:macro>
 
+  <!-- hand arguments should all default to false to make argument passing sane -->
   <xacro:arg name="left_bh280" default="false"/>
   <xacro:arg name="right_bh280" default="false"/>
 

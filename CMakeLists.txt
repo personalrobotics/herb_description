@@ -6,24 +6,33 @@ catkin_package()
 
 option(BUILD_ALL_HERB_MODELS "Build all variations of the HERB models" OFF)
 
-macro(build_xacro infile outfile xacro_args)
-    # Call out to xacro to get dependencies
-    execute_process(COMMAND ${CATKIN_ENV} rosrun xacro xacro --deps ${infile}
-        ERROR_VARIABLE _xacro_err_ignore
-        OUTPUT_VARIABLE _xacro_deps_result
-        OUTPUT_STRIP_TRAILING_WHITESPACE)
+function(build_xacro infile outfile xacro_args)
+  # Call out to xacro to get dependencies
+  execute_process(COMMAND ${CATKIN_ENV} rosrun xacro xacro --deps "${infile}"
+    ERROR_VARIABLE _xacro_err_ignore
+    OUTPUT_VARIABLE _xacro_deps_result
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-    separate_arguments(_xacro_deps_result)
-    separate_arguments(xacro_args)
+  separate_arguments(_xacro_deps_result)
+  separate_arguments(xacro_args)
 
-    # Process xacro into final output
-    add_custom_command(OUTPUT ${outfile}
-        COMMENT "Generating ${outfile}"
-        COMMAND ${CATKIN_ENV} rosrun xacro xacro
-        -o ${outfile} ${infile} ${_xacro_deps_result} ${xacro_args}
-        DEPENDS ${infile} ${_xacro_deps_result}
-        VERBATIM)
-endmacro(build_xacro)
+  # Process xacro into final output
+  add_custom_command(OUTPUT "${outfile}"
+    COMMENT "Generating ${outfile}"
+    COMMAND ${CATKIN_ENV} rosrun xacro xacro
+    -o "${outfile}" "${infile}" ${_xacro_deps_result} ${xacro_args}
+    DEPENDS "${infile}" ${_xacro_deps_result}
+    VERBATIM)
+endfunction(build_xacro)
+
+macro(append_hand_flags hand hand_option urdf_args srdf_args)
+  if(${hand_option} STREQUAL "bh280")
+    list(APPEND ${urdf_args} "${hand}_bh280:=true")
+  endif()
+  if(NOT ${hand_option} STREQUAL "no")
+    list(APPEND ${srdf_args} "${hand}_hand:=true")
+  endif()
+endmacro(append_hand_flags)
 
 
 set(ROBOTS_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/robots")
@@ -54,6 +63,8 @@ build_xacro(${WAM_BH280_STANDALONE_URDF_XACRO} ${WAM_BH280_STANDALONE_URDF} "")
 # | None  | BH280 |
 # | None  | None  |
 
+set(HERB_HAND_OPTIONS "bh280" "no")
+
 # Default HERB (two BH280 hands)
 set(HERB_URDF_XACRO "${ROBOTS_SRC_DIR}/herb.urdf.xacro")
 set(HERB_URDF "${ROBOTS_OUTPUT_DIR}/herb.urdf")
@@ -61,38 +72,10 @@ set(HERB_URDF "${ROBOTS_OUTPUT_DIR}/herb.urdf")
 set(HERB_SRDF_XACRO "${ROBOTS_SRC_DIR}/herb.srdf.xacro")
 set(HERB_SRDF "${ROBOTS_OUTPUT_DIR}/herb.srdf")
 
-set(full_herb_args "left_bh280:=true" "right_bh280:=true")
-build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${full_herb_args}")
-build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "")
-
-if(BUILD_ALL_HERB_MODELS)
-
-    # HERB with no right hand
-    set(HERB_NO_RIGHT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_bh280_left_no_right.urdf")
-    set(HERB_NO_RIGHT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_bh280_left_no_right.srdf")
-
-    set(no_right_herb_args "left_bh280:=true" "right_bh280:=false")
-    build_xacro(${HERB_URDF_XACRO} ${HERB_NO_RIGHT_HAND_URDF} "${no_right_herb_args}")
-    build_xacro(${HERB_SRDF_XACRO} ${HERB_NO_RIGHT_HAND_SRDF} "right_hand:=false")
-
-    # HERB with no left hand
-    set(HERB_NO_LEFT_HAND_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_bh280_right.urdf")
-    set(HERB_NO_LEFT_HAND_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_bh280_right.srdf")
-
-    set(no_left_herb_args "left_bh280:=false" "right_bh280:=true")
-    build_xacro(${HERB_URDF_XACRO} ${HERB_NO_LEFT_HAND_URDF} "${no_left_herb_args}")
-    build_xacro(${HERB_SRDF_XACRO} ${HERB_NO_LEFT_HAND_SRDF} "left_hand:=false")
-
-    # HERB with no hands
-    set(HERB_NO_HANDS_URDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_no_right.urdf")
-    set(HERB_NO_HANDS_SRDF "${ROBOTS_OUTPUT_DIR}/herb_no_left_no_right.srdf")
-
-    set(no_right_herb_args "left_bh280:=false" "right_bh280:=false")
-    build_xacro(${HERB_URDF_XACRO} ${HERB_NO_HANDS_URDF} "${no_hands_herb_args}")
-    set(no_hands_herb_args "left_hand:=false" "right_hand:=false")
-    build_xacro(${HERB_SRDF_XACRO} ${HERB_NO_HANDS_SRDF} "${no_hands_herb_args}")
-
-endif(BUILD_ALL_HERB_MODELS)
+set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh280:=true")
+build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${FULL_HERB_URDF_ARGS}")
+set(FULL_HERB_SRDF_ARGS "left_hand:=true" "right_hand:=true")
+build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
 
 list(APPEND CORE_DESCRIPTION_FILES
   ${WAM_STANDALONE_URDF}
@@ -100,25 +83,49 @@ list(APPEND CORE_DESCRIPTION_FILES
   ${WAM_BH280_STANDALONE_URDF}
   ${HERB_URDF}
   ${HERB_SRDF}
-)
+  )
 
-# add target to actually cause generation
+
 if(BUILD_ALL_HERB_MODELS)
-    list(APPEND EXTRA_DESCRIPTION_FILES
-    ${HERB_NO_LEFT_HAND_URDF}
-    ${HERB_NO_LEFT_HAND_SRDF}
-    ${HERB_NO_RIGHT_HAND_URDF}
-    ${HERB_NO_RIGHT_HAND_SRDF}
-    ${HERB_NO_HANDS_URDF}
-    ${HERB_NO_HANDS_SRDF}
-    )
+  set(EXTRA_DESCRIPTION_FILES)
 
-    add_custom_target(description_files ALL DEPENDS
+  # Generate combinatorial hand option models
+  foreach(LEFT_HAND ${HERB_HAND_OPTIONS})
+    foreach(RIGHT_HAND ${HERB_HAND_OPTIONS})
+
+      # default configure is named differently and handled outside loop
+      if(NOT (${LEFT_HAND} STREQUAL "bh280" AND ${RIGHT_HAND} STREQUAL "bh280"))
+        set(HERB_URDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.urdf")
+        set(HERB_SRDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.srdf")
+
+        set(HERB_URDF_ARGS)
+        set(HERB_SRDF_ARGS)
+
+        append_hand_flags(left LEFT_HAND HERB_URDF_ARGS HERB_SRDF_ARGS)
+        append_hand_flags(right RIGHT_HAND HERB_URDF_ARGS HERB_SRDF_ARGS)
+
+        build_xacro(${HERB_URDF_XACRO} ${HERB_URDF_OUTPUT} "${HERB_URDF_ARGS}")
+        build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF_OUTPUT} "${HERB_SRDF_ARGS}")
+
+        list(APPEND EXTRA_DESCRIPTION_FILES
+          ${HERB_URDF_OUTPUT}
+          ${HERB_SRDF_OUTPUT})
+      endif()
+
+    endforeach(RIGHT_HAND)
+  endforeach(LEFT_HAND)
+
+  # add target to actually cause generation
+  add_custom_target(description_files ALL DEPENDS
     ${CORE_DESCRIPTION_FILES}
     ${EXTRA_DESCRIPTION_FILES})
+
 else()
-    add_custom_target(description_files ALL DEPENDS
+
+  # add target to actually cause generation
+  add_custom_target(description_files ALL DEPENDS
     ${CORE_DESCRIPTION_FILES})
+
 endif(BUILD_ALL_HERB_MODELS)
 
 install(DIRECTORY DESTINATION "${CATKIN_PACKAGE_SHARE_DESTINATION}/robots")

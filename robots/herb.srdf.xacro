@@ -166,8 +166,11 @@
                   parent_link="/${name}/wam2" parent_group="${name}"/>
   </xacro:macro>
 
-  <xacro:arg name="left_hand" default="true"/>
-  <xacro:arg name="right_hand" default="true"/>
+  <!-- hand arguments should all default to false to make argument passing sane -->
+  <!-- NOTE: if we use kinematically distinct hands from the BarrettHand
+       we will need more fine-grained arguments -->
+  <xacro:arg name="left_hand" default="false"/>
+  <xacro:arg name="right_hand" default="false"/>
 
   <xacro:wam_manipulator prefix="left"/>
   <xacro:wam_manipulator prefix="right"/>
