@@ -52,6 +52,12 @@
 
   </xacro:macro>
 
+  <xacro:macro name="empty_endeffector" params="prefix:=${prefix}">
+    <group name="${prefix}_hand"/>
+    <end_effector name="${prefix}_hand" group="${prefix}_hand"
+                  parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
+  </xacro:macro>
+
   <xacro:macro name="barretthand_endeffector" params="prefix:=${prefix}">
     <!-- Must be included AFTER wam_manipulator -->
     <group name="${prefix}_hand">
@@ -178,9 +184,16 @@
   <xacro:if value="$(arg left_hand)">
     <xacro:barretthand_endeffector prefix="left"/>
   </xacro:if>
+  <xacro:unless value="$(arg left_hand)">
+    <xacro:empty_endeffector prefix="left"/>
+  </xacro:unless>
+
   <xacro:if value="$(arg right_hand)">
     <xacro:barretthand_endeffector prefix="right"/>
   </xacro:if>
+  <xacro:unless value="$(arg right_hand)">
+    <xacro:empty_endeffector prefix="right"/>
+  </xacro:unless>
 
   <xacro:pantilt name="head"/>
 
