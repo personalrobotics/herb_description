@@ -1,363 +1,193 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
-    <xacro:macro name="wam_bh280_manipulator" params="prefix">
-        <group name="${prefix}">
-            <chain base_link="/${prefix}/wam_base" tip_link="/${prefix}/wam7"/>
-        </group>
 
-        <group name="${prefix}_hand">
-            <link name="/${prefix}/hand_base"/>
-            <link name="/${prefix}/finger0_0"/>
-            <link name="/${prefix}/finger0_1"/>
-            <link name="/${prefix}/finger0_2"/>
-            <link name="/${prefix}/finger1_0"/>
-            <link name="/${prefix}/finger1_1"/>
-            <link name="/${prefix}/finger1_2"/>
-            <link name="/${prefix}/finger2_1"/>
-            <link name="/${prefix}/finger2_2"/>
-        </group>
+  <xacro:macro name="wam_manipulator" params="prefix">
+    <group name="${prefix}">
+      <chain base_link="/${prefix}/wam_base" tip_link="/${prefix}/wam7"/>
+    </group>
 
-        <end_effector name="${prefix}_hand" group="${prefix}_hand"
-                      parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
+    <!-- WAM self collisions -->
+    <disable_collisions link1="/${prefix}/wam1" link2="/${prefix}/wam3"/>
+    <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam6"/>
+    <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam7"/>
+    <disable_collisions link1="/${prefix}/wam5" link2="/${prefix}/wam7"/>
 
-        <!-- Disable collisions between the fingers. -->
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_0"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger0_1"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger0_2"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger2_2"/>
+    <!-- Sphere representation for CHOMP -->
+    <link_sphere_approximation link="/${prefix}/wam_base">
+      <sphere center="0.0 0.0 0.0" radius="0.15"/>
+    </link_sphere_approximation>
 
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger0_1"/>
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger0_2"/>
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam1">
+      <sphere center="0 0 0" radius="0"/>
+    </link_sphere_approximation>
 
-        <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger0_2"/>
-        <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam2">
+      <sphere center="0.0 -0.2 0.0" radius="0.06"/>
+      <sphere center="0.0 -0.3 0.0" radius="0.06"/>
+      <sphere center="0.0 -0.4 0.0" radius="0.06"/>
+      <sphere center="0.0 -0.5 0.0" radius="0.06"/>
+    </link_sphere_approximation>
 
-        <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam3">
+      <sphere center=" 0.045 0.0 0.55" radius="0.06"/>
+    </link_sphere_approximation>
 
-        <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam4">
+      <sphere center="-0.045 -0.2  0.0" radius="0.06"/>
+      <sphere center="-0.045 -0.1  0.0" radius="0.06"/>
+      <sphere center="-0.045 -0.3  0.0" radius="0.06"/>
+    </link_sphere_approximation>
 
-        <disable_collisions link1="/${prefix}/finger1_2" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/finger1_2" link2="/${prefix}/finger2_2"/>
-        <disable_collisions link1="/${prefix}/finger2_1" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam5">
+      <sphere center="0 0 0" radius="0"/>
+    </link_sphere_approximation>
 
-        <!-- Disable collisions between the fingers and the palm. -->
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_0"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_1"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_2"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_1"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_2"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_1"/>
-        <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_2"/>
+    <link_sphere_approximation link="/${prefix}/wam6">
+      <sphere center="0.0 -0.1 0.0" radius="0.06"/>
+    </link_sphere_approximation>
 
-        <!-- WAM self collisions -->
-        <disable_collisions link1="/${prefix}/wam1" link2="/${prefix}/wam3"/>
-        <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam6"/>
-        <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam7"/>
-        <disable_collisions link1="/${prefix}/wam5" link2="/${prefix}/wam7"/>
-        <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
+    <!-- FIXME: Shouldn't wam7 have a sphere? -->
+    <link_sphere_approximation link="/${prefix}/wam7">
+      <sphere center="0 0 0" radius="0"/>
+    </link_sphere_approximation>
 
-        <!-- Sphere representation for CHOMP -->
-        <link_sphere_approximation link="/${prefix}/wam_base">
-            <sphere center="0.0 0.0 0.0" radius="0.15"/>
-        </link_sphere_approximation>
+  </xacro:macro>
 
-        <link_sphere_approximation link="/${prefix}/wam1">
-            <sphere center="0 0 0" radius="0"/>
-        </link_sphere_approximation>
+  <xacro:macro name="barretthand_endeffector" params="prefix:=${prefix}">
+    <!-- Must be included AFTER wam_manipulator -->
+    <group name="${prefix}_hand">
+      <link name="/${prefix}/hand_base"/>
+      <link name="/${prefix}/finger0_0"/>
+      <link name="/${prefix}/finger0_1"/>
+      <link name="/${prefix}/finger0_2"/>
+      <link name="/${prefix}/finger1_0"/>
+      <link name="/${prefix}/finger1_1"/>
+      <link name="/${prefix}/finger1_2"/>
+      <link name="/${prefix}/finger2_1"/>
+      <link name="/${prefix}/finger2_2"/>
+    </group>
 
-        <link_sphere_approximation link="/${prefix}/wam2">
-            <sphere center="0.0 -0.2 0.0" radius="0.06"/>
-            <sphere center="0.0 -0.3 0.0" radius="0.06"/>
-            <sphere center="0.0 -0.4 0.0" radius="0.06"/>
-            <sphere center="0.0 -0.5 0.0" radius="0.06"/>
-        </link_sphere_approximation>
+    <end_effector name="${prefix}_hand" group="${prefix}_hand"
+                  parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
 
-        <link_sphere_approximation link="/${prefix}/wam3">
-            <sphere center=" 0.045 0.0 0.55" radius="0.06"/>
-        </link_sphere_approximation>
+    <!-- Disable collisions between the fingers. -->
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_0"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger0_1"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger0_2"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_1"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger0_0" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/wam4">
-            <sphere center="-0.045 -0.2  0.0" radius="0.06"/>
-            <sphere center="-0.045 -0.1  0.0" radius="0.06"/>
-            <sphere center="-0.045 -0.3  0.0" radius="0.06"/>
-        </link_sphere_approximation>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger0_1"/>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger0_2"/>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger1_1"/>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger1_0" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/wam5">
-            <sphere center="0 0 0" radius="0"/>
-        </link_sphere_approximation>
+    <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger0_2"/>
+    <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger1_1"/>
+    <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger0_1" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/wam6">
-            <sphere center="0.0 -0.1 0.0" radius="0.06"/>
-        </link_sphere_approximation>
+    <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger1_1"/>
+    <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger0_2" link2="/${prefix}/finger2_2"/>
 
-        <!-- FIXME: Shouldn't wam7 have a sphere? -->
-        <link_sphere_approximation link="/${prefix}/wam7">
-            <sphere center="0 0 0" radius="0"/>
-        </link_sphere_approximation>
+    <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger1_1" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/finger0_1">
-            <sphere center="0.05 -0.01 0.0" radius="0.04"/>
-        </link_sphere_approximation>
+    <disable_collisions link1="/${prefix}/finger1_2" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/finger1_2" link2="/${prefix}/finger2_2"/>
+    <disable_collisions link1="/${prefix}/finger2_1" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/finger1_1">
-            <sphere center="0.05 -0.01 0.0" radius="0.04"/>
-        </link_sphere_approximation>
+    <!-- Disable collisions between the fingers and the palm. -->
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_0"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_1"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_2"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_1"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_2"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_1"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_2"/>
 
-        <link_sphere_approximation link="/${prefix}/finger2_1">
-            <sphere center="0.05 -0.01 0.0" radius="0.04"/>
-        </link_sphere_approximation>
+    <!-- Disable collisions between palm and WAM end link -->
+    <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
 
-        <link_sphere_approximation link="/${prefix}/finger0_2">
-            <sphere center="0.05 0.0 0.0" radius="0.04"/>
-        </link_sphere_approximation>
+    <!-- Sphere representation for CHOMP -->
+    <link_sphere_approximation link="/${prefix}/finger0_1">
+      <sphere center="0.05 -0.01 0.0" radius="0.04"/>
+    </link_sphere_approximation>
 
-        <link_sphere_approximation link="/${prefix}/finger1_2">
-            <sphere center="0.05 0.0 0.0" radius="0.04"/>
-        </link_sphere_approximation>
+    <link_sphere_approximation link="/${prefix}/finger1_1">
+      <sphere center="0.05 -0.01 0.0" radius="0.04"/>
+    </link_sphere_approximation>
 
-        <link_sphere_approximation link="/${prefix}/finger2_2">
-            <sphere center="0.05 0.0 0.0" radius="0.04"/>
-        </link_sphere_approximation>
-    </xacro:macro>
+    <link_sphere_approximation link="/${prefix}/finger2_1">
+      <sphere center="0.05 -0.01 0.0" radius="0.04"/>
+    </link_sphere_approximation>
 
-    <xacro:macro name="pantilt" params="name">
-        <group name="${name}">
-            <link name="/herb_base"/>
-            <link name="/${name}/wam1"/>
-            <link name="/${name}/wam2"/>
+    <link_sphere_approximation link="/${prefix}/finger0_2">
+      <sphere center="0.05 0.0 0.0" radius="0.04"/>
+    </link_sphere_approximation>
 
-            <link_sphere_approximation link="/${name}/wam1">
-                <sphere center="0 0 0" radius="0.20"/>
-            </link_sphere_approximation>
+    <link_sphere_approximation link="/${prefix}/finger1_2">
+      <sphere center="0.05 0.0 0.0" radius="0.04"/>
+    </link_sphere_approximation>
 
-            <link_sphere_approximation link="/${name}/wam2">
-                <sphere center="0 0 0" radius="0"/>
-            </link_sphere_approximation>
-        </group>
+    <link_sphere_approximation link="/${prefix}/finger2_2">
+      <sphere center="0.05 0.0 0.0" radius="0.04"/>
+    </link_sphere_approximation>
+  </xacro:macro>
 
-        <!-- Dummy group to make the head look like an end-effector; e.g. to
-             run inverse kinematics. HERB doesn't actually have a gripper on
-             his head (maybe on HERB3?). -->
-        <group name="${name}_hand"/>
+  <xacro:macro name="pantilt" params="name">
+    <group name="${name}">
+      <link name="/herb_base"/>
+      <link name="/${name}/wam1"/>
+      <link name="/${name}/wam2"/>
 
-        <end_effector name="head" group="${name}_hand"
-                      parent_link="/${name}/wam2" parent_group="${name}"/>
-    </xacro:macro>
+      <link_sphere_approximation link="/${name}/wam1">
+        <sphere center="0 0 0" radius="0.20"/>
+      </link_sphere_approximation>
 
-    <xacro:wam_bh280_manipulator prefix="left"/>
-    <xacro:wam_bh280_manipulator prefix="right"/>
-    <xacro:pantilt name="head"/>
+      <link_sphere_approximation link="/${name}/wam2">
+        <sphere center="0 0 0" radius="0"/>
+      </link_sphere_approximation>
+    </group>
 
-    <passive_joint name="/segway_wheel_left"/>
-    <passive_joint name="/segway_wheel_right"/>
+    <!-- Dummy group to make the head look like an end-effector; e.g. to
+         run inverse kinematics. HERB doesn't actually have a gripper on
+         his head (maybe on HERB3?). -->
+    <group name="${name}_hand"/>
 
-    <disable_collisions link1="/left/wam_base" link2="/right/wam_base"/>
-    <disable_collisions link1="/left/wam1" link2="/right/wam1"/>
-    <disable_collisions link1="/herb_base" link2="/head/wam2" />
+    <end_effector name="head" group="${name}_hand"
+                  parent_link="/${name}/wam2" parent_group="${name}"/>
+  </xacro:macro>
 
-    <!-- Automatically-generated by the MoveIt setup assistant. -->
-    <!--
-    <disable_collisions link1="/head/wam1" link2="/head/wam2" reason="Adjacent" />
-    <disable_collisions link1="/head/wam1" link2="/herb_base" reason="Adjacent" />
-    <disable_collisions link1="/head/wam1" link2="/left/wam1" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/left/wam2" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/left/wam_base" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/right/wam1" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/head/wam1" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/herb_base" reason="Always" />
-    <disable_collisions link1="/head/wam2" link2="/left/wam1" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/left/wam2" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/left/wam_base" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/right/wam1" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/head/wam2" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/herb_base" link2="/left/wam1" reason="Default" />
-    <disable_collisions link1="/herb_base" link2="/left/wam2" reason="Never" />
-    <disable_collisions link1="/herb_base" link2="/left/wam_base" reason="Adjacent" />
-    <disable_collisions link1="/herb_base" link2="/right/wam1" reason="Default" />
-    <disable_collisions link1="/herb_base" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/herb_base" link2="/right/wam_base" reason="Adjacent" />
-    <disable_collisions link1="/herb_base" link2="/segway_wheel_left" reason="Adjacent" />
-    <disable_collisions link1="/herb_base" link2="/segway_wheel_right" reason="Adjacent" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/finger0_1" reason="Adjacent" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/finger0_2" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/finger1_0" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/finger1_1" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger0_0" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/finger0_2" reason="Adjacent" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/finger1_0" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/finger1_1" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/hand_base" reason="Default" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger0_1" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger0_2" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger0_2" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger0_2" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger0_2" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/finger1_1" reason="Adjacent" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/finger1_2" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/finger2_2" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger1_0" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/finger1_2" reason="Adjacent" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/hand_base" reason="Default" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger1_1" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger1_2" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger1_2" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger1_2" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger1_2" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/finger2_2" reason="Adjacent" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger2_1" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/finger2_2" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/finger2_2" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/finger2_2" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/finger2_2" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/hand_base" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/hand_base" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/hand_base" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/hand_base" link2="/left/wam7" reason="Adjacent" />
-    <disable_collisions link1="/left/wam1" link2="/left/wam2" reason="Adjacent" />
-    <disable_collisions link1="/left/wam1" link2="/left/wam3" reason="Default" />
-    <disable_collisions link1="/left/wam1" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/wam1" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/wam1" link2="/left/wam_base" reason="Adjacent" />
-    <disable_collisions link1="/left/wam1" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/left/wam1" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/left/wam1" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/left/wam1" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam3" reason="Adjacent" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam4" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam5" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam6" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam7" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/left/wam_base" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/right/wam1" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/left/wam2" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/left/wam3" link2="/left/wam4" reason="Adjacent" />
-    <disable_collisions link1="/left/wam3" link2="/left/wam_base" reason="Never" />
-    <disable_collisions link1="/left/wam4" link2="/left/wam5" reason="Adjacent" />
-    <disable_collisions link1="/left/wam4" link2="/left/wam6" reason="Default" />
-    <disable_collisions link1="/left/wam5" link2="/left/wam6" reason="Adjacent" />
-    <disable_collisions link1="/left/wam6" link2="/left/wam7" reason="Adjacent" />
-    <disable_collisions link1="/left/wam_base" link2="/right/wam1" reason="Never" />
-    <disable_collisions link1="/left/wam_base" link2="/right/wam2" reason="Never" />
-    <disable_collisions link1="/left/wam_base" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/left/wam_base" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/left/wam_base" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/finger0_1" reason="Adjacent" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/finger0_2" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/finger1_0" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/finger1_1" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger0_0" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/finger0_2" reason="Adjacent" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/finger1_0" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/finger1_1" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/hand_base" reason="Default" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger0_1" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger0_2" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger0_2" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger0_2" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger0_2" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/finger1_1" reason="Adjacent" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/finger1_2" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/finger2_2" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger1_0" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/finger1_2" reason="Adjacent" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/hand_base" reason="Default" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger1_1" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger1_2" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger1_2" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger1_2" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger1_2" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/finger2_2" reason="Adjacent" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/hand_base" reason="Adjacent" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger2_1" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/finger2_2" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/finger2_2" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/finger2_2" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/finger2_2" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/hand_base" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/hand_base" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/hand_base" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/hand_base" link2="/right/wam7" reason="Adjacent" />
-    <disable_collisions link1="/right/wam1" link2="/right/wam2" reason="Adjacent" />
-    <disable_collisions link1="/right/wam1" link2="/right/wam3" reason="Default" />
-    <disable_collisions link1="/right/wam1" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/wam1" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/wam1" link2="/right/wam_base" reason="Adjacent" />
-    <disable_collisions link1="/right/wam1" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/right/wam1" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam3" reason="Adjacent" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam4" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam5" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam6" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam7" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/right/wam2" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/right/wam3" link2="/right/wam4" reason="Adjacent" />
-    <disable_collisions link1="/right/wam3" link2="/right/wam_base" reason="Never" />
-    <disable_collisions link1="/right/wam4" link2="/right/wam5" reason="Adjacent" />
-    <disable_collisions link1="/right/wam4" link2="/right/wam6" reason="Default" />
-    <disable_collisions link1="/right/wam5" link2="/right/wam6" reason="Adjacent" />
-    <disable_collisions link1="/right/wam6" link2="/right/wam7" reason="Adjacent" />
-    <disable_collisions link1="/right/wam_base" link2="/segway_wheel_left" reason="Never" />
-    <disable_collisions link1="/right/wam_base" link2="/segway_wheel_right" reason="Never" />
-    <disable_collisions link1="/segway_wheel_left" link2="/segway_wheel_right" reason="Never" />
-    -->
+  <!-- hand arguments should all default to false to make argument passing sane -->
+  <!-- NOTE: if we use kinematically distinct hands from the BarrettHand
+       we will need more fine-grained arguments -->
+  <xacro:arg name="left_hand" default="false"/>
+  <xacro:arg name="right_hand" default="false"/>
+
+  <xacro:wam_manipulator prefix="left"/>
+  <xacro:wam_manipulator prefix="right"/>
+
+  <xacro:if value="$(arg left_hand)">
+    <xacro:barretthand_endeffector prefix="left"/>
+  </xacro:if>
+  <xacro:if value="$(arg right_hand)">
+    <xacro:barretthand_endeffector prefix="right"/>
+  </xacro:if>
+
+  <xacro:pantilt name="head"/>
+
+  <passive_joint name="/segway_wheel_left"/>
+  <passive_joint name="/segway_wheel_right"/>
+
+  <disable_collisions link1="/left/wam_base" link2="/right/wam_base"/>
+  <disable_collisions link1="/left/wam1" link2="/right/wam1"/>
+  <disable_collisions link1="/herb_base" link2="/head/wam2" />
 </robot>

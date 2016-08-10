@@ -1,61 +1,68 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
-    <xacro:property name="pi" value="3.14159265359"/>
 
-    <xacro:include filename="herb_base.urdf.xacro"/>
-    <xacro:include filename="bh280.urdf.xacro"/>
-    <xacro:include filename="wam.urdf.xacro"/>
-    <xacro:include filename="fixed_transforms.urdf.xacro"/>
+  <xacro:property name="pi" value="3.14159265359"/>
 
-    <!-- 7 DOF Barrett WAM equipped with the Barrett force/torque sensor and
-         the BH-280 BarrettHand end-effector. -->
-    <xacro:macro name="wam_ft_bh280" params="prefix">
-        <xacro:wam prefix="${prefix}"/>
-        <xacro:bh280 prefix="${prefix}"/>
+  <xacro:include filename="herb_base.urdf.xacro"/>
+  <xacro:include filename="bh280.urdf.xacro"/>
+  <xacro:include filename="wam.urdf.xacro"/>
+  <xacro:include filename="fixed_transforms.urdf.xacro"/>
 
-        <link name="${prefix}/force_torque">
-            <inertial>
-                <origin xyz="0.0002 0 0.0054" rpy="0 0 0"/>
-                <mass value="0.133278"/>
-                <inertia ixx="0.00007551" ixy="-0.0000001199" ixz="-0.0000000700"
-                                          iyy= "0.0000750800" iyz="-0.0000000537"
-                                                              izz= "0.0001462000"/>
-            </inertial>
-        </link>
-        <joint name="${prefix}/force_torque_mount" type="fixed">
-            <!-- difference between URDF wam7 frame and Barrett's wam7 frame is 0.06m -->
-            <origin xyz="0 0 0.06" rpy="0 0 0"/>
-            <parent link="${prefix}/wam7"/>
-            <child link="${prefix}/force_torque"/>
-        </joint>
+  <!-- 7 DOF Barrett WAM equipped with the Barrett force/torque sensor and
+       optionally the BH-280 BarrettHand end-effector. -->
+  <xacro:macro name="herb_manipulator"
+               params="prefix:=${prefix} bh280:=false">
+    <xacro:wam prefix="${prefix}"/>
 
-        <joint name="${prefix}/hand_mount" type="fixed">
-            <!-- The force/torque sensor is 12 mm thick. -->
-            <origin xyz="0 0 0.012" rpy="0 0 ${pi/2}"/>
-            <parent link="${prefix}/force_torque"/>
-            <child link="${prefix}/hand_base"/>
-        </joint>
-    </xacro:macro>
+    <xacro:if value="${bh280}">
+      <xacro:bh280 prefix="${prefix}"/>
+    </xacro:if>
 
-    <xacro:macro name="herb">
-        <xacro:wam_ft_bh280 prefix="/left"/>
-        <xacro:wam_ft_bh280 prefix="/right"/>
-        <xacro:herb_base prefix=""/>
+    <link name="${prefix}/force_torque">
+      <inertial>
+        <origin xyz="0.0002 0 0.0054" rpy="0 0 0"/>
+        <mass value="0.133278"/>
+        <inertia ixx="0.00007551" ixy="-0.0000001199" ixz="-0.0000000700"
+                 iyy= "0.0000750800" iyz="-0.0000000537"
+                 izz= "0.0001462000"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}/force_torque_mount" type="fixed">
+      <!-- difference between URDF wam7 frame and Barrett's wam7 frame is 0.06m -->
+      <origin xyz="0 0 0.06" rpy="0 0 0"/>
+      <parent link="${prefix}/wam7"/>
+      <child link="${prefix}/force_torque"/>
+    </joint>
 
-        <joint name="/left/wam_mount" type="fixed">
-            <origin xyz="-0.266700 0.332276 0.694588" rpy="0 ${-pi/2} ${pi}"/>
-            <parent link="/herb_base"/>
-            <child link="/left/wam_base"/>
-        </joint>
+    <!-- TODO: where should force/torque thickness go if no hand? -->
+    <xacro:if value="${bh280}">
+      <joint name="${prefix}/hand_mount" type="fixed">
+        <!-- The force/torque sensor is 12 mm thick. -->
+        <origin xyz="0 0 0.012" rpy="0 0 ${pi/2}"/>
+        <parent link="${prefix}/force_torque"/>
+        <child link="${prefix}/hand_base"/>
+      </joint>
+    </xacro:if>
+  </xacro:macro>
 
-        <joint name="/right/wam_mount" type="fixed">
-            <origin xyz="-0.266700 -0.049121 0.694588" rpy="0 ${-pi/2} ${pi}"/>
+  <!-- hand arguments should all default to false to make argument passing sane -->
+  <xacro:arg name="left_bh280" default="false"/>
+  <xacro:arg name="right_bh280" default="false"/>
 
-            <parent link="/herb_base"/>
-            <child link="/right/wam_base"/>
-        </joint>
-        
-        <xacro:fixed_transforms/>
-    </xacro:macro>
-    
-    <xacro:herb/>
+  <xacro:herb_manipulator prefix="/left" bh280="$(arg left_bh280)"/>
+  <xacro:herb_manipulator prefix="/right" bh280="$(arg right_bh280)"/>
+  <xacro:herb_base prefix=""/>
+
+  <joint name="/left/wam_mount" type="fixed">
+    <origin xyz="-0.266700 0.332276 0.694588" rpy="0 ${-pi/2} ${pi}"/>
+    <parent link="/herb_base"/>
+    <child link="/left/wam_base"/>
+  </joint>
+
+  <joint name="/right/wam_mount" type="fixed">
+    <origin xyz="-0.266700 -0.049121 0.694588" rpy="0 ${-pi/2} ${pi}"/>
+    <parent link="/herb_base"/>
+    <child link="/right/wam_base"/>
+  </joint>
+
+  <xacro:fixed_transforms/>
 </robot>
