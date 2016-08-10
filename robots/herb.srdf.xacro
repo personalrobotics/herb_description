@@ -176,10 +176,10 @@
   <xacro:wam_manipulator prefix="right"/>
 
   <xacro:if value="$(arg left_hand)">
-    <xacro:barrett_endeffector prefix="left"/>
+    <xacro:barretthand_endeffector prefix="left"/>
   </xacro:if>
   <xacro:if value="$(arg right_hand)">
-    <xacro:barrett_endeffector prefix="right"/>
+    <xacro:barretthand_endeffector prefix="right"/>
   </xacro:if>
 
   <xacro:pantilt name="head"/>
