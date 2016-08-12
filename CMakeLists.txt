@@ -29,6 +29,9 @@ macro(append_hand_flags hand hand_option urdf_args srdf_args)
   if(${hand_option} STREQUAL "bh280")
     list(APPEND ${urdf_args} "${hand}_bh280:=true")
   endif()
+  if(${hand_option} STREQUAL "bh282")
+    list(APPEND ${urdf_args} "${hand}_bh282:=true")
+  endif()
   if(NOT ${hand_option} STREQUAL "no")
     list(APPEND ${srdf_args} "${hand}_hand:=true")
   endif()
@@ -47,23 +50,36 @@ set(WAM_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam.urdf")
 set(BH280_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/bh280_standalone.urdf.xacro")
 set(BH280_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/bh280.urdf")
 
+set(BH282_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/bh282_standalone.urdf.xacro")
+set(BH282_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/bh282.urdf")
+
 set(WAM_BH280_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wam_bh280_standalone.urdf.xacro")
 set(WAM_BH280_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam_bh280.urdf")
 
+set(WAM_BH282_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wam_bh282_standalone.urdf.xacro")
+set(WAM_BH282_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam_bh282.urdf")
+
 build_xacro(${WAM_STANDALONE_URDF_XACRO} ${WAM_STANDALONE_URDF} "")
 build_xacro(${BH280_STANDALONE_URDF_XACRO} ${BH280_STANDALONE_URDF} "")
+build_xacro(${BH282_STANDALONE_URDF_XACRO} ${BH282_STANDALONE_URDF} "")
 build_xacro(${WAM_BH280_STANDALONE_URDF_XACRO} ${WAM_BH280_STANDALONE_URDF} "")
+build_xacro(${WAM_BH282_STANDALONE_URDF_XACRO} ${WAM_BH282_STANDALONE_URDF} "")
 
 # HERB model matrix
 #
 # | LEFT  | RIGHT |
 # |-------|-------|
-# | BH280 | BH280 |
+# | BH280 | BH280 | # impossible
 # | BH280 | None  |
-# | None  | BH280 |
+# | BH280 | BH282 | # DEFAULT
 # | None  | None  |
+# | None  | BH280 |
+# | None  | BH282 |
+# | BH282 | BH282 | # impossible
+# | BH282 | BH280 |
+# | BH282 | None  |
 
-set(HERB_HAND_OPTIONS "bh280" "no")
+set(HERB_HAND_OPTIONS "bh280" "bh282" "no")
 
 # Default HERB (two BH280 hands)
 set(HERB_URDF_XACRO "${ROBOTS_SRC_DIR}/herb.urdf.xacro")
@@ -72,7 +88,7 @@ set(HERB_URDF "${ROBOTS_OUTPUT_DIR}/herb.urdf")
 set(HERB_SRDF_XACRO "${ROBOTS_SRC_DIR}/herb.srdf.xacro")
 set(HERB_SRDF "${ROBOTS_OUTPUT_DIR}/herb.srdf")
 
-set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh280:=true")
+set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh282:=true")
 build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${FULL_HERB_URDF_ARGS}")
 set(FULL_HERB_SRDF_ARGS "left_hand:=true" "right_hand:=true")
 build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
@@ -80,7 +96,9 @@ build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
 list(APPEND CORE_DESCRIPTION_FILES
   ${WAM_STANDALONE_URDF}
   ${BH280_STANDALONE_URDF}
+  ${BH282_STANDALONE_URDF}
   ${WAM_BH280_STANDALONE_URDF}
+  ${WAM_BH282_STANDALONE_URDF}
   ${HERB_URDF}
   ${HERB_SRDF}
   )
@@ -93,8 +111,13 @@ if(BUILD_ALL_HERB_MODELS)
   foreach(LEFT_HAND ${HERB_HAND_OPTIONS})
     foreach(RIGHT_HAND ${HERB_HAND_OPTIONS})
 
-      # default configure is named differently and handled outside loop
-      if(NOT (${LEFT_HAND} STREQUAL "bh280" AND ${RIGHT_HAND} STREQUAL "bh280"))
+      # Default configure is named differently and handled outside loop.
+      set(IS_DEFAULT_HAND_CASE (${LEFT_HAND} STREQUAL "bh280" AND ${RIGHT_HAND} STREQUAL "bh282"))
+      # We only have one of each type of hand
+      set(IS_DUAL_BH280_CASE (${LEFT_HAND} STREQUAL "bh280" AND ${RIGHT_HAND} STREQUAL "bh280"))
+      set(IS_DUAL_BH282_CASE (${LEFT_HAND} STREQUAL "bh282" AND ${RIGHT_HAND} STREQUAL "bh282"))
+
+      if(NOT (${IS_DEFAULT_HAND_CASE} OR ${IS_DUAL_BH280_CASE} OR ${IS_DUAL_BH282_CASE}))
         set(HERB_URDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.urdf")
         set(HERB_SRDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.srdf")
 
