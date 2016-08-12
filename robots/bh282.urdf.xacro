@@ -5,16 +5,16 @@
       <visual>
         <origin xyz="-0.112 -0.056 -0.023" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/hand_base.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/hand_base.dae"/>
         </geometry>
         <material name="">
-          <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
+          <color rgba="0.75 0.75 0.75 1"/>
         </material>
       </visual>
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/hand_base.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/hand_base.dae"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -27,24 +27,24 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/hand_base.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/hand_base.dae"/>
         </geometry>
       </collision>
     </link>
-    <link name="${prefix}/palm">
+    <link name="${prefix}/perception_palm">
       <visual>
         <origin xyz="-0.112 -0.056 -0.023" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/perception_palm.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/perception_palm.dae"/>
         </geometry>
         <material name="">
-          <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
+          <color rgba="0.75 0.75 0.75 1"/>
         </material>
       </visual>
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/perception_palm.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/perception_palm.dae"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -57,14 +57,14 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/bh282/hand_base.stl"/>
+          <mesh filename="package://herb_description/meshes/bh282/perception_palm.dae"/>
         </geometry>
       </collision>
     </link>
-    <joint name="${prefix}/palm_mount" type="fixed">
+    <joint name="${prefix}/perception_palm_mount" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <parent link="${prefix}/hand_base"/>
-        <child link="${prefix}/palm"/>
+        <child link="${prefix}/perception_palm"/>
     </joint>
     <link name="${prefix}/finger0_0">
       <visual>

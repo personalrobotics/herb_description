@@ -31,6 +31,7 @@ macro(append_hand_flags hand hand_option urdf_args srdf_args)
   endif()
   if(${hand_option} STREQUAL "bh282")
     list(APPEND ${urdf_args} "${hand}_bh282:=true")
+    list(APPEND ${srdf_args} "${hand}_perception:=true")
   endif()
   if(NOT ${hand_option} STREQUAL "no")
     list(APPEND ${srdf_args} "${hand}_hand:=true")
@@ -90,7 +91,7 @@ set(HERB_SRDF "${ROBOTS_OUTPUT_DIR}/herb.srdf")
 
 set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh282:=true")
 build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${FULL_HERB_URDF_ARGS}")
-set(FULL_HERB_SRDF_ARGS "left_hand:=true" "right_hand:=true")
+set(FULL_HERB_SRDF_ARGS "left_hand:=true" "right_hand:=true" "right_perception:=true")
 build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
 
 list(APPEND CORE_DESCRIPTION_FILES
