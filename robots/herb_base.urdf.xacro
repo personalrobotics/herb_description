@@ -12,7 +12,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/herb_base.dae"/>
+          <mesh filename="package://herb_description/meshes/base/herb_base.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.086 0.408 0.565 1"/>
@@ -20,7 +20,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/herb_base_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/base/herb_base_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -36,7 +36,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/segway_wheel_left.dae"/>
+          <mesh filename="package://herb_description/meshes/segway/segway_wheel_left.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.2 0.2 0.2 1"/>
@@ -44,7 +44,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/segway_wheel_left_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/segway/segway_wheel_left_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -66,7 +66,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/segway_wheel_right.dae"/>
+          <mesh filename="package://herb_description/meshes/segway/segway_wheel_right.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.2 0.2 0.2 1"/>
@@ -74,7 +74,7 @@
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/segway_wheel_right_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/segway/segway_wheel_right_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -96,7 +96,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/head_wam1.dae"/>
+          <mesh filename="package://herb_description/meshes/head/head_wam1.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.086 0.408 0.565 1"/>
@@ -104,7 +104,7 @@
       </visual>
       <collision>
         <geometry>
-        <mesh filename="package://herb_description/meshes/head_wam1_collision.STL"/></geometry>
+        <mesh filename="package://herb_description/meshes/head/head_wam1_collision.STL"/></geometry>
       </collision>
     </link>
     <joint name="${prefix}/head/wam1" type="fixed">
@@ -125,7 +125,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/head_wam2.dae"/>
+          <mesh filename="package://herb_description/meshes/head/head_wam2.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.63921568627451 0.63921568627451 0.686274509803922 1"/>
@@ -133,7 +133,7 @@
       </visual>
       <collision>
         <geometry>
-        <mesh filename="package://herb_description/meshes/head_wam2_collision.STL"/></geometry>
+        <mesh filename="package://herb_description/meshes/head/head_wam2_collision.STL"/></geometry>
       </collision>
     </link>
     <joint name="${prefix}/head/wam2" type="fixed">
