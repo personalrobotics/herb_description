@@ -4,7 +4,7 @@ project(herb_description)
 find_package(catkin REQUIRED)
 catkin_package()
 
-option(BUILD_ALL_HERB_MODELS "Build all variations of the HERB models" OFF)
+option(BUILD_ALL_HERB_MODELS "Build all variations of the HERB models" ON)
 
 function(build_xacro infile outfile xacro_args)
   # Call out to xacro to get dependencies
