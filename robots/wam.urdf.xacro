@@ -4,7 +4,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam_base.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam_base.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -19,7 +19,7 @@
             izx="0.00000000" izy="0.00000000" izz="0.11760385"/>
       </inertial>
       <collision>
-        <geometry><mesh filename="package://herb_description/meshes/wam_base_collision.STL"/>
+        <geometry><mesh filename="package://herb_description/meshes/wam/wam_base_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -27,7 +27,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam1.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam1.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -43,7 +43,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam1_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam1_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -59,7 +59,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam2.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam2.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -75,7 +75,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam2_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam2_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -90,7 +90,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam3.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam3.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -106,7 +106,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam3_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam3_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -121,7 +121,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam4.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam4.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -137,7 +137,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam4_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam4_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -152,7 +152,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam5.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam5.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -168,7 +168,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam5_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam5_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -183,7 +183,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam6.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam6.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -199,7 +199,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam6_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam6_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -214,7 +214,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam7.dae"/>
+          <mesh filename="package://herb_description/meshes/wam/wam7.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
@@ -230,7 +230,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/wam7_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/wam/wam7_collision.STL"/>
         </geometry>
       </collision>
     </link>

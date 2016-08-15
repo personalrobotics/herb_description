@@ -4,7 +4,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/hand_base.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/hand_base.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -13,7 +13,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/hand_base.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/hand_base.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -26,7 +26,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/hand_base_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/hand_base_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -34,7 +34,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_0.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_0.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -43,7 +43,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_0.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_0.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -56,7 +56,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_0_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_0_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -71,7 +71,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_1.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_1.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -80,7 +80,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_1.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_1.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -93,7 +93,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_1_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_1_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -108,7 +108,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_2.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_2.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1"/>
@@ -117,7 +117,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_2.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_2.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -130,7 +130,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger0_2_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger0_2_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -146,7 +146,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_0.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_0.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -155,7 +155,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_0.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_0.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -168,7 +168,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_0_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_0_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -184,7 +184,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_1.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_1.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -193,7 +193,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_1.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_1.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -206,7 +206,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_1_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_1_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -221,7 +221,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_2.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_2.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1"/>
@@ -230,7 +230,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_2.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_2.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -243,7 +243,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger1_2_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger1_2_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -259,7 +259,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_1.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_1.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1"/>
@@ -268,7 +268,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_1.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_1.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -281,7 +281,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_1_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_1_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -296,7 +296,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_2.dae"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_2.dae"/>
         </geometry>
         <material name="">
           <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1"/>
@@ -305,7 +305,7 @@
       <geometry_group name="fine_collision">
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_2.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_2.STL"/>
         </geometry>
       </geometry_group>
       <inertial>
@@ -318,7 +318,7 @@
       </inertial>
       <collision>
         <geometry>
-          <mesh filename="package://herb_description/meshes/finger2_2_collision.STL"/>
+          <mesh filename="package://herb_description/meshes/bh280/finger2_2_collision.STL"/>
         </geometry>
       </collision>
     </link>
