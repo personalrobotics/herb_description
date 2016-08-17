@@ -1,0 +1,4 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bh282">
+  <xacro:include filename="barretthand_macro.srdf.xacro"/>
+  <xacro:barretthand perception="true"/>
+</robot>
