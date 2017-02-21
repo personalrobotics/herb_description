@@ -163,29 +163,29 @@
     </link_sphere_approximation>
   </xacro:macro>
 
-  <xacro:macro name="pantilt" params="name">
-    <group name="${name}">
-      <link name="/herb_base"/>
-      <link name="/${name}/wam1"/>
-      <link name="/${name}/wam2"/>
+  <!-- <xacro:macro name="pantilt" params="name"> -->
+  <!--   <group name="${name}"> -->
+  <!--     <link name="/herb_base"/> -->
+  <!--     <link name="/${name}/wam1"/> -->
+  <!--     <link name="/${name}/wam2"/> -->
 
-      <link_sphere_approximation link="/${name}/wam1">
-        <sphere center="0 0 0" radius="0.20"/>
-      </link_sphere_approximation>
+  <!--     <link_sphere_approximation link="/${name}/wam1"> -->
+  <!--       <sphere center="0 0 0" radius="0.20"/> -->
+  <!--     </link_sphere_approximation> -->
 
-      <link_sphere_approximation link="/${name}/wam2">
-        <sphere center="0 0 0" radius="0"/>
-      </link_sphere_approximation>
-    </group>
+  <!--     <link_sphere_approximation link="/${name}/wam2"> -->
+  <!--       <sphere center="0 0 0" radius="0"/> -->
+  <!--     </link_sphere_approximation> -->
+  <!--   </group> -->
 
-    <!-- Dummy group to make the head look like an end-effector; e.g. to
-         run inverse kinematics. HERB doesn't actually have a gripper on
-         his head (maybe on HERB3?). -->
-    <group name="${name}_hand"/>
+  <!--   <!-\- Dummy group to make the head look like an end-effector; e.g. to -->
+  <!--        run inverse kinematics. HERB doesn't actually have a gripper on -->
+  <!--        his head (maybe on HERB3?). -\-> -->
+  <!--   <group name="${name}_hand"/> -->
 
-    <end_effector name="head" group="${name}_hand"
-                  parent_link="/${name}/wam2" parent_group="${name}"/>
-  </xacro:macro>
+  <!--   <end_effector name="head" group="${name}_hand" -->
+  <!--                 parent_link="/${name}/wam2" parent_group="${name}"/> -->
+  <!-- </xacro:macro> -->
 
   <!-- hand arguments should all default to false to make argument passing sane -->
   <!-- NOTE: if we use kinematically distinct hands from the BarrettHand
@@ -212,12 +212,9 @@
     <xacro:empty_endeffector prefix="right"/>
   </xacro:unless>
 
-  <xacro:pantilt name="head"/>
-
-  <passive_joint name="/segway_wheel_left"/>
-  <passive_joint name="/segway_wheel_right"/>
+  <!-- <xacro:pantilt name="head"/> -->
 
   <disable_collisions link1="/left/wam_base" link2="/right/wam_base"/>
   <disable_collisions link1="/left/wam1" link2="/right/wam1"/>
-  <disable_collisions link1="/herb_base" link2="/head/wam2" />
+  <!-- <disable_collisions link1="/herb_base" link2="/head/wam2" /> -->
 </robot>
