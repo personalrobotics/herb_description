@@ -1,5 +1,21 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb_base">
   <xacro:macro name="herb_base" params="prefix">
+    <link name="herb_base_link">
+      <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.1" />
+        <inertia
+            ixx="1"
+            ixy="0"
+            ixz="0"
+            iyy="1"
+            iyz="0"
+            izz="1" />            
+      </inertial>
+    </link>
     <link
         name="herb_frame">
       <!--check inertias and mass-->
@@ -41,6 +57,17 @@
         </geometry>
       </collision>
     </link>
+    <joint
+        name="root_to_frame"
+        type="fixed">
+      <origin
+          xyz="0 0 1.05"
+          rpy="0 0 -1.57075" />
+      <parent
+          link="herb_base_link" />
+      <child
+          link="herb_frame" />
+    </joint>
     <link
         name="neobotix_base">
       <!--check inertias and mass-->
