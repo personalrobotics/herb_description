@@ -4,7 +4,7 @@ herb_description contains URDF and SRDF descriptions of HERB, a bimanual mobile
 manipulation robot designed and built by the
 [Personal Robotics Lab](https://personalrobotics.ri.cmu.edu) in the
 [Robotics Institute](https://www.ri.cmu.edu) at
-[Carnegie Mellon University](http://www.cmu.edu).
+[Carnegie Mellon University](http://www.cmu.edu). We follow [REP 120](http://www.ros.org/reps/rep-0120.html).
 
 
 ## SolidWorks Export
