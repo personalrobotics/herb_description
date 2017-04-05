@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb_base">
   <xacro:macro name="herb_base" params="prefix">
-    <link name="herb_base_link">
+    <link name="base_footprint">
       <inertial>
         <origin
             xyz="0 0 0"
@@ -64,7 +64,7 @@
           xyz="0 0 1.05"
           rpy="0 0 -1.57075" />
       <parent
-          link="herb_base_link" />
+          link="base_footprint" />
       <child
           link="herb_frame" />
     </joint>
