@@ -13,7 +13,7 @@
             ixz="0"
             iyy="1"
             iyz="0"
-            izz="1" />            
+            izz="1" />
       </inertial>
     </link>
     <link
@@ -24,14 +24,14 @@
             xyz="0 0 0"
             rpy="0 0 0" />
         <mass
-            value="75.88" />
+            value="106.25" />
         <inertia
-            ixx="11.92524"
-            ixy="0.00418"
-            ixz="0.00448"
-            iyy="4.13145"
-            iyz="2.60056"
-            izz="10.77706" />
+            ixx="22.3955"
+            ixy="-0.2746"
+            ixz="-0.0999"
+            iyy="5.9126"
+            iyz="5.1995"
+            izz="20.4410" />
       </inertial>
       <visual>
         <origin
@@ -73,7 +73,7 @@
       <!--check inertias and mass-->
       <inertial>
         <origin
-            xyz="0 -0.074086 -1.040385"
+            xyz="0 -0.074086 -1.101244"
             rpy="0 0 0" />
         <mass
             value="80" />
@@ -113,7 +113,7 @@
         name="frame_to_base"
         type="fixed">
       <origin
-          xyz="0 -0.074086 -1.040385"
+          xyz="0 -0.074086 -1.101244"
           rpy="0 0 3.141592" />
       <parent
           link="herb_frame" />
@@ -166,12 +166,12 @@
         type="revolute">
       <axis
           xyz="0 0 1" />
-      <!--velocity is arbitrary; check against real values-->
+      <!--velocity dimensions assumed to be rad/s-->
       <limit
-          effort="4.0"
+          effort="2.0"
           lower="-1.57075"
           upper="1.57075"
-          velocity="1" />
+          velocity="6.28319" />
       <origin
           xyz="0 0.124900 0.050806"
           rpy="3.141592 0 0" />
@@ -225,12 +225,12 @@
         type="revolute">
       <axis
           xyz="1 0 0" />
-      <!--velocity is arbitrary; check against real values-->
+      <!--velocity dimensions assumed to be rad/s-->
       <limit
-          effort="24.0"
+          effort="12.0"
           lower="-1.57075"
           upper="1.57075"
-          velocity="1" />
+          velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
           rpy="0 0 0" />
