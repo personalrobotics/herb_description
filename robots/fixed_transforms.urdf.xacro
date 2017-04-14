@@ -11,19 +11,6 @@
     <xacro:macro name="fixed_transforms">
         
         <!-- LEFT WAM -->
-      
-        <!--  
-        <link name="left/wam_base" />
-        <joint
-            name="left/wam_base"
-            type="fixed">
-            <origin
-                xyz="-.267 .331 0.685"
-                rpy="3.1416 -1.570796 0." />
-            <parent link="/herb_base" />
-            <child link="left/wam_base" />
-        </joint>
-        -->
         <link name="/left/wam0">
           <xacro:no_inertia/>
         </link>
@@ -51,140 +38,33 @@
             <child link="/right/wam0" />
         </joint>
         
-        <!-- HEAD -->
-        <link name="/head/wam0">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/head/wam0"
-            type="fixed">
-            <origin
-                xyz="-0.21908  0.0  1.27298"
-                rpy="0. 0. 0." />
-            <parent link="/herb_base" />
-            <child link="/head/wam0" />
-        </joint>
-
-        <!-- CAMERAS -->
+	<!-- TODO: /head/skel_depth_frame ? -->
         
-        <link name="/head/kinect2_link">
+        <link name="stargazer_lens">
           <xacro:no_inertia/>
         </link>
         <joint
-            name="/head/kinect2_link"
-            type="fixed">
-            <origin
-                xyz="0.15837 0.03257 0.09936"
-                rpy="1.57079 -1.57019 1.57079" />
-            <parent link="/head/wam2" />
-            <child link="/head/kinect2_extrinsics_correction"  />
-        </joint>
-
-        <link name="/head/kinect2_extrinsics_correction">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/head/kinect2_extrinsics_correction"
-            type="fixed">
-            <origin
-                xyz="0 0 0"
-                rpy="-0.195 0 0" />
-            <child link="/head/kinect2_link" />
-            <parent link="/head/kinect2_extrinsics_correction"  />
-        </joint>
-
-        <link name="/head/skel_depth_frame">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/head/skel_depth_frame"
-            type="fixed">
-                <!--rpy="1.57079 -1.57019 1.57079" /> -->
-            <origin
-                xyz="0.15837 0.10257 0.09936"
-                rpy="0 1.57019 0" />
-            <parent link="/head/wam2" />
-            <child link="/head/skel_depth_frame"  />
-        </joint>
-        
-        <link name="/stargazer_lens">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/stargazer_lens"
+            name="stargazer_lens"
             type="fixed">
             <origin
                 xyz="-0.3024 0.2068 1.0258"
                 rpy="0. 0. 0." />
-            <parent link="/herb_base" />
-            <child link="/stargazer_lens" />
+            <parent link="herb_frame" />
+            <child link="stargazer_lens" />
         </joint>
 
-       <!-- HOKUYO -->
-       <link name="/base_hokuyo_front">
+        <!-- Dummy link to match ROS conventions. -->
+        <link name="base_link">
           <xacro:no_inertia/>
-       </link>
-       <joint 
-             name="/base_hokuyo_front"
-             type="fixed">
-             <origin
-                  xyz = "0.219 0 0.072"
-                  rpy = "0 0 3.1416"/>
-             <parent link="/herb_base"/>
-             <child link="/base_hokuyo_front"/>
-       </joint>
-
-       <link name="/base_hokuyo_right">
-          <xacro:no_inertia/>
-       </link>
-       <joint 
-             name="/base_hokuyo_right"
-             type="fixed">
-             <origin
-                  xyz = "-0.32942801046380998 -0.31715770603423998 0.0811784"
-                  rpy = "-2.10565775700533 0 3.1416"/>
-             <parent link="/herb_base"/>
-             <child link="/base_hokuyo_right"/>
-       </joint>
-
-       <link name="/base_hokuyo_left">
-          <xacro:no_inertia/>
-       </link>
-       <joint 
-             name="/base_hokuyo_left"
-             type="fixed">
-             <origin
-                  xyz = "-0.28613688816430005 0.25414007607683997 0.0811784"
-                  rpy = "2.0320379447076999 0 3.1416"/>
-             <parent link="/herb_base"/>
-             <child link="/base_hokuyo_left"/>
-       </joint>
-        
-        <!-- SEGWAY -->
-        <!-- TODO: This should have no inertia. -->
-        <link name="/base_link"/>
+	</link>
         <joint
-             name="/base_link"
+             name="base_link"
              type="fixed">
              <origin
                  xyz="0 0 0"
                  rpy="0 0 0"/>
-             <parent link="/herb_base"/> 
-             <child link="/base_link"/>
-        </joint>
-
-        <!-- CASTER WHEEL -->
-        <link name="/caster_contact">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/caster_contact"
-            type="fixed">
-            <origin
-                xyz="-0.3175 0. 0."
-                rpy="0. 0. 0." />
-            <parent link="/herb_base" />
-            <child link="/caster_contact" />
+             <parent link="neobotix_base"/> 
+             <child link="base_link"/>
         </joint>
     </xacro:macro>
 </robot>

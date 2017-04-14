@@ -68,14 +68,14 @@
   <xacro:herb_base prefix=""/>
 
   <joint name="/left/wam_mount" type="fixed">
-    <origin xyz="-0.266700 0.332276 0.694588" rpy="0 ${-pi/2} ${pi}"/>
-    <parent link="/herb_base"/>
+    <origin xyz="-0.355924 0.005376 -0.357421" rpy="0 -1.57075 -1.57075"/>
+    <parent link="herb_frame"/>
     <child link="/left/wam_base"/>
   </joint>
 
   <joint name="/right/wam_mount" type="fixed">
-    <origin xyz="-0.266700 -0.049121 0.694588" rpy="0 ${-pi/2} ${pi}"/>
-    <parent link="/herb_base"/>
+    <origin xyz="0.050805 0.005376 -0.357421" rpy="0 -1.57075 -1.57075"/>
+    <parent link="herb_frame"/>
     <child link="/right/wam_base"/>
   </joint>
 
