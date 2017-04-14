@@ -62,7 +62,7 @@
         type="fixed">
       <origin
           xyz="0 0 1.05"
-          rpy="0 0 -1.57075" />
+          rpy="0 0 0" />
       <parent
           link="base_footprint" />
       <child
@@ -163,15 +163,10 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="0 0 1" />
       <!--velocity dimensions assumed to be rad/s-->
-      <limit
-          effort="2.0"
-          lower="-1.57075"
-          upper="1.57075"
-          velocity="6.28319" />
       <origin
           xyz="0 0.124900 0.050806"
           rpy="3.141592 0 0" />
@@ -222,25 +217,20 @@
     </link>
     <joint
         name="pan_neck_to_tilt_neck"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="1 0 0" />
       <!--velocity dimensions assumed to be rad/s-->
-      <limit
-          effort="12.0"
-          lower="-1.57075"
-          upper="1.57075"
-          velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
-          rpy="0 0 0" />
+          rpy="0 -0.698132 0" />
       <parent
           link="neck_pan" />
       <child
           link="neck_tilt" />
     </joint>
     <link
-        name="crl_head">
+        name="multisense/head">
       <!--check inertias and mass-->
       <inertial>
         <origin
@@ -286,10 +276,10 @@
       <parent
           link="neck_tilt" />
       <child
-          link="crl_head" />
+          link="multisense/head" />
       <origin
           xyz="-0.003895 -0.0575 -0.236"
-          rpy="-1.57075 0 0" />
+          rpy="-3.14159 0 0" />
     </joint>
     <link
         name="kinect">
@@ -335,7 +325,7 @@
         name="crl_head_to_kinect"
         type="fixed">
       <parent
-          link="crl_head" />
+          link="multisense/head" />
       <child
           link="kinect" />
       <origin
