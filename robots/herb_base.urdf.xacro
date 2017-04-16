@@ -222,7 +222,7 @@
     </link>
     <joint
         name="pan_neck_to_tilt_neck"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="1 0 0" />
       <!--velocity dimensions assumed to be rad/s-->
