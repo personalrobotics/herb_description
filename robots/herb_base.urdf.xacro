@@ -240,7 +240,7 @@
           link="neck_tilt" />
     </joint>
     <link
-        name="crl_head">
+        name="multisense/head">
       <!--check inertias and mass-->
       <inertial>
         <origin
@@ -286,7 +286,7 @@
       <parent
           link="neck_tilt" />
       <child
-          link="crl_head" />
+          link="multisense/head" />
       <origin
           xyz="-0.003895 -0.0575 -0.236"
           rpy="-1.57075 0 0" />
@@ -335,7 +335,7 @@
         name="crl_head_to_kinect"
         type="fixed">
       <parent
-          link="crl_head" />
+          link="multisense/head" />
       <child
           link="kinect" />
       <origin
