@@ -289,7 +289,7 @@
           link="multisense/head" />
       <origin
           xyz="-0.003895 -0.0575 -0.236"
-          rpy="-1.57075 0 0" />
+          rpy="0 3.14159 1.5707" />
     </joint>
     <link
         name="kinect">
