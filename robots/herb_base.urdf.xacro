@@ -163,7 +163,7 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="0 0 1" />
       <!--velocity dimensions assumed to be rad/s-->
