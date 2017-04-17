@@ -315,7 +315,7 @@
       <child
           link="multisense/head" />
       <origin
-          xyz="0 0 0"
+          xyz="0 -0.056 -0.086"
           rpy="0 1.5707 1.5707" />
     </joint>
     <link
