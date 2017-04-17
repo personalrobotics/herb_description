@@ -233,14 +233,14 @@
           velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
-          rpy="0 0 0" />
+          rpy="-0.698132 0 0" />
       <parent
           link="neck_pan" />
       <child
           link="neck_tilt" />
     </joint>
     <link
-        name="multisense/head">
+        name="crl_head">
       <!--check inertias and mass-->
       <inertial>
         <origin
@@ -286,10 +286,37 @@
       <parent
           link="neck_tilt" />
       <child
-          link="multisense/head" />
+          link="crl_head" />
       <origin
           xyz="-0.003895 -0.0575 -0.236"
-          rpy="0 3.14159 1.5707" />
+          rpy="-1.57075 0 0" />
+    </joint>
+    <link name="multisense/head">
+      <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.1" />
+        <inertia
+            ixx="1"
+            ixy="0"
+            ixz="0"
+            iyy="1"
+            iyz="0"
+            izz="1" />
+      </inertial>
+    </link>
+    <joint
+        name="crl_head_to_multisenseframe"
+        type="fixed">
+      <parent
+          link="crl_head" />
+      <child
+          link="multisense/head" />
+      <origin
+          xyz="0 0 0"
+          rpy="0 1.5707 1.5707" />
     </joint>
     <link
         name="kinect">
@@ -335,7 +362,7 @@
         name="crl_head_to_kinect"
         type="fixed">
       <parent
-          link="multisense/head" />
+          link="crl_head" />
       <child
           link="kinect" />
       <origin
