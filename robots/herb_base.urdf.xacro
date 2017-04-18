@@ -339,8 +339,8 @@
       <child
           link="kinect" />
       <origin
-          xyz="0.039918 0.0 0.066119"
-          rpy="0 1.57075 0" />
+          xyz="0.0 -0.039918 -0.066119"
+          rpy="0.0 0 0" />
     </joint>
   </xacro:macro>
 </robot>
