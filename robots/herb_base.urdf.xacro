@@ -319,7 +319,7 @@
           rpy="0 1.5707 1.5707" />
     </joint>
     <link
-        name="kinect">
+        name="head/kinect2_link">
       <inertial>
         <origin
             xyz="0.001778 0.164443 0.209049"
@@ -364,10 +364,10 @@
       <parent
           link="crl_head" />
       <child
-          link="kinect" />
+          link="head/kinect2_link" />
       <origin
           xyz="-0.003895 -0.170163 0.017938"
-          rpy="0 1.57075 0" />
+          rpy="3.14159 0 0" />
     </joint>
   </xacro:macro>
 </robot>
