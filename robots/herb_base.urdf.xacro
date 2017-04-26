@@ -163,7 +163,7 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="0 0 1" />
       <!--velocity dimensions assumed to be rad/s-->
@@ -222,7 +222,7 @@
     </link>
     <joint
         name="pan_neck_to_tilt_neck"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="1 0 0" />
       <!--velocity dimensions assumed to be rad/s-->
@@ -233,7 +233,7 @@
           velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
-          rpy="0 0 0" />
+          rpy="-0.698132 0 0" />
       <parent
           link="neck_pan" />
       <child
@@ -291,8 +291,35 @@
           xyz="-0.003895 -0.0575 -0.236"
           rpy="-1.57075 0 0" />
     </joint>
+    <link name="multisense/head">
+      <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.1" />
+        <inertia
+            ixx="1"
+            ixy="0"
+            ixz="0"
+            iyy="1"
+            iyz="0"
+            izz="1" />
+      </inertial>
+    </link>
+    <joint
+        name="crl_head_to_multisenseframe"
+        type="fixed">
+      <parent
+          link="crl_head" />
+      <child
+          link="multisense/head" />
+      <origin
+          xyz="0 -0.086 -0.056"
+          rpy="0 1.5707 1.5707" />
+    </joint>
     <link
-        name="kinect">
+        name="head/kinect2_link">
       <inertial>
         <origin
             xyz="0.001778 0.164443 0.209049"
@@ -337,10 +364,10 @@
       <parent
           link="crl_head" />
       <child
-          link="kinect" />
+          link="head/kinect2_link" />
       <origin
           xyz="-0.003895 -0.170163 0.017938"
-          rpy="0 1.57075 0" />
+          rpy="3.14159 0 0" />
     </joint>
   </xacro:macro>
 </robot>
