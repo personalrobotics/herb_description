@@ -319,7 +319,7 @@
           rpy="0 1.5707 1.5707" />
     </joint>
     <link
-        name="head/kinect2_link">
+        name="kinect2_fake_link">
       <inertial>
         <origin
             xyz="0.001778 0.164443 0.209049"
@@ -364,10 +364,38 @@
       <parent
           link="crl_head" />
       <child
-          link="head/kinect2_link" />
+          link="kinect2_fake_link" />
       <origin
           xyz="-0.003895 -0.170163 0.017938"
-          rpy="3.14159 0 0" />
+          rpy="0 1.57075 0" />
     </joint>
+    <link name="head/kinect2_link">
+      <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="0.001" />
+        <inertia
+            ixx="1"
+            ixy="0"
+            ixz="0"
+            iyy="1"
+            iyz="0"
+            izz="1" />
+      </inertial>
+    </link>
+    <joint
+      name="kinect2_fake_joint"
+      type="fixed">
+      <parent
+        link="kinect2_fake_link"/>
+      <child
+        link="head/kinect2_link" />
+      <origin
+        xyz="0 0 0"
+        rpy="3.14159 -1.57075 0"/>
+    </joint>
+
   </xacro:macro>
 </robot>
