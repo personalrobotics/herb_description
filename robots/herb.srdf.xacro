@@ -54,7 +54,7 @@
 
   <xacro:macro name="empty_endeffector" params="prefix:=${prefix}">
     <group name="${prefix}_hand"/>
-    <end_effector name="${prefix}_hand" group="${prefix}_hand"
+    <end_effector name="${prefix}" group="${prefix}_hand"
                   parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
   </xacro:macro>
 
@@ -75,7 +75,7 @@
       </xacro:if>
     </group>
 
-    <end_effector name="${prefix}_hand" group="${prefix}_hand"
+    <end_effector name="${prefix}" group="${prefix}_hand"
                   parent_link="/${prefix}/wam7" parent_group="${prefix}"/>
 
     <!-- Disable collisions between the fingers. -->
