@@ -6,6 +6,7 @@
     </group>
 
     <!-- WAM self collisions -->
+    <disable_collisions link1="herb_frame" link2="/${prefix}/wam1"/>
     <disable_collisions link1="/${prefix}/wam1" link2="/${prefix}/wam3"/>
     <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam6"/>
     <disable_collisions link1="/${prefix}/wam4" link2="/${prefix}/wam7"/>
@@ -136,6 +137,7 @@
 
     <!-- Disable collisions between palm and WAM end link -->
     <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
+    <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/hand_base"/>
 
     <!-- Sphere representation for CHOMP -->
     <link_sphere_approximation link="/${prefix}/finger0_1">
