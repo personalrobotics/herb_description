@@ -367,7 +367,7 @@
           link="head/kinect2_link" />
       <origin
           xyz="-0.003895 -0.170163 0.017938"
-          rpy="3.14159 0 0" />
+          rpy="0 1.57075 0" />
     </joint>
   </xacro:macro>
 </robot>
