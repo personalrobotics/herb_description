@@ -61,7 +61,7 @@
         name="root_to_frame"
         type="fixed">
       <origin
-          xyz="0 0 1.05"
+          xyz="0 0 1.08"
           rpy="0 0 -1.57075" />
       <parent
           link="base_footprint" />
@@ -233,7 +233,7 @@
           velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
-          rpy="-0.698132 0 0" />
+          rpy="-0.523599 0 0" />
       <parent
           link="neck_pan" />
       <child
