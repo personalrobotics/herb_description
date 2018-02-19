@@ -108,7 +108,7 @@ Unless otherwise noted, herb_description is licensed under a BSD license (see
 are licensed under the GPL (see `LICENSE.gpl`). This includes the following
 files in the `meshes` directory:
 
-- all `.dae` models except for: `head_wam1.dae`, `head_wam2.dae,
+- all `.dae` models except for: `head_wam1.dae`, `head_wam2.dae`,
   `herb_base.dae`, `segway_wheel_left.dae`, and `segway_wheel_right.dae`
 - all `.jpg` textures except for: `head_wam1.jpg`, `head_wam2.jpg`,
   `herb_base.jpg`, and `wheel.jpg`
