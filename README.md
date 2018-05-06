@@ -1,4 +1,4 @@
-# herb_description
+# herb_description [![Build Status](https://travis-ci.com/personalrobotics/herb_description.svg?branch=master)](https://travis-ci.com/personalrobotics/herb_description)
 
 herb_description contains URDF and SRDF descriptions of HERB, a bimanual mobile
 manipulation robot designed and built by the
