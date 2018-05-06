@@ -8,7 +8,7 @@ option(BUILD_ALL_HERB_MODELS "Build all variations of the HERB models" ON)
 
 function(build_xacro infile outfile xacro_args)
   # Call out to xacro to get dependencies
-  execute_process(COMMAND ${CATKIN_ENV} rosrun xacro xacro --deps "${infile}"
+  execute_process(COMMAND "${CATKIN_ENV} rosrun xacro xacro --deps "${infile}""
     ERROR_VARIABLE _xacro_err_ignore
     OUTPUT_VARIABLE _xacro_deps_result
     OUTPUT_STRIP_TRAILING_WHITESPACE)
