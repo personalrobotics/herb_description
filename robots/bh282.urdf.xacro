@@ -1,5 +1,4 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bh282">
-  <xacro:property name="pi" value="3.14159265359"/>
   <xacro:macro name="bh282" params="prefix">
     <link name="${prefix}/hand_base">
       <visual>

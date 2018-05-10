@@ -1,7 +1,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb">
 
-  <xacro:property name="pi" value="3.14159265359"/>
-
   <xacro:include filename="herb_base.urdf.xacro"/>
   <xacro:include filename="bh280.urdf.xacro"/>
   <xacro:include filename="bh282.urdf.xacro"/>

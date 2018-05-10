@@ -1,6 +1,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wam">
     <xacro:property name="prefix" value=""/>
-    <xacro:property name="pi" value="3.14159265359"/>
 
     <xacro:include filename="bh280.urdf.xacro"/>
     <xacro:include filename="wam.urdf.xacro"/>
