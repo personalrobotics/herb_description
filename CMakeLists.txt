@@ -33,6 +33,9 @@ macro(append_hand_flags hand hand_option urdf_args srdf_args)
     list(APPEND ${urdf_args} "${hand}_bh282:=true")
     list(APPEND ${srdf_args} "${hand}_perception:=true")
   endif()
+  if(${hand_option} STREQUAL "wsg50")
+    list(APPEND ${urdf_args} "${hand}_wsg50:=true")
+  endif()
   if(NOT ${hand_option} STREQUAL "no")
     list(APPEND ${srdf_args} "${hand}_hand:=true")
   endif()
@@ -58,35 +61,54 @@ set(BH282_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/bh282.urdf")
 set(BH282_STANDALONE_SRDF_XACRO "${ROBOTS_SRC_DIR}/bh282_standalone.srdf.xacro")
 set(BH282_STANDALONE_SRDF "${ROBOTS_OUTPUT_DIR}/bh282.srdf")
 
+set(WSG50_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wsg50_standalone.urdf.xacro")
+set(WSG50_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wsg50.urdf")
+set(WSG50_STANDALONE_SRDF_XACRO "${ROBOTS_SRC_DIR}/wsg50_standalone.srdf.xacro")
+set(WSG50_STANDALONE_SRDF "${ROBOTS_OUTPUT_DIR}/wsg50.srdf")
+
 set(WAM_BH280_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wam_bh280_standalone.urdf.xacro")
 set(WAM_BH280_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam_bh280.urdf")
 
 set(WAM_BH282_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wam_bh282_standalone.urdf.xacro")
 set(WAM_BH282_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam_bh282.urdf")
 
+set(WAM_WSG50_STANDALONE_URDF_XACRO "${ROBOTS_SRC_DIR}/wam_wsg50_standalone.urdf.xacro")
+set(WAM_WSG50_STANDALONE_URDF "${ROBOTS_OUTPUT_DIR}/wam_wsg50.urdf")
+
 build_xacro(${WAM_STANDALONE_URDF_XACRO} ${WAM_STANDALONE_URDF} "")
 build_xacro(${BH280_STANDALONE_URDF_XACRO} ${BH280_STANDALONE_URDF} "")
 build_xacro(${BH280_STANDALONE_SRDF_XACRO} ${BH280_STANDALONE_SRDF} "")
 build_xacro(${BH282_STANDALONE_URDF_XACRO} ${BH282_STANDALONE_URDF} "")
 build_xacro(${BH282_STANDALONE_SRDF_XACRO} ${BH282_STANDALONE_SRDF} "")
+build_xacro(${WSG50_STANDALONE_URDF_XACRO} ${WSG50_STANDALONE_URDF} "")
+build_xacro(${WSG50_STANDALONE_SRDF_XACRO} ${WSG50_STANDALONE_SRDF} "")
+
 build_xacro(${WAM_BH280_STANDALONE_URDF_XACRO} ${WAM_BH280_STANDALONE_URDF} "")
 build_xacro(${WAM_BH282_STANDALONE_URDF_XACRO} ${WAM_BH282_STANDALONE_URDF} "")
+build_xacro(${WAM_WSG50_STANDALONE_URDF_XACRO} ${WAM_WSG50_STANDALONE_URDF} "")
 
 # HERB model matrix
 #
 # | LEFT  | RIGHT |
 # |-------|-------|
-# | BH280 | BH280 | # impossible
-# | BH280 | None  |
-# | BH280 | BH282 | # DEFAULT
 # | None  | None  |
 # | None  | BH280 |
 # | None  | BH282 |
-# | BH282 | BH282 | # impossible
-# | BH282 | BH280 |
+# | None  | WSG50 |
+# | BH280 | None  |
+# | BH280 | BH280 | # impossible
+# | BH280 | BH282 | # DEFAULT
+# | BH280 | WSG50 |
 # | BH282 | None  |
+# | BH282 | BH280 |
+# | BH282 | BH282 | # impossible
+# | BH282 | WSG50 |
+# | WSG50 | None  |
+# | WSG50 | BH280 |
+# | WSG50 | BH282 |
+# | WSG50 | WSG50 | # impossible
 
-set(HERB_HAND_OPTIONS "bh280" "bh282" "no")
+set(HERB_HAND_OPTIONS "bh280" "bh282" "wsg50" "no")
 
 # Default HERB (two BH280 hands)
 set(HERB_URDF_XACRO "${ROBOTS_SRC_DIR}/herb.urdf.xacro")
@@ -97,7 +119,7 @@ set(HERB_SRDF "${ROBOTS_OUTPUT_DIR}/herb.srdf")
 
 set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh282:=true")
 build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${FULL_HERB_URDF_ARGS}")
-set(FULL_HERB_SRDF_ARGS "left_hand:=true" "right_hand:=true" "right_perception:=true")
+set(FULL_HERB_SRDF_ARGS "left_barrett:=true" "right_barrett:=true" "right_perception:=true")
 build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
 
 list(APPEND CORE_DESCRIPTION_FILES
@@ -106,8 +128,11 @@ list(APPEND CORE_DESCRIPTION_FILES
   ${BH280_STANDALONE_SRDF}
   ${BH282_STANDALONE_URDF}
   ${BH282_STANDALONE_SRDF}
+  ${WSG50_STANDALONE_URDF}
+  ${WSG50_STANDALONE_SRDF}
   ${WAM_BH280_STANDALONE_URDF}
   ${WAM_BH282_STANDALONE_URDF}
+  ${WAM_WSG50_STANDALONE_URDF}
   ${HERB_URDF}
   ${HERB_SRDF}
   )
@@ -125,8 +150,9 @@ if(BUILD_ALL_HERB_MODELS)
       # We only have one of each type of hand
       set(IS_DUAL_BH280_CASE (${LEFT_HAND} STREQUAL "bh280" AND ${RIGHT_HAND} STREQUAL "bh280"))
       set(IS_DUAL_BH282_CASE (${LEFT_HAND} STREQUAL "bh282" AND ${RIGHT_HAND} STREQUAL "bh282"))
+      set(IS_DUAL_WSG50_CASE (${LEFT_HAND} STREQUAL "wsg50" AND ${RIGHT_HAND} STREQUAL "wsg50"))
 
-      if(NOT (${IS_DEFAULT_HAND_CASE} OR ${IS_DUAL_BH280_CASE} OR ${IS_DUAL_BH282_CASE}))
+      if(NOT (${IS_DEFAULT_HAND_CASE} OR ${IS_DUAL_BH280_CASE} OR ${IS_DUAL_BH282_CASE} OR ${IS_DUAL_WSG50_CASE}))
         set(HERB_URDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.urdf")
         set(HERB_SRDF_OUTPUT "${ROBOTS_OUTPUT_DIR}/herb_${LEFT_HAND}_left_${RIGHT_HAND}_right.srdf")
 

@@ -1,0 +1,28 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wsg50">
+  <xacro:macro name="wsg50">
+    <group name="hand">
+      <link name="/hand_base"/>
+      <link name="/left_finger_mount"/>
+      <link name="/left_finger"/>
+      <link name="/right_finger_mount"/>
+      <link name="/right_finger"/>
+    </group>
+
+    <!-- Disable collisions between the fingers. -->
+    <disable_collisions link1="/left_finger_mount" link2="/left_finger"/>
+    <disable_collisions link1="/left_finger_mount" link2="/right_finger_mount"/>
+    <disable_collisions link1="/left_finger_mount" link2="/right_finger"/>
+  
+    <disable_collisions link1="/left_finger" link2="/right_finger_mount"/>
+    <disable_collisions link1="/left_finger" link2="/right_finger"/>
+
+    <disable_collisions link1="/right_finger_mount" link2="/right_finger"/>
+
+    <!-- Disable collisions between the fingers and the hand base. -->
+    <disable_collisions link1="/hand_base" link2="/left_finger_mount"/>
+    <disable_collisions link1="/hand_base" link2="/left_finger"/>
+    <disable_collisions link1="/hand_base" link2="/right_finger_mount"/>
+    <disable_collisions link1="/hand_base" link2="/right_finger"/>
+
+  </xacro:macro>
+</robot>

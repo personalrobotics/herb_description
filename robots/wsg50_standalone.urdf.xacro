@@ -1,0 +1,4 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wsg50">
+    <xacro:include filename="wsg50.urdf.xacro"/>
+    <xacro:wsg50 prefix=""/>
+</robot>

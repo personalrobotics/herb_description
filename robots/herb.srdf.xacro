@@ -165,6 +165,32 @@
     </link_sphere_approximation>
   </xacro:macro>
 
+  <xacro:macro name="wsg50_endeffector" params="prefix:=${prefix}">
+    <group name="${prefix}_hand">
+      <link name="/${prefix}/hand_base"/>
+      <link name="/${prefix}/left_finger_mount"/>
+      <link name="/${prefix}/left_finger"/>
+      <link name="/${prefix}/right_finger_mount"/>
+      <link name="/${prefix}/right_finger"/>
+    </group>
+
+    <!-- Disable collisions between the fingers. -->
+    <disable_collisions link1="/${prefix}/left_finger_mount" link2="/${prefix}/left_finger"/>
+    <disable_collisions link1="/${prefix}/left_finger_mount" link2="/${prefix}/right_finger_mount"/>
+    <disable_collisions link1="/${prefix}/left_finger_mount" link2="/${prefix}/right_finger"/>
+  
+    <disable_collisions link1="/${prefix}/left_finger" link2="/${prefix}/right_finger_mount"/>
+    <disable_collisions link1="/${prefix}/left_finger" link2="/${prefix}/right_finger"/>
+
+    <disable_collisions link1="/${prefix}/right_finger_mount" link2="/${prefix}/right_finger"/>
+
+    <!-- Disable collisions between the fingers and the hand base. -->
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/left_finger_mount"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/left_finger"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/right_finger_mount"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/right_finger"/>
+  </xacro:macro>
+
   <!-- <xacro:macro name="pantilt" params="name"> -->
   <!--   <group name="${name}"> -->
   <!--     <link name="/herb_base"/> -->
@@ -192,27 +218,45 @@
   <!-- hand arguments should all default to false to make argument passing sane -->
   <!-- NOTE: if we use kinematically distinct hands from the BarrettHand
        we will need more fine-grained arguments -->
-  <xacro:arg name="left_hand" default="false"/>
-  <xacro:arg name="right_hand" default="false"/>
+  <xacro:property name="left_none" value="true"/>
+  <xacro:property name="right_none" value="true"/>
+  <xacro:arg name="left_barrett" default="false"/>
+  <xacro:arg name="right_barrett" default="false"/>
+  <xacro:arg name="left_wsg50" default="false"/>
+  <xacro:arg name="right_wsg50" default="false"/>
   <xacro:arg name="left_perception" default="false"/>
   <xacro:arg name="right_perception" default="false"/>
 
   <xacro:wam_manipulator prefix="left"/>
   <xacro:wam_manipulator prefix="right"/>
 
-  <xacro:if value="$(arg left_hand)">
+  <xacro:if value="$(arg left_barrett)">
     <xacro:barretthand_endeffector prefix="left" perception="$(arg left_perception)"/>
+    <xacro:property name="left_none" value="false"/>
   </xacro:if>
-  <xacro:unless value="$(arg left_hand)">
-    <xacro:empty_endeffector prefix="left"/>
-  </xacro:unless>
 
-  <xacro:if value="$(arg right_hand)">
-    <xacro:barretthand_endeffector prefix="right" perception="$(arg right_perception)"/>
+  <xacro:if value="$(arg left_wsg50)">
+    <xacro:wsg50_endeffector prefix="left"/>
+    <xacro:property name="left_none" value="false"/>
   </xacro:if>
-  <xacro:unless value="$(arg right_hand)">
+
+  <xacro:if value="${left_none == 'true'}">
+    <xacro:empty_endeffector prefix="left"/>
+  </xacro:if>
+
+  <xacro:if value="$(arg right_barrett)">
+    <xacro:barretthand_endeffector prefix="right" perception="$(arg right_perception)"/>
+    <xacro:property name="right_none" value="false"/>
+  </xacro:if>
+
+  <xacro:if value="$(arg right_wsg50)">
+    <xacro:wsg50_endeffector prefix="right"/>
+    <xacro:property name="right_none" value="false"/>
+  </xacro:if>
+
+  <xacro:if value="${right_none == 'true'}">
     <xacro:empty_endeffector prefix="right"/>
-  </xacro:unless>
+  </xacro:if>
 
   <!-- <xacro:pantilt name="head"/> -->
 

@@ -3,13 +3,14 @@
   <xacro:include filename="herb_base.urdf.xacro"/>
   <xacro:include filename="bh280.urdf.xacro"/>
   <xacro:include filename="bh282.urdf.xacro"/>
+  <xacro:include filename="wsg50.urdf.xacro"/>
   <xacro:include filename="wam.urdf.xacro"/>
   <xacro:include filename="fixed_transforms.urdf.xacro"/>
 
   <!-- 7 DOF Barrett WAM equipped with the Barrett force/torque sensor and
        optionally the BH-280 BarrettHand end-effector. -->
   <xacro:macro name="herb_manipulator"
-               params="prefix:=${prefix} bh280:=false bh282:=false">
+               params="prefix:=${prefix} bh280:=false bh282:=false wsg50:=false">
     <xacro:wam prefix="${prefix}"/>
 
     <xacro:if value="${bh280}">
@@ -18,6 +19,10 @@
 
     <xacro:if value="${bh282}">
       <xacro:bh282 prefix="${prefix}"/>
+    </xacro:if>
+
+    <xacro:if value="${wsg50}">
+      <xacro:wsg50 prefix="${prefix}"/>
     </xacro:if>
 
     <link name="${prefix}/force_torque">
@@ -53,6 +58,14 @@
         <child link="${prefix}/hand_base"/>
       </joint>
     </xacro:if>
+  <xacro:if value="${wsg50}">
+      <joint name="${prefix}/hand_mount" type="fixed">
+        <!-- The force/torque sensor is 12 mm thick. -->
+        <origin xyz="0 0 0.012" rpy="0 0 ${pi/2}"/>
+        <parent link="${prefix}/force_torque"/>
+        <child link="${prefix}/hand_base"/>
+      </joint>
+    </xacro:if>
   </xacro:macro>
 
   <!-- hand arguments should all default to false to make argument passing sane -->
@@ -60,9 +73,11 @@
   <xacro:arg name="right_bh280" default="false"/>
   <xacro:arg name="left_bh282" default="false"/>
   <xacro:arg name="right_bh282" default="false"/>
+  <xacro:arg name="left_wsg50" default="false"/>
+  <xacro:arg name="right_wsg50" default="false"/>
 
-  <xacro:herb_manipulator prefix="/left" bh280="$(arg left_bh280)" bh282="$(arg left_bh282)"/>
-  <xacro:herb_manipulator prefix="/right" bh280="$(arg right_bh280)" bh282="$(arg right_bh282)"/>
+  <xacro:herb_manipulator prefix="/left" bh280="$(arg left_bh280)" bh282="$(arg left_bh282)" wsg50="$(arg left_wsg50)"/>
+  <xacro:herb_manipulator prefix="/right" bh280="$(arg right_bh280)" bh282="$(arg right_bh282)" wsg50="$(arg right_wsg50)"/>
   <xacro:herb_base prefix=""/>
 
   <joint name="/left/wam_mount" type="fixed">

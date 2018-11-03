@@ -1,0 +1,96 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wsg50">
+  <xacro:macro name="wsg50" params="prefix">
+
+  <link name="${prefix}/hand_base">
+    <visual>
+      <geometry>
+        <mesh filename="package://herb_description/meshes/wsg-50/WSG50_110.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="grey">
+		<color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+        <geometry>
+          <mesh filename="package://herb_description/meshes/wsg-50/WSG50_110.stl" scale="1 1 1"/>
+        </geometry>
+    </collision>
+  </link>
+
+  <!-- LEFT FINGER MOUNT -->
+
+  <link name="${prefix}/left_finger_mount">
+    <visual>
+      <geometry>
+         <mesh filename="package://herb_description/meshes/wsg-50/GUIDE_WSG50_110.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+		<color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+   <joint name="${prefix}/base_to_left_finger_mount" type="prismatic">
+       <parent link="${prefix}/hand_base"/>
+       <child link="${prefix}/left_finger_mount"/>
+       <origin xyz="-0.002 0 0" rpy="0 0 0" />
+       <limit lower="-0.055" upper="-0.0027" effort="1.0" velocity="1.0"/>
+   </joint>
+
+    <!-- LEFT FINGER -->
+
+    <link name="${prefix}/left_finger">
+    <visual>
+      <geometry>
+         <mesh filename="package://herb_description/meshes/wsg-50/WSG-FMF.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+   <joint name="${prefix}/left_finger_mount_to_finger" type="fixed">
+       <parent link="${prefix}/left_finger_mount"/>
+       <child link="${prefix}/left_finger"/>
+       <origin xyz="0 0 0.023" rpy="0 0 0" />
+   </joint>
+
+
+   <!-- RIGHT FINGER MOUNT -->
+
+  <link name="${prefix}/right_finger_mount">
+    <visual>
+      <geometry>
+         <mesh filename="package://herb_description/meshes/wsg-50/GUIDE_WSG50_110.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+		<color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+   <joint name="${prefix}/base_to_right_finger_mount" type="prismatic">
+       <parent link="${prefix}/hand_base"/>
+       <child link="${prefix}/right_finger_mount"/>
+       <origin xyz="0.002 0 0" rpy="0 0 3.14159" />
+       <limit lower="-0.0027" upper="-0.055" effort="1.0" velocity="1.0"/>
+   </joint>
+
+    <!-- RIGHT FINGER -->
+
+    <link name="${prefix}/right_finger">
+    <visual>
+      <geometry>
+         <mesh filename="package://herb_description/meshes/wsg-50/WSG-FMF.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+   <joint name="${prefix}/right_finger_mount_to_finger" type="fixed">
+       <parent link="${prefix}/right_finger_mount"/>
+       <child link="${prefix}/right_finger"/>
+       <origin xyz="0 0 0.023" rpy="0 0 0" />
+   </joint>
+
+ </xacro:macro>
+</robot>

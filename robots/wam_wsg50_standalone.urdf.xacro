@@ -1,0 +1,17 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="wam">
+    <xacro:property name="prefix" value=""/>
+
+    <xacro:include filename="wsg50.urdf.xacro"/>
+    <xacro:include filename="wam.urdf.xacro"/>
+
+    <xacro:wam prefix="${prefix}"/>
+    <xacro:wsg50 prefix="${prefix}"/>
+
+    <!-- TODO: get correct measurments from Hanjun -->
+    <joint name="${prefix}/hand_mount" type="fixed">
+        <!-- The force/torque sensor is 12 mm thick. -->
+        <origin xyz="0 0 0.072" rpy="0 0 ${pi/2}"/>
+        <parent link="${prefix}/wam7"/>
+        <child link="${prefix}/hand_base"/>
+    </joint>
+</robot>
