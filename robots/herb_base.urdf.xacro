@@ -319,13 +319,13 @@
           rpy="0 1.5707 1.5707" />
     </joint>
     <link
-        name="head/kinect2_link">
+        name="head/realsense_link">
       <inertial>
         <origin
             xyz="0.001778 0.164443 0.209049"
             rpy="0 0 0" />
         <mass
-            value="0.63"/>
+            value="0.79"/>
         <inertia
             ixx="0.00272"
             ixy="0.00036"
@@ -336,11 +336,11 @@
       </inertial>
       <visual>
         <origin
-            xyz="0 0 0"
-            rpy="0 0 0" />
-        <geometry>
+            xyz="0 -0.0125 -0.045"
+            rpy="4.7123889 4.7123889 0" />
+        <geometry>	
           <mesh
-              filename="package://herb_description/meshes/head/herb_kinect.STL" />
+              filename="package://herb_description/meshes/head/herb_realsense.STL" scale="0.001 0.001 0.001" />
         </geometry>
         <material
             name="">
@@ -350,11 +350,11 @@
       </visual>
       <collision>
         <origin
-            xyz="-0.039543 -0.065 0"
-            rpy="1.57075 1.57075 1.57075" />
+            xyz="0 -0.0125 -0.045"
+            rpy="0 0 0" />
         <geometry>
           <mesh
-              filename="package://herb_description/meshes/head/herb_kinect_collision.STL" />
+              filename="package://herb_description/meshes/head/herb_realsense_collision.STL" scale="0.001 0.001 0.001" />
         </geometry>
       </collision>
     </link>
@@ -364,10 +364,10 @@
       <parent
           link="crl_head" />
       <child
-          link="head/kinect2_link" />
+          link="head/realsense_link" />
       <origin
-          xyz="-0.003895 -0.170163 0.017938"
-          rpy="0 1.57075 0" />
+          xyz="0 -0.170163 0.017938"
+          rpy="0 1.5707 0" />
     </joint>
   </xacro:macro>
 </robot>
