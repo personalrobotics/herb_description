@@ -366,7 +366,7 @@
       <child
           link="head/realsense_link" />
       <origin
-          xyz="0 -0.170163 0.017938"
+          xyz="0 -0.170163 -0.0323"
           rpy="0 1.5707 0" />
     </joint>
   </xacro:macro>
