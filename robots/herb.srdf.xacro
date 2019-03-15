@@ -115,9 +115,10 @@
     <disable_collisions link1="/${prefix}/finger2_1" link2="/${prefix}/finger2_2"/>
 
     <!-- Disable collisions between the fingers and the hand base. -->
-    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_0"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_0"/>
     <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_1"/>
     <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger0_2"/>
+    <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_0"/>
     <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_1"/>
     <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger1_2"/>
     <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/finger2_1"/>
@@ -126,9 +127,10 @@
     <xacro:if value="${perception}">
       <!-- Disable collisions between the fingers and the perception palm. -->
       <disable_collisions link1="/${prefix}/hand_base" link2="/${prefix}/perception_palm"/>
-      <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger1_0"/>
+      <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger0_0"/>
       <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger0_1"/>
       <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger0_2"/>
+      <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger1_0"/>
       <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger1_1"/>
       <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger1_2"/>
       <disable_collisions link1="/${prefix}/perception_palm" link2="/${prefix}/finger2_1"/>
@@ -138,6 +140,10 @@
     <!-- Disable collisions between palm and WAM end link -->
     <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/hand_base"/>
     <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/hand_base"/>
+    <xacro:if value="${perception}">
+      <disable_collisions link1="/${prefix}/wam6" link2="/${prefix}/perception_palm"/>
+      <disable_collisions link1="/${prefix}/wam7" link2="/${prefix}/perception_palm"/>
+    </xacro:if>
 
     <!-- Sphere representation for CHOMP -->
     <link_sphere_approximation link="/${prefix}/finger0_1">
