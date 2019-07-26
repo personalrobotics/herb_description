@@ -333,7 +333,7 @@
 	<visual>
         <origin
             xyz="0 0 0"
-            rpy="0 3.1415926 0" />
+            rpy="1.5707963 3.1415926 0" />
         <geometry>
           <mesh
               filename="package://herb_description/meshes/head/realsense.dae" />
@@ -352,14 +352,14 @@
       </collision>
       </link>
     <joint
-        name="crl_head_to_realsense"
+        name="neck_tilt_to_realsense"
         type="fixed">
       <parent
-          link="crl_head" />
+          link="neck_tilt" />
       <child
           link="camera_link" />
       <origin
-          xyz="0.008 -0.1690163 -0.0765607"
+          xyz="0 -0.150963 -0.1015607"
           rpy="0 1.5707 1.5707" />
     </joint>
   </xacro:macro>

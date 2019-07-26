@@ -18,7 +18,7 @@
       </geometry_group>
       <inertial>
         <origin xyz="5.0019e-005 -0.0044561 0.037268"/>
-        <mass value="0.60858"/>
+        <mass value="0.36699"/>
         <inertia
             ixx="0.0006986" ixy="2.7577e-007" ixz="-7.8138e-007"
             iyx="0.0000000" iyy="0.00050354"  iyz="-6.44e-005"
@@ -48,7 +48,7 @@
       </geometry_group>
       <inertial>
         <origin xyz="5.0019e-005 -0.0044561 0.037268"/>
-        <mass value="0.60858"/>
+        <mass value="0.05"/>
         <inertia
             ixx="0.0006986" ixy="2.7577e-007" ixz="-7.8138e-007"
             iyx="0.0000000" iyy="0.00050354"  iyz="-6.44e-005"
