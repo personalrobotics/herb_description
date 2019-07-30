@@ -163,15 +163,16 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="fixed">
+        type="revolute">
       <axis
-          xyz="0 0 1" />
+          xyz="0 0 -1" />
       <!--velocity dimensions assumed to be rad/s-->
+      <!--TODO: figure out actual velocity limits-->
       <limit
           effort="2.0"
-          lower="-1.57075"
-          upper="1.57075"
-          velocity="6.28319" />
+          lower="-0.78539"
+          upper="0.78539"
+          velocity="0.75" />
       <origin
           xyz="0 0.124900 0.050806"
           rpy="3.141592 0 0" />
@@ -221,19 +222,20 @@
       </collision>
     </link>
     <joint
-        name="pan_neck_to_tilt_neck"
-        type="fixed">
+        name="neck_pan_to_neck_tilt"
+        type="revolute">
       <axis
-          xyz="1 0 0" />
+          xyz="-1 0 0" />
       <!--velocity dimensions assumed to be rad/s-->
+      <!--TODO: figure out actual velocity limits-->
       <limit
           effort="12.0"
-          lower="-1.57075"
-          upper="1.57075"
-          velocity="4.18879" />
+          lower="-0.78539"
+          upper="0.78539"
+          velocity="0.75" />
       <origin
           xyz="0 0 -0.0919"
-          rpy="-0.698132 0 0" />
+          rpy="0 0 0" />
       <parent
           link="neck_pan" />
       <child
@@ -281,7 +283,7 @@
       </collision>
     </link>
     <joint
-        name="tilt_neck_to_crl_head"
+        name="neck_tilt_to_crl_head"
         type="fixed">
       <parent
           link="neck_tilt" />
