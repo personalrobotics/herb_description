@@ -318,29 +318,25 @@
           xyz="0 -0.086 -0.056"
           rpy="0 1.5707 1.5707" />
     </joint>
+    <xacro:property name="d435_cam_width" value="0.090"/>
+    <xacro:property name="d435_cam_height" value="0.025"/>
+    <xacro:property name="d435_cam_depth" value="0.02505"/>
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="d435_cam_mount_from_center_offset" value="0.0149"/>
+    <xacro:property name="d435_cam_depth_py" value="0.0175"/>
     <link
-        name="head/kinect2_link">
-      <inertial>
-        <origin
-            xyz="0.001778 0.164443 0.209049"
-            rpy="0 0 0" />
-        <mass
-            value="0.63"/>
-        <inertia
-            ixx="0.00272"
-            ixy="0.00036"
-            ixz="-0.00002"
-            iyy="0.00258"
-            iyz="-0.00001"
-            izz="0.00145" />
-      </inertial>
-      <visual>
+        name="camera_link">
+        <origin xyz="${d435_cam_mount_from_center_offset} ${-d435_cam_depth_py} 0" rpy="0 0 0"/>
+  <mass
+            value="0.79"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
+  <visual>
         <origin
             xyz="0 0 0"
-            rpy="0 0 0" />
+            rpy="0 3.1415926 0" />
         <geometry>
           <mesh
-              filename="package://herb_description/meshes/head/herb_kinect.STL" />
+              filename="package://herb_description/meshes/head/realsense.dae" />
         </geometry>
         <material
             name="">
@@ -349,25 +345,22 @@
         </material>
       </visual>
       <collision>
-        <origin
-            xyz="-0.039543 -0.065 0"
-            rpy="1.57075 1.57075 1.57075" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh
-              filename="package://herb_description/meshes/head/herb_kinect_collision.STL" />
+        <box size="${d435_cam_depth} ${d435_cam_width} ${d435_cam_height}"/>
         </geometry>
       </collision>
-    </link>
+      </link>
     <joint
-        name="crl_head_to_kinect"
+        name="crl_head_to_realsense"
         type="fixed">
       <parent
           link="crl_head" />
       <child
-          link="head/kinect2_link" />
+          link="camera_link" />
       <origin
-          xyz="-0.003895 -0.170163 0.017938"
-          rpy="0 1.57075 0" />
+          xyz="0.008 -0.1690163 -0.0765607"
+          rpy="0 1.5707 1.5707" />
     </joint>
   </xacro:macro>
 </robot>
