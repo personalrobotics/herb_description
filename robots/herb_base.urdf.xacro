@@ -324,41 +324,21 @@
     <xacro:property name="M_PI" value="3.1415926535897931" />
     <xacro:property name="d435_cam_mount_from_center_offset" value="0.0149"/>
     <xacro:property name="d435_cam_depth_py" value="0.0175"/>
-    <link
-        name="camera_link">
-        <origin xyz="${d435_cam_mount_from_center_offset} ${-d435_cam_depth_py} 0" rpy="0 0 0"/>
-  <mass
-            value="0.79"/>
-      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
-  <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 3.1415926 0" />
-        <geometry>
-          <mesh
-              filename="package://herb_description/meshes/head/realsense.dae" />
-        </geometry>
-        <material
-            name="">
-          <color
-              rgba="0.25 0.25 0.25 1" />
-        </material>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-        <box size="${d435_cam_depth} ${d435_cam_width} ${d435_cam_height}"/>
-        </geometry>
-      </collision>
-      </link>
+    <link name="camera_link">
+      <inertial>
+        <origin 
+            xyz="${d435_cam_mount_from_center_offset} ${-d435_cam_depth_py} 0" 
+            rpy="0 0 0"/>
+      </inertial>
+    </link>
     <joint
         name="crl_head_to_realsense"
         type="fixed">
-      <parent
+        <parent
           link="crl_head" />
-      <child
+        <child
           link="camera_link" />
-      <origin
+        <origin
           xyz="0.008 -0.1690163 -0.0765607"
           rpy="0 1.5707 1.5707" />
     </joint>
