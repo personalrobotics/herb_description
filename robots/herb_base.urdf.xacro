@@ -383,7 +383,7 @@
       <visual>
         <origin
           xyz="0 0 0"
-          rpy="0 3.1415926 0" />
+          rpy="1.5707 0 1.5707" />
         <geometry>
           <mesh
             filename="package://herb_description/meshes/head/realsense.dae" />
