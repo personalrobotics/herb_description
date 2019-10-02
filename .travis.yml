@@ -12,6 +12,7 @@ cache:
   - apt
 
 matrix:
+  fast_finish: true
   include:
     - os: linux
       compiler: gcc
@@ -19,9 +20,13 @@ matrix:
     - os: linux
       env: DOCKER_FILE="ubuntu-xenial" BUILD_TYPE=Release CATKIN_CONFIG_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
       services: docker
-    #- os: linux
-    #  env: DOCKER_FILE="ubuntu-bionic" BUILD_TYPE=Release CATKIN_CONFIG_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
-    #  services: docker
+    - os: linux
+      env: DOCKER_FILE="ubuntu-bionic" BUILD_TYPE=Release CATKIN_CONFIG_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
+      services: docker
+  allow_failures:
+    - os: linux
+      compiler: gcc
+      env: BUILD_TYPE=Release CATKIN_CONFIG_OPTIONS="-DCMAKE_BUILD_TYPE=Release"
 
 before_install:
   - if [ -n "$DOCKER_FILE" ]; then

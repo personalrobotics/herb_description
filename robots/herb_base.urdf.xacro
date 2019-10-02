@@ -163,15 +163,15 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="fixed">
+        type="revolute">
       <axis
-          xyz="0 0 1" />
-      <!--velocity dimensions assumed to be rad/s-->
+          xyz="0 0 -1" />
+      <!--pan (swivel) velocity limit of 360 degrees/s-->
       <limit
           effort="2.0"
-          lower="-1.57075"
-          upper="1.57075"
-          velocity="6.28319" />
+          lower="-0.78539"
+          upper="0.78539"
+          velocity="6.28318" />
       <origin
           xyz="0 0.124900 0.050806"
           rpy="3.141592 0 0" />
@@ -221,15 +221,15 @@
       </collision>
     </link>
     <joint
-        name="pan_neck_to_tilt_neck"
-        type="fixed">
+        name="neck_pan_to_neck_tilt"
+        type="revolute">
       <axis
-          xyz="1 0 0" />
-      <!--velocity dimensions assumed to be rad/s-->
+          xyz="-1 0 0" />
+      <!--tilt velocity limit of 240 degrees/s-->
       <limit
           effort="12.0"
-          lower="-1.57075"
-          upper="1.57075"
+          lower="-0.78539"
+          upper="0.78539"
           velocity="4.18879" />
       <origin
           xyz="0 0 -0.0919"
@@ -281,7 +281,7 @@
       </collision>
     </link>
     <joint
-        name="tilt_neck_to_crl_head"
+        name="neck_tilt_to_crl_head"
         type="fixed">
       <parent
           link="neck_tilt" />
@@ -361,6 +361,45 @@
       <origin
           xyz="0 -0.150963 -0.1015607"
           rpy="0 1.5707 1.5707" />
+    </joint>
+    <xacro:property name="d435_cam_width" value="0.090"/>
+    <xacro:property name="d435_cam_height" value="0.025"/>
+    <xacro:property name="d435_cam_depth" value="0.02505"/>
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+    <xacro:property name="d435_cam_mount_from_center_offset" value="0.0149"/>
+    <xacro:property name="d435_cam_depth_py" value="0.0175"/>
+    <link
+      name="camera_link">
+      <origin xyz="${d435_cam_mount_from_center_offset} ${-d435_cam_depth_py} 0" rpy="0 0 0"/>
+      <mass value="0.79"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="1.5707 0 1.5707" />
+        <geometry>
+          <mesh
+            filename="package://herb_description/meshes/head/realsense.dae" />
+        </geometry>
+        <material name="">
+          <color rgba="0.25 0.25 0.25 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${d435_cam_depth} ${d435_cam_width} ${d435_cam_height}"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="crl_head_to_realsense"
+      type="fixed">
+      <parent link="crl_head" />
+      <child link="camera_link" />
+      <origin
+        xyz="0.008 -0.1690163 -0.0765607"
+        rpy="0 1.5707 1.5707" />
     </joint>
   </xacro:macro>
 </robot>

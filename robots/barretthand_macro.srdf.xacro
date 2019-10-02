@@ -51,9 +51,10 @@
     <disable_collisions link1="/finger2_1" link2="/finger2_2"/>
 
     <!-- Disable collisions between the fingers and the hand base. -->
-    <disable_collisions link1="/hand_base" link2="/finger1_0"/>
+    <disable_collisions link1="/hand_base" link2="/finger0_0"/>
     <disable_collisions link1="/hand_base" link2="/finger0_1"/>
     <disable_collisions link1="/hand_base" link2="/finger0_2"/>
+    <disable_collisions link1="/hand_base" link2="/finger1_0"/>
     <disable_collisions link1="/hand_base" link2="/finger1_1"/>
     <disable_collisions link1="/hand_base" link2="/finger1_2"/>
     <disable_collisions link1="/hand_base" link2="/finger2_1"/>
@@ -62,9 +63,10 @@
     <xacro:if value="${perception}">
       <!-- Disable collisions between the fingers and the perception palm. -->
       <disable_collisions link1="/hand_base" link2="/perception_palm"/>
-      <disable_collisions link1="/perception_palm" link2="/finger1_0"/>
+      <disable_collisions link1="/perception_palm" link2="/finger0_0"/>
       <disable_collisions link1="/perception_palm" link2="/finger0_1"/>
       <disable_collisions link1="/perception_palm" link2="/finger0_2"/>
+      <disable_collisions link1="/perception_palm" link2="/finger1_0"/>
       <disable_collisions link1="/perception_palm" link2="/finger1_1"/>
       <disable_collisions link1="/perception_palm" link2="/finger1_2"/>
       <disable_collisions link1="/perception_palm" link2="/finger2_1"/>
