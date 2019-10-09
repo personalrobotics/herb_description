@@ -163,9 +163,9 @@
     </link>
     <joint
         name="frame_to_neck_pan"
-        type="revolute">
+        type="fixed">
       <axis
-          xyz="0 0 -1" />
+          xyz="0 0 1" />
       <!--pan (swivel) velocity limit of 360 degrees/s-->
       <limit
           effort="2.0"
@@ -222,7 +222,7 @@
     </link>
     <joint
         name="neck_pan_to_neck_tilt"
-        type="revolute">
+        type="fixed">
       <axis
           xyz="-1 0 0" />
       <!--tilt velocity limit of 240 degrees/s-->
