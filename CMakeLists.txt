@@ -117,9 +117,9 @@ set(HERB_URDF "${ROBOTS_OUTPUT_DIR}/herb.urdf")
 set(HERB_SRDF_XACRO "${ROBOTS_SRC_DIR}/herb.srdf.xacro")
 set(HERB_SRDF "${ROBOTS_OUTPUT_DIR}/herb.srdf")
 
-set(FULL_HERB_URDF_ARGS "left_bh280:=true" "right_bh282:=true")
+set(FULL_HERB_URDF_ARGS "right_bh280:=true" "left_bh282:=true")
 build_xacro(${HERB_URDF_XACRO} ${HERB_URDF} "${FULL_HERB_URDF_ARGS}")
-set(FULL_HERB_SRDF_ARGS "left_barrett:=true" "right_barrett:=true" "right_perception:=true")
+set(FULL_HERB_SRDF_ARGS "left_barrett:=true" "right_barrett:=true" "right_perception:=false" "left_perception:=true")
 build_xacro(${HERB_SRDF_XACRO} ${HERB_SRDF} "${FULL_HERB_SRDF_ARGS}")
 
 list(APPEND CORE_DESCRIPTION_FILES
