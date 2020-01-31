@@ -27,6 +27,7 @@
       <child
           link="neobotix_base" />
     </joint>
+    <!--TODO: Confirm the inertial values when deemed important/necessary-->
     <link
         name="neobotix_base">
       <!--check inertias and mass-->
