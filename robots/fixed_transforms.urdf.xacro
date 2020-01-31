@@ -1,6 +1,5 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fixed_transforms">
     <!-- Fixed Transforms -->
-
     <xacro:macro name="no_inertia">
       <inertial>
         <mass value="0.001"/>
@@ -10,61 +9,31 @@
     
     <xacro:macro name="fixed_transforms">
         
-        <!-- LEFT WAM -->
-        <link name="/left/wam0">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/left/wam0"
-            type="fixed">
-            <origin
-                xyz="0.22 0.14 .346"
-                rpy="0. 0. 0." />
-            <parent link="/left/wam_base" />
-            <child link="/left/wam0" />
-        </joint>
-        
-        <!-- RIGHT WAM -->
-        <link name="/right/wam0">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="/right/wam0"
-            type="fixed">
-            <origin
-                xyz="0.22 0.14 .346"
-                rpy="0. 0. 0." />
-            <parent link="/right/wam_base" />
-            <child link="/right/wam0" />
-        </joint>
-        
-	<!-- TODO: /head/skel_depth_frame ? -->
-        
-        <link name="stargazer_lens">
-          <xacro:no_inertia/>
-        </link>
-        <joint
-            name="stargazer_lens"
-            type="fixed">
-            <origin
-                xyz="-0.3024 0.2068 1.0258"
-                rpy="0. 0. 0." />
-            <parent link="herb_frame" />
-            <child link="stargazer_lens" />
-        </joint>
-
-        <!-- Dummy link to match ROS conventions. -->
-        <link name="base_link">
-          <xacro:no_inertia/>
-	</link>
-        <joint
-             name="base_link"
-             type="fixed">
-             <origin
-                 xyz="0 0 0"
-                 rpy="0 0 0"/>
-             <parent link="neobotix_base"/> 
-             <child link="base_link"/>
-        </joint>
-    </xacro:macro>
+    <!-- LEFT WAM -->
+    <link name="/left/wam0">
+      <xacro:no_inertia/>
+    </link>
+    <joint
+        name="/left/wam0"
+        type="fixed">
+        <origin
+            xyz="0.22 0.14 .346"
+            rpy="0. 0. 0." />
+        <parent link="/left/wam_base" />
+        <child link="/left/wam0" />
+    </joint>
+    
+    <!-- RIGHT WAM -->
+    <link name="/right/wam0">
+      <xacro:no_inertia/>
+    </link>
+    <joint
+        name="/right/wam0"
+        type="fixed">
+        <origin
+            xyz="0.22 0.14 .346"
+            rpy="0. 0. 0." />
+        <parent link="/right/wam_base" />
+        <child link="/right/wam0" />
+    </joint>
 </robot>

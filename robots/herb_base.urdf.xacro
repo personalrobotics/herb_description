@@ -1,9 +1,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="herb_base">
   <xacro:macro name="herb_base" params="prefix">
-    <link name="base_footprint">
+    <link name="base_link">
       <inertial>
         <origin
-            xyz="0 0 0"
+            xyz="-0.074086 0 -0.051244"
             rpy="0 0 0" />
         <mass
             value="0.1" />
@@ -16,6 +16,69 @@
             izz="1" />
       </inertial>
     </link>
+    <joint
+        name="root_to_neobotix"
+        type="fixed">
+      <origin
+          xyz="0 0 0"
+          rpy="0 0 1.57075" />
+      <parent
+          link="base_link" />
+      <child
+          link="neobotix_base" />
+    </joint>
+    <link
+        name="neobotix_base">
+      <!--check inertias and mass-->
+      <inertial>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0" />
+        <mass
+            value="80" />
+        <inertia
+            ixx="9.25557"
+            ixy="0.00548"
+            ixz="0.00573"
+            iyy="7.60171"
+            iyz="1.02901"
+            izz="9.76036" />
+      </inertial>
+      <visual>
+        <origin
+            xyz="0 0 0"
+            rpy="0 0 0"/>
+        <geometry>
+          <mesh
+              filename="package://herb_description/meshes/base/herb_neobotix_base.STL" />
+        </geometry>
+        <material
+            name="">
+          <color
+              rgba="0.3 0.3 0.3 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+            xyz="0 0 0"
+            rpy="1.57075 0 1.57075" />
+        <geometry>
+          <mesh
+              filename="package://herb_description/meshes/base/herb_neobotix_base_collision.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint
+        name="neobotix_to_frame"
+        type="fixed">
+      <origin
+          xyz="0 -0.074086 1.101244"
+          rpy="0 0 3.141592" />
+      <parent
+          link="neobotix_base" />
+      <child
+          link="herb_frame" />
+    </joint>
     <link
         name="herb_frame">
       <!--check inertias and mass-->
@@ -57,69 +120,7 @@
         </geometry>
       </collision>
     </link>
-    <joint
-        name="root_to_frame"
-        type="fixed">
-      <origin
-          xyz="0 0 1.05"
-          rpy="0 0 -1.57075" />
-      <parent
-          link="base_footprint" />
-      <child
-          link="herb_frame" />
-    </joint>
-    <link
-        name="neobotix_base">
-      <!--check inertias and mass-->
-      <inertial>
-        <origin
-            xyz="0 -0.074086 -1.101244"
-            rpy="0 0 0" />
-        <mass
-            value="80" />
-        <inertia
-            ixx="9.25557"
-            ixy="0.00548"
-            ixz="0.00573"
-            iyy="7.60171"
-            iyz="1.02901"
-            izz="9.76036" />
-      </inertial>
-      <visual>
-        <origin
-            xyz="0 0 0"
-            rpy="0 0 0"/>
-        <geometry>
-          <mesh
-              filename="package://herb_description/meshes/base/herb_neobotix_base.STL" />
-        </geometry>
-        <material
-            name="">
-          <color
-              rgba="0.3 0.3 0.3 1" />
-        </material>
-      </visual>
-      <collision>
-        <origin
-            xyz="0 0 0"
-            rpy="1.57075 0 1.57075" />
-        <geometry>
-          <mesh
-              filename="package://herb_description/meshes/base/herb_neobotix_base_collision.STL" />
-        </geometry>
-      </collision>
-    </link>
-    <joint
-        name="frame_to_base"
-        type="fixed">
-      <origin
-          xyz="0 -0.074086 -1.101244"
-          rpy="0 0 3.141592" />
-      <parent
-          link="herb_frame" />
-      <child
-          link="neobotix_base" />
-    </joint>
+
     <link
         name="neck_pan">
       <!--check inertias and mass-->
